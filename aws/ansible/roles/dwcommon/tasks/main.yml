@@ -1,0 +1,70 @@
+---
+# tasks file for dwcommon
+- name: Disable SELinux
+  selinux:
+    state: disabled
+  notify: Reboot host and wait for it to restart
+
+- name: Copy private key to ansible host
+  copy:
+    src: files/id_rsa
+    dest: /home/{{ ansible_user }}/.ssh/id_rsa
+    owner: centos
+    group: centos
+    mode: '0600'
+
+- name: Copy public key to ansible host
+  copy:
+    src: files/id_rsa.pub
+    dest: /home/{{ ansible_user }}/.ssh/id_rsa.pub
+    owner: centos
+    group: centos
+    mode: '0600'
+
+- name: Copy authorzed_keys to ansible host
+  copy:
+    src: files/authorized_keys
+    dest: /home/{{ ansible_user }}/.ssh/authorized_keys
+    owner: centos
+    group: centos
+    mode: '0600'
+
+- name: Set GPDB nproc, nofile and core limits
+  copy:
+    src: "{{ role_path }}/files/gpdb-limits.conf"
+    dest: /etc/security/limits.d
+
+- name: Set GPDB sysctl.conf values
+  notify: Reload systemctl
+  copy:
+    src: "{{ role_path }}/files/gpdb-sysctl.conf"
+    dest: /etc/sysctl.conf
+
+- name: Create core file directory if it does not exist
+  file:
+    path: /var/crash/cores
+    state: directory
+    mode: '0777'
+
+- name: Copy TanzuNet downloaded file(s)
+  synchronize:
+    src: /home/centos/pivnet_files
+    dest: /home/centos
+  delegate_to: jumpbox_ipv4
+
+- name: Install GPDB pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm
+  yum:
+    name: "pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+    state: present
+
+- name: Create .bashrc
+  copy:
+    src: "{{ role_path }}/files/.bashrc"
+    dest: "/home/centos/.bashrc"
+    owner: centos
+    group: centos
+    mode: '0600'
+
+- name: Set host
+  hostname:
+    name: "{{ inventory_hostname }}"

@@ -1,8 +1,0 @@
-# dynamic supporting ansible files
-authorized_keys
-etchosts
-*.pem
-id_rsa
-id_rsa.pub
-gp_all_hosts_ipv*
-gp_segment_hosts_ipv*

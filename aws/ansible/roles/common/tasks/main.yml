@@ -1,0 +1,59 @@
+---
+# tasks file for common
+- name: Update Yum repo list
+  shell: yum updateinfo
+  changed_when: false
+  args:
+    warn: no
+
+- name: Install git, vim, tmux & unzip
+  yum:
+    name:
+      - git
+      - vim
+      - tmux
+      - unzip
+    state: present
+    update_cache: true
+
+- name: Checkout VIM modules
+  become: yes
+  become_user: centos
+  git:
+    repo: 'https://github.com/amix/vimrc.git'
+    dest: /home/centos/.vim_runtime
+
+- name: Install VIM config
+  shell: sh .vim_runtime/install_awesome_vimrc.sh
+  become: yes
+  become_user: centos
+  register: out
+  args:
+    creates: /home/centos/.vimrc
+
+- name: Enable IPV6 route advertisements (/etc/sysconfig/network updated on reboot)
+  replace:
+    path: /usr/lib/python2.7/site-packages/cloudinit/net/sysconfig.py
+    regexp: 'IPV6_AUTOCONF=no'
+    replace: 'IPV6_AUTOCONF=yes'
+
+- name: Update /etc/hosts
+  copy:
+    src: files/etchosts
+    dest: /etc/hosts
+    mode: '0644'
+
+- name: Create files directory
+  file:
+    path: files
+    state: directory
+    owner: centos
+    group: centos
+
+- name: Copy PEM file
+  copy:
+    src: files/gp_dev.pem
+    dest: /home/{{ ansible_user }}/files/gp_dev.pem
+    owner: centos
+    group: centos
+    mode: '0600'

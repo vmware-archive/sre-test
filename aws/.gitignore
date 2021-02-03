@@ -1,2 +1,5 @@
-ansible_hosts
+.envrc
+.terraform*
+*tfstate*
 terraform.tfvars
+*.pem

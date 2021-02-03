@@ -9,6 +9,6 @@ if [ -f terraform.tfstate ]; then
   export JUMPBOX_IPV4=$( jq -r '.outputs."gp_dev_jumpbox-public-IPv4".value'    terraform.tfstate )
   export MDW_IPV4=$(     jq -r '.outputs."gp_dev_dwcoordinators-public-IPv4".value[0]' terraform.tfstate )
   export SMDW_IPV4=$(    jq -r '.outputs."gp_dev_dwcoordinators-public-IPv4".value[1]' terraform.tfstate )
-  export SDW1_IPV4=$(    jq -r '.outputs."gp_dev_dwnodes-public-IPv4".value[0]' terraform.tfstate )
-  export SDW2_IPV4=$(    jq -r '.outputs."gp_dev_dwnodes-public-IPv4".value[1]' terraform.tfstate )
+  export SDW1_IPV4=$(    jq -r '.outputs."gp_dev_dwdatanodes-public-IPv4".value[0]' terraform.tfstate )
+  export SDW2_IPV4=$(    jq -r '.outputs."gp_dev_dwdatanodes-public-IPv4".value[1]' terraform.tfstate )
 fi

@@ -1,0 +1,91 @@
+# FILE NAME: gpinitsystem_config
+# Configuration file needed by the gpinitsystem
+
+################################################
+#### REQUIRED PARAMETERS
+################################################
+
+#### Name of this Greenplum system enclosed in quotes.
+ARRAY_NAME="Greenplum DB"
+
+#### Naming convention for utility-generated data directories.
+SEG_PREFIX=gpseg
+
+#### Base number by which primary segment port numbers
+#### are calculated.
+PORT_BASE=4000
+
+#### File system location(s) where primary segment data directories
+#### will be created. The number of locations in the list dictate
+#### the number of primary segments that will get created per
+#### physical host (if multiple addresses for a host are listed in
+#### the hostfile, the number of segments will be spread evenly across
+#### the specified interface addresses).
+####
+
+declare -a DATA_DIRECTORY=(
+{% for seg in range(greenplum.segments_per_host) %}
+  /data{{( seg + 1 )}}/gpdb/primary
+{% endfor %}
+)
+
+#### OS-configured hostname or IP address of the master host.
+####
+#### The first master node will be the master
+MASTER_HOSTNAME=mdw_{{ ip_network_protocol }}
+
+#### File system location where the master data directory
+#### will be created.
+####
+#### master is always on the last issd directory `/data/issd(max)`
+MASTER_DIRECTORY=/data1/gpdb/master
+
+#### Port number for the master instance.
+MASTER_PORT={{ greenplum.master_port }}
+
+#### Shell utility used to connect to remote hosts.
+TRUSTED_SHELL=ssh
+
+#### Maximum log file segments between automatic WAL checkpoints.
+CHECK_POINT_SEGMENTS=8
+
+#### Default server-side character set encoding.
+ENCODING=UNICODE
+
+################################################
+#### OPTIONAL MIRROR PARAMETERS
+################################################
+
+#### Base number by which mirror segment port numbers
+#### are calculated.
+MIRROR_PORT_BASE=5000
+
+#### Base number by which primary file replication port
+#### numbers are calculated.
+REPLICATION_PORT_BASE=4500
+
+#### Base number by which mirror file replication port
+#### numbers are calculated.
+MIRROR_REPLICATION_PORT_BASE=5500
+
+#### File system location(s) where mirror segment data directories
+#### will be created. The number of mirror locations must equal the
+#### number of mirror locations as specified in the
+#### DATA_DIRECTORY parameter.
+####
+declare -a MIRROR_DATA_DIRECTORY=(
+{% for seg in range(greenplum.segments_per_host) %}
+  /data{{( seg + 1 )}}/gpdb/mirror
+{% endfor %}
+)
+
+################################################
+#### OTHER OPTIONAL PARAMETERS
+################################################
+
+#### Create a database of this name after initialization.
+DATABASE_NAME=centos
+
+#### Specify the location of the host address file here instead of
+#### with the the -h option of gpinitsystem.
+MACHINE_LIST_FILE=/home/centos/gp_segment_hosts_{{ ip_network_protocol }}

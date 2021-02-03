@@ -1,0 +1,41 @@
+---
+# tasks file for dwdatanode
+- name: Create XFS data primary segmewnt data partitions
+  community.general.parted:
+    device: /dev/nvme{{ item }}n1
+    number: 1
+    state: present
+    fs_type: xfs
+  with_sequence: start=1 end={{ greenplum.segments_per_host }}
+
+- name: Create XFS segment data filesystems
+  community.general.filesystem:
+    fstype: xfs
+    opts: -L DATA{{ item }}
+    dev: /dev/nvme{{ item }}n1
+  with_sequence: start=1 end={{ greenplum.segments_per_host }}
+
+- name: Mount segment data filesystems by label
+  ansible.posix.mount:
+    path: /data{{ item }}
+    src: LABEL=DATA{{ item }}
+    fstype: xfs
+    opts: rw,noatime,nobarrier,nodev,inode64,allocsize=16m
+    state: mounted
+  with_sequence: start=1 end={{ greenplum.segments_per_host }}
+
+- name: Make segment data filesystems world-writable
+  file:
+    path: /data{{ item }}
+    state: directory
+    mode: '0777'
+  with_sequence: start=1 end={{ greenplum.segments_per_host }}
+
+- name: Create segment data directories
+  file:
+    path: /data{{ item[0] }}/gpdb/{{ item[1] }}
+    state: directory
+    mode: '0777'
+  with_nested:
+    - "{{ range(1,greenplum.segments_per_host+1)|list }}"
+    - [ 'primary', 'mirror' ]

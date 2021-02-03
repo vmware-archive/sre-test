@@ -1,0 +1,77 @@
+---
+# tasks file for jumpbox
+- name: Disable SELinux
+  selinux:
+    state: disabled
+  notify: Reboot host and wait for it to restart
+
+- name: generate key pair
+  become: yes
+  become_user: centos
+  shell: ssh-keygen -t rsa -f /home/{{ ansible_user }}/.ssh/id_rsa -q -N ""
+  args:
+    creates: /home/{{ ansible_user }}/.ssh/id_rsa
+
+- name: test public key
+  shell: ssh-keygen -l -f /home/{{ ansible_user }}/.ssh/id_rsa.pub
+  changed_when: false
+
+- name: retrieve public key
+  shell: cat /home/{{ ansible_user }}/.ssh/id_rsa.pub
+  register: master_public_key
+  changed_when: false
+
+- name: Add public key to authorized_keys
+  authorized_key:
+    user: centos
+    state: present
+    key: "{{ master_public_key.stdout }}"
+
+- name: Copy private key to ansible host
+  fetch:
+    src: /home/{{ ansible_user }}/.ssh/id_rsa
+    dest: files/id_rsa
+    flat: yes
+
+- name: Copy public key to ansible host
+  fetch:
+    src: /home/{{ ansible_user }}/.ssh/id_rsa.pub
+    dest: files/id_rsa.pub
+    flat: yes
+
+- name: Copy authorzed_keys to ansible host
+  fetch:
+    src: /home/{{ ansible_user }}/.ssh/authorized_keys
+    dest: files/authorized_keys
+    flat: yes
+
+- name: Retrieve TanzuNet CLI
+  get_url:
+    url: https://github.com/pivotal-cf/pivnet-cli/releases/download/v2.0.1/pivnet-linux-amd64-2.0.1
+    dest: /usr/local/bin/pivnet
+    mode: '0555'
+
+- name: Login into TanzuNet
+  shell: /usr/local/bin/pivnet login --api-token="{{ pivnet_api_token }}"
+  args:
+    creates: /root/.pivnetrc
+
+- name: Create /home/centos/pivnet_files directory
+  file:
+    path: /home/centos/pivnet_files
+    state: directory
+
+- name: Retrieve GPDB {{ greenplum.v6.pivnet_release_version }}
+  shell: >
+    /usr/local/bin/pivnet
+    download-product-files
+    --product-slug="{{ greenplum.pivnet_product_slug }}"
+    --release-version="{{ greenplum.v6.pivnet_release_version }}"
+    --product-file-id="{{ greenplum.v6.pivnet_product_file_id }}"
+    --download-dir=pivnet_files
+  args:
+    creates: "pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+
+- name: Set host - jumpbox
+  hostname:
+    name: jumpbox

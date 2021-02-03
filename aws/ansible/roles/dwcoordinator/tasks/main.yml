@@ -1,0 +1,86 @@
+---
+# tasks file for dwcoordinator
+- name: Generate IPv4 gpinitsystem configuration file (gpinitsystem_config.ipv4)
+  template:
+    src: "{{ role_path }}/templates/gpinitsystem_config"
+    dest: "gpinitsystem_config.ipv4"
+    owner: centos
+    group: centos
+  vars:
+    ip_network_protocol: ipv4
+  when: true
+
+- name: Generate IPv6 gpinitsystem configuration file (gpinitsystem_config.ipv6)
+  template:
+    src: "{{ role_path }}/templates/gpinitsystem_config"
+    dest: "gpinitsystem_config.ipv6"
+    owner: centos
+    group: centos
+  vars:
+    ip_network_protocol: ipv6
+  when: true
+
+- name: Copy GP All hosts IPv4 (gp_all_hosts_ipv4)
+  copy:
+    src: files/gp_all_hosts_ipv4
+    dest: /home/{{ ansible_user }}/gp_all_hosts_ipv4
+    owner: centos
+    group: centos
+    mode: '0600'
+
+- name: Copy GP Segment hosts IPv4 (gp_segment_hosts_ipv4)
+  copy:
+    src: files/gp_segment_hosts_ipv4
+    dest: /home/{{ ansible_user }}/gp_segment_hosts_ipv4
+    owner: centos
+    group: centos
+    mode: '0600'
+
+- name: Copy GP All hosts IPv6 (gp_all_hosts_ipv6)
+  copy:
+    src: files/gp_all_hosts_ipv6
+    dest: /home/{{ ansible_user }}/gp_all_hosts_ipv6
+    owner: centos
+    group: centos
+    mode: '0600'
+
+- name: Copy GP Segment hosts IPv6 (gp_segment_hosts_ipv6)
+  copy:
+    src: files/gp_segment_hosts_ipv6
+    dest: /home/{{ ansible_user }}/gp_segment_hosts_ipv6
+    owner: centos
+    group: centos
+    mode: '0600'
+
+- name: Create XFS primary master/standbymaster partions
+  community.general.parted:
+    device: /dev/nvme1n1
+    number: 1
+    state: present
+    fs_type: xfs
+
+- name: Create XFS master/standbymaster filesystems
+  community.general.filesystem:
+    fstype: xfs
+    opts: -L DATA1
+    dev: /dev/nvme1n1
+
+- name: Mount master/standbymaster filesystems by label
+  ansible.posix.mount:
+    path: /data1
+    src: LABEL=DATA1
+    fstype: xfs
+    opts: rw,noatime,nobarrier,nodev,inode64,allocsize=16m
+    state: mounted
+
+- name: Make master/standbymaster filesystems world-writable
+  file:
+    path: /data1
+    state: directory
+    mode: '0777'
+
+- name: Create master/standbymaster data directories
+  file:
+    path: /data1/gpdb/master
+    state: directory
+    mode: '0777'

@@ -1,0 +1,28 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+
+- name: jumpbox configuration
+  gather_facts: False
+  hosts: jumpbox
+  become: yes
+  become_method: sudo
+  roles:
+    - jumpbox
+
+- name: data warehouse coordinator configuration
+  gather_facts: False
+  hosts: dwcoordinators
+  become: yes
+  become_method: sudo
+  roles:
+    - dwcoordinator
+
+- name: data warehouse data node configuration
+  gather_facts: False
+  hosts: dwdatanodes
+  become: yes
+  become_method: sudo
+  roles:
+    - dwdatanode
