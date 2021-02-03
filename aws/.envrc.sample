@@ -1,0 +1,14 @@
+export AWS_ACCESS_KEY_ID=<fill in your AWS creds>
+export AWS_SECRET_ACCESS_KEY=<fill in your AWS creds>
+
+## export ANSIBLE_HOST_KEY_CHECKING=False
+
+## export pivnet_api_token=<fill in your TanzuNet API token>
+
+if [ -f terraform.tfstate ]; then
+  export JUMPBOX_IPV4=$( jq -r '.outputs."gp_dev_jumpbox-public-IPv4".value'    terraform.tfstate )
+  export MDW_IPV4=$(     jq -r '.outputs."gp_dev_dwnodes-public-IPv4".value[0]' terraform.tfstate )
+  export SDW1_IPV4=$(    jq -r '.outputs."gp_dev_dwnodes-public-IPv4".value[1]' terraform.tfstate )
+  export SDW2_IPV4=$(    jq -r '.outputs."gp_dev_dwnodes-public-IPv4".value[2]' terraform.tfstate )
+  export SMDW_IPV4=$(    jq -r '.outputs."gp_dev_dwnodes-public-IPv4".value[5]' terraform.tfstate )
+fi
