@@ -155,7 +155,7 @@ resource "aws_instance" "gp_dev_dwcoordinator" {
   depends_on = [aws_internet_gateway.gp_dev]
 
   tags = {
-    Name = "var.dwcluster_name + _mdw"
+    Name = format("${var.dwcluster_name}_mdw%d", count.index + 1)
   }
 
   root_block_device {

@@ -1,9 +1,9 @@
 variable "aws_region" {
-  default = "us-west-1"
+  default = "ap-south-1"
 }
 
 variable "aws_zone" {
-  default = "us-west-1a"
+  default = "ap-south-1a"
 }
 
 variable "dwcluster_name" {
@@ -39,5 +39,5 @@ variable "dwdatanode_instance_type" {
 }
 
 variable "ami" {
-  default = "ami-098f55b4287a885ba" # CentOS 7 (x86_64) - with Updates HVM
+  default = "ami-026f33d38b6410e30" # ap-south-1 - CentOS 7 (x86_64) - with Updates HVM
 }
