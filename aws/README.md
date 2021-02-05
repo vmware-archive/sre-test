@@ -4,6 +4,11 @@
 - [direnv](https://direnv.net/)
 - [terraform](https://www.terraform.io/)
 - [ansible](https://www.ansible.com/)
+- Install additional Ansible modules
+```
+ansible-galaxy collection install community.general
+ansible-galaxy collection install ansible.posix
+```
 - [jq](https://stedolan.github.io/jq/)
 ## Set up direnv
 This simplifies the process as it provides environment variables that can be accessed via the scripts 
