@@ -91,3 +91,34 @@ postgres --catalog-version
 ```
 terraform destroy
 ```
+## TMUX - build/install/condigure tmux
+```
+sudo yum install -e 0 -y gcc libevent-devel ncurses-devel
+curl -L https://github.com/tmux/tmux/releases/download/3.1c/tmux-3.1c.tar.gz -O
+tar xf tmux-3.1c.tar.gz
+cd tmux-3.1c
+./configure
+make -j$(nproc)
+sudo make install
+cd; curl -O https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf
+```
+### TMUX commands (list sessions, attach to session) 
+```
+tmux ls
+tmux a -t 0
+```
+* TPC-DS
+```
+# log into mdw node
+
+# start/attach tmux session
+tmux or tmux a -t 0
+
+# As centos user
+mkdir tpcds
+cd tpcds
+curl https://raw.githubusercontent.com/edespino/TPC-DS/centos/tpcds.sh -O
+bash tpcds.sh
+sed -i -e 's|gpadmin|centos|g' -e 's|3000|1|g' tpcds_variables.sh
+TIMESTAMP=$(date "+%Y.%m.%d-%H.%M.%S"); bash ./tpcds.sh 2>&1 | tee tpch-${TIMESTAMP}.log
+```
