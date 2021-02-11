@@ -42,8 +42,7 @@ direnv allow
 
 - Make sure you can connect to the jumpbox & gp systems dw controller:
 ```
-ping -c2 ${JUMPBOX_IPV4}
-for host in ${JUMPBOX_IPV4} ${MDW_IPV4} ${SMDW_IPV4} ${SDW1_IPV4} ${SDW2_IPV4}; do \
+for host in ${MDW_IPV4} ${SMDW_IPV4} ${SDW1_IPV4} ${SDW2_IPV4} ${SDW3_IPV4} ${SDW4_IPV4}; do \
 ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@$host uptime; done
 ```
 
