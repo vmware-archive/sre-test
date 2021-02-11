@@ -3,21 +3,21 @@
   gather_facts: False
   tasks:
 
-- name: jumpbox configuration
+- name: data warehouse master configuration
   gather_facts: False
-  hosts: jumpbox
+  hosts: dwmaster
   become: yes
   become_method: sudo
   roles:
-    - jumpbox
+    - dwmaster
 
-- name: data warehouse coordinator configuration
+- name: data warehouse standby configuration
   gather_facts: False
-  hosts: dwcoordinators
+  hosts: dwstandby
   become: yes
   become_method: sudo
   roles:
-    - dwcoordinator
+    - dwstandby
 
 - name: data warehouse data node configuration
   gather_facts: False
@@ -26,3 +26,4 @@
   become_method: sudo
   roles:
     - dwdatanode
+

@@ -50,7 +50,7 @@
   synchronize:
     src: /home/centos/pivnet_files
     dest: /home/centos
-  delegate_to: jumpbox_ipv4
+  delegate_to: mdw_ipv4
 
 - name: Install GPDB pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm
   yum:
@@ -68,3 +68,4 @@
 - name: Set host
   hostname:
     name: "{{ inventory_hostname }}"
+
