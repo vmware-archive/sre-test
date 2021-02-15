@@ -3,7 +3,7 @@
 - name: Generate IPv4 gpinitsystem configuration file (gpinitsystem_config.ipv4)
   template:
     src: "{{ role_path }}/templates/gpinitsystem_config"
-    dest: "gpinitsystem_config.ipv4"
+    dest: "/home/{{ greenplum.greenplum_admin_user }}/gpinitsystem_config.ipv4"
     owner: "{{ greenplum.greenplum_admin_user }}"
     group: "{{ greenplum.greenplum_admin_user }}"
   vars:
@@ -13,7 +13,7 @@
 - name: Generate IPv6 gpinitsystem configuration file (gpinitsystem_config.ipv6)
   template:
     src: "{{ role_path }}/templates/gpinitsystem_config"
-    dest: "gpinitsystem_config.ipv6"
+    dest: "/home/{{ greenplum.greenplum_admin_user }}/gpinitsystem_config.ipv6"
     owner: "{{ greenplum.greenplum_admin_user }}"
     group: "{{ greenplum.greenplum_admin_user }}"
   vars:

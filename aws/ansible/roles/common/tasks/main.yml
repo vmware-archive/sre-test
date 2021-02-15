@@ -1,9 +1,15 @@
 ---
 # tasks file for common
+- name: Add group "{{ greenplum.greenplum_admin_user }}" to remote server
+  group:
+   name: "{{ greenplum.greenplum_admin_user }}"
+   gid: 1296
+   state: present
 - name: create greenplum admin user
   user:
     name: "{{ greenplum.greenplum_admin_user }}"
     password: "{{ greenplum.greenplum_admin_password | password_hash('sha512', 'DvkPtCtNH+UdbePZfm9muQ9pU') }}"
+    groups: gpadmin,wheel
 
 - name: Update Yum repo list
   shell: yum updateinfo
@@ -55,12 +61,5 @@
     owner: "{{ greenplum.greenplum_admin_user }}"
     group: "{{ greenplum.greenplum_admin_user }}"
 
-- name: Copy PEM file
-  copy:
-    src: files/gp_dev.pem
-    dest: /home/{{ ansible_user }}/files/gp_dev.pem
-    owner: "{{ greenplum.greenplum_admin_user }}"
-    group: "{{ greenplum.greenplum_admin_user }}"
-    mode: '0600'
 
 

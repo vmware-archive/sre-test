@@ -27,6 +27,25 @@
     state: present
     key: "{{ master_public_key.stdout }}"
 
+
+- name: Generate PEM File
+  shell: openssl rsa -in /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa -outform pem > /home/{{ greenplum.greenplum_admin_user }}/.ssh/gp_prod.pem
+
+- name: Copy PEM file
+  copy:
+    src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/gp_prod.pem
+    dest: /home/{{ ansible_user }}/files/gp_dev.pem
+    remote_src: yes
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
+    mode: '0600'
+
+- name: Copy PEM key to ansible host
+  fetch:
+    src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/gp_prod.pem
+    dest: files/gp_prod.pem
+    flat: yes
+
 - name: Copy private key to ansible host
   fetch:
     src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa
@@ -52,17 +71,25 @@
     mode: '0555'
 
 - name: Login into TanzuNet
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
   shell: /usr/local/bin/pivnet login --api-token="{{ pivnet_api_token }}"
   args:
     creates: /root/.pivnetrc
 
 - name: Create /home/{{ greenplum.greenplum_admin_user }}/pivnet_files directory
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
   file:
     path: /home/{{ greenplum.greenplum_admin_user }}/pivnet_files
     state: directory
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0777'
 
 - name: Retrieve GPDB {{ greenplum.v6.pivnet_release_version }}
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
   shell: >
     /usr/local/bin/pivnet
     download-product-files
@@ -72,6 +99,15 @@
     --download-dir=/home/{{ greenplum.greenplum_admin_user }}/pivnet_files
   args:
     creates: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+
+- name: Change the Owner and Group for greenplum package
+  file:
+    path: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+    state: file
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
+    mode: '0777'
+
 
 - name: Set GPDB nproc, nofile and core limits
   copy:
@@ -90,22 +126,9 @@
     state: directory
     mode: '0777'
 
-- name: Copy TanzuNet downloaded file(s)
-  become: yes
-  become_user: "{{ greenplum.greenplum_admin_user }}"
-  copy:
-    src: /home/{{ greenplum.greenplum_admin_user }}/pivnet_files
-    dest: /home/{{ greenplum.greenplum_admin_user }}
-    remote_src: yes
-    owner: "{{ greenplum.greenplum_admin_user }}"
-    group: "{{ greenplum.greenplum_admin_user }}"
-    mode: '0777'
-
 - name: Install GPDB pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm
-  become: yes
-  become_user: "{{ greenplum.greenplum_admin_user }}"
   yum:
-    name: "/home/{{ greenplum.greenplum_admin_user }}/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+    name: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
     state: present
 
 - name: Create .bashrc
@@ -123,7 +146,7 @@
 - name: Generate IPv4 gpinitsystem configuration file (gpinitsystem_config.ipv4)
   template:
     src: "{{ role_path }}/templates/gpinitsystem_config"
-    dest: "gpinitsystem_config.ipv4"
+    dest: "/home/{{ greenplum.greenplum_admin_user }}/gpinitsystem_config.ipv4"
     owner: "{{ greenplum.greenplum_admin_user }}"
     group: "{{ greenplum.greenplum_admin_user }}"
   vars:
@@ -133,7 +156,7 @@
 - name: Generate IPv6 gpinitsystem configuration file (gpinitsystem_config.ipv6)
   template:
     src: "{{ role_path }}/templates/gpinitsystem_config"
-    dest: "gpinitsystem_config.ipv6"
+    dest: "/home/{{ greenplum.greenplum_admin_user }}/gpinitsystem_config.ipv6"
     owner: "{{ greenplum.greenplum_admin_user }}"
     group: "{{ greenplum.greenplum_admin_user }}"
   vars:

@@ -1,0 +1,15 @@
+
+PLAY [all] *********************************************************************
+
+PLAY [data warehouse master configuration] *************************************
+
+TASK [common : Add group "gpadmin" to remote server] ***************************
+ok: [mdw_ipv4]
+
+TASK [common : create greenplum admin user] ************************************
+ok: [mdw_ipv4]
+
+TASK [common : Update Yum repo list] *******************************************
+ok: [mdw_ipv4]
+
+TASK [common : Install git, vim, tmux & unzip] *********************************
