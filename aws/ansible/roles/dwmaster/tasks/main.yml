@@ -7,41 +7,41 @@
 
 - name: generate key pair
   become: yes
-  become_user: centos
-  shell: ssh-keygen -t rsa -f /home/{{ ansible_user }}/.ssh/id_rsa -q -N ""
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: ssh-keygen -t rsa -f /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa -q -N ""
   args:
-    creates: /home/{{ ansible_user }}/.ssh/id_rsa
+    creates: /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa
 
 - name: test public key
-  shell: ssh-keygen -l -f /home/{{ ansible_user }}/.ssh/id_rsa.pub
+  shell: ssh-keygen -l -f /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa.pub
   changed_when: false
 
 - name: retrieve public key
-  shell: cat /home/{{ ansible_user }}/.ssh/id_rsa.pub
+  shell: cat /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa.pub
   register: master_public_key
   changed_when: false
 
 - name: Add public key to authorized_keys
   authorized_key:
-    user: centos
+    user: "{{ greenplum.greenplum_admin_user }}"
     state: present
     key: "{{ master_public_key.stdout }}"
 
 - name: Copy private key to ansible host
   fetch:
-    src: /home/{{ ansible_user }}/.ssh/id_rsa
+    src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa
     dest: files/id_rsa
     flat: yes
 
 - name: Copy public key to ansible host
   fetch:
-    src: /home/{{ ansible_user }}/.ssh/id_rsa.pub
+    src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa.pub
     dest: files/id_rsa.pub
     flat: yes
 
 - name: Copy authorzed_keys to ansible host
   fetch:
-    src: /home/{{ ansible_user }}/.ssh/authorized_keys
+    src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/authorized_keys
     dest: files/authorized_keys
     flat: yes
 
@@ -56,10 +56,11 @@
   args:
     creates: /root/.pivnetrc
 
-- name: Create /home/centos/pivnet_files directory
+- name: Create /home/{{ greenplum.greenplum_admin_user }}/pivnet_files directory
   file:
-    path: /home/centos/pivnet_files
+    path: /home/{{ greenplum.greenplum_admin_user }}/pivnet_files
     state: directory
+    mode: '0777'
 
 - name: Retrieve GPDB {{ greenplum.v6.pivnet_release_version }}
   shell: >
@@ -68,9 +69,9 @@
     --product-slug="{{ greenplum.pivnet_product_slug }}"
     --release-version="{{ greenplum.v6.pivnet_release_version }}"
     --product-file-id="{{ greenplum.v6.pivnet_product_file_id }}"
-    --download-dir=pivnet_files
+    --download-dir=/home/{{ greenplum.greenplum_admin_user }}/pivnet_files
   args:
-    creates: "pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+    creates: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
 
 - name: Set GPDB nproc, nofile and core limits
   copy:
@@ -90,25 +91,29 @@
     mode: '0777'
 
 - name: Copy TanzuNet downloaded file(s)
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
   copy:
-    src: /home/centos/pivnet_files
-    dest: /home/centos
+    src: /home/{{ greenplum.greenplum_admin_user }}/pivnet_files
+    dest: /home/{{ greenplum.greenplum_admin_user }}
     remote_src: yes
-    owner: centos
-    group: centos
-    mode: '0600'
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
+    mode: '0777'
 
 - name: Install GPDB pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
   yum:
-    name: "pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+    name: "/home/{{ greenplum.greenplum_admin_user }}/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
     state: present
 
 - name: Create .bashrc
   copy:
     src: "{{ role_path }}/files/.bashrc"
-    dest: "/home/centos/.bashrc"
-    owner: centos
-    group: centos
+    dest: "/home/{{ greenplum.greenplum_admin_user }}/.bashrc"
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Set host
@@ -119,8 +124,8 @@
   template:
     src: "{{ role_path }}/templates/gpinitsystem_config"
     dest: "gpinitsystem_config.ipv4"
-    owner: centos
-    group: centos
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
   vars:
     ip_network_protocol: ipv4
   when: true
@@ -129,8 +134,8 @@
   template:
     src: "{{ role_path }}/templates/gpinitsystem_config"
     dest: "gpinitsystem_config.ipv6"
-    owner: centos
-    group: centos
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
   vars:
     ip_network_protocol: ipv6
   when: true
@@ -138,33 +143,33 @@
 - name: Copy GP All hosts IPv4 (gp_all_hosts_ipv4)
   copy:
     src: files/gp_all_hosts_ipv4
-    dest: /home/{{ ansible_user }}/gp_all_hosts_ipv4
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv4
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Copy GP Segment hosts IPv4 (gp_segment_hosts_ipv4)
   copy:
     src: files/gp_segment_hosts_ipv4
-    dest: /home/{{ ansible_user }}/gp_segment_hosts_ipv4
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/gp_segment_hosts_ipv4
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Copy GP All hosts IPv6 (gp_all_hosts_ipv6)
   copy:
     src: files/gp_all_hosts_ipv6
-    dest: /home/{{ ansible_user }}/gp_all_hosts_ipv6
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv6
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Copy GP Segment hosts IPv6 (gp_segment_hosts_ipv6)
   copy:
     src: files/gp_segment_hosts_ipv6
-    dest: /home/{{ ansible_user }}/gp_segment_hosts_ipv6
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/gp_segment_hosts_ipv6
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Create XFS primary master/standbymaster partions
@@ -199,4 +204,5 @@
     path: /data1/gpdb/master
     state: directory
     mode: '0777'
+
 

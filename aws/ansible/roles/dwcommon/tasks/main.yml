@@ -8,25 +8,25 @@
 - name: Copy private key to ansible host
   copy:
     src: files/id_rsa
-    dest: /home/{{ ansible_user }}/.ssh/id_rsa
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Copy public key to ansible host
   copy:
     src: files/id_rsa.pub
-    dest: /home/{{ ansible_user }}/.ssh/id_rsa.pub
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa.pub
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Copy authorzed_keys to ansible host
   copy:
     src: files/authorized_keys
-    dest: /home/{{ ansible_user }}/.ssh/authorized_keys
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/.ssh/authorized_keys
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Set GPDB nproc, nofile and core limits
@@ -48,24 +48,25 @@
 
 - name: Copy TanzuNet downloaded file(s)
   synchronize:
-    src: /home/centos/pivnet_files
-    dest: /home/centos
+    src: /home/{{ greenplum.greenplum_admin_user }}/pivnet_files
+    dest: /home/{{ greenplum.greenplum_admin_user }}
   delegate_to: mdw_ipv4
 
 - name: Install GPDB pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm
   yum:
-    name: "pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+    name: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
     state: present
 
 - name: Create .bashrc
   copy:
     src: "{{ role_path }}/files/.bashrc"
     dest: "/home/centos/.bashrc"
-    owner: centos
-    group: centos
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Set host
   hostname:
     name: "{{ inventory_hostname }}"
+
 

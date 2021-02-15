@@ -4,8 +4,8 @@
   template:
     src: "{{ role_path }}/templates/gpinitsystem_config"
     dest: "gpinitsystem_config.ipv4"
-    owner: centos
-    group: centos
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
   vars:
     ip_network_protocol: ipv4
   when: true
@@ -14,8 +14,8 @@
   template:
     src: "{{ role_path }}/templates/gpinitsystem_config"
     dest: "gpinitsystem_config.ipv6"
-    owner: centos
-    group: centos
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
   vars:
     ip_network_protocol: ipv6
   when: true
@@ -23,33 +23,33 @@
 - name: Copy GP All hosts IPv4 (gp_all_hosts_ipv4)
   copy:
     src: files/gp_all_hosts_ipv4
-    dest: /home/{{ ansible_user }}/gp_all_hosts_ipv4
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv4
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Copy GP Segment hosts IPv4 (gp_segment_hosts_ipv4)
   copy:
     src: files/gp_segment_hosts_ipv4
-    dest: /home/{{ ansible_user }}/gp_segment_hosts_ipv4
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/gp_segment_hosts_ipv4
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Copy GP All hosts IPv6 (gp_all_hosts_ipv6)
   copy:
     src: files/gp_all_hosts_ipv6
-    dest: /home/{{ ansible_user }}/gp_all_hosts_ipv6
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv6
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Copy GP Segment hosts IPv6 (gp_segment_hosts_ipv6)
   copy:
     src: files/gp_segment_hosts_ipv6
-    dest: /home/{{ ansible_user }}/gp_segment_hosts_ipv6
-    owner: centos
-    group: centos
+    dest: /home/{{ greenplum.greenplum_admin_user }}/gp_segment_hosts_ipv6
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
 - name: Create XFS primary master/standbymaster partions
@@ -84,3 +84,4 @@
     path: /data1/gpdb/master
     state: directory
     mode: '0777'
+

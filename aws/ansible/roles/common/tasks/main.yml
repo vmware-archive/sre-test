@@ -1,5 +1,10 @@
 ---
 # tasks file for common
+- name: create greenplum admin user
+  user:
+    name: "{{ greenplum.greenplum_admin_user }}"
+    password: "{{ greenplum.greenplum_admin_password | password_hash('sha512', 'DvkPtCtNH+UdbePZfm9muQ9pU') }}"
+
 - name: Update Yum repo list
   shell: yum updateinfo
   changed_when: false
@@ -18,18 +23,18 @@
 
 - name: Checkout VIM modules
   become: yes
-  become_user: centos
+  become_user: "{{ greenplum.greenplum_admin_user }}"
   git:
     repo: 'https://github.com/amix/vimrc.git'
-    dest: /home/centos/.vim_runtime
+    dest: /home/{{ greenplum.greenplum_admin_user }}/.vim_runtime
 
 - name: Install VIM config
-  shell: sh .vim_runtime/install_awesome_vimrc.sh
+  shell: sh /home/{{ greenplum.greenplum_admin_user }}/.vim_runtime/install_awesome_vimrc.sh
   become: yes
-  become_user: centos
+  become_user: "{{ greenplum.greenplum_admin_user }}"
   register: out
   args:
-    creates: /home/centos/.vimrc
+    creates: /home/"{{ greenplum.greenplum_admin_user }}"/.vimrc
 
 - name: Enable IPV6 route advertisements (/etc/sysconfig/network updated on reboot)
   replace:
@@ -47,14 +52,15 @@
   file:
     path: files
     state: directory
-    owner: centos
-    group: centos
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
 
 - name: Copy PEM file
   copy:
     src: files/gp_dev.pem
     dest: /home/{{ ansible_user }}/files/gp_dev.pem
-    owner: centos
-    group: centos
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
+
 

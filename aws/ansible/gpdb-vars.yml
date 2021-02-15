@@ -1,9 +1,12 @@
 ---
 
 greenplum:
+  greenplum_admin_user: gpadmin
+  greenplum_admin_password: changeme
   master_port: 5432
   segments_per_host: 3
   pivnet_product_slug: pivotal-gpdb
   v6:
     pivnet_release_version: 6.13.0
     pivnet_product_file_id: 849740
+
