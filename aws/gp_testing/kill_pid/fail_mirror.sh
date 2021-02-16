@@ -27,4 +27,9 @@ psql -c "select * from gp_segment_configuration where role!=preferred_role or st
 
 echo 'End of test'
 
+psql -c "create table tab1 as select generate_series(1,1000000);"
+
+psql -c "select count(*), gp_segment_id from  tab1 group by 2;"
+
+psql -c "drop table tab1;"
 
