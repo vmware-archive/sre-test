@@ -4,20 +4,14 @@
   selinux:
     state: disabled
   notify: Reboot host and wait for it to restart
-  
-- name: Copy PEM file
-  copy:
-    src: files/gp_prod.pem
-    dest: /home/{{ ansible_user }}/files/gp_prod.pem
-    owner: "{{ greenplum.greenplum_admin_user }}"
-    group: "{{ greenplum.greenplum_admin_user }}"
-    mode: '0600'
 
 - name: Create .ssh directory
   file:
     path: /home/{{ greenplum.greenplum_admin_user }}/.ssh
     state: directory
-    mode: '0777'
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
+    mode: '0700'
   
 - name: Copy private key to ansible host
   copy:
@@ -61,8 +55,6 @@
     mode: '0777'
 
 - name: Copy TanzuNet downloaded file(s)
-  become: yes
-  become_user: "{{ greenplum.greenplum_admin_user }}"
   synchronize:
     src: /home/{{ greenplum.greenplum_admin_user }}/pivnet_files
     dest: /home/{{ greenplum.greenplum_admin_user }}

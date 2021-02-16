@@ -27,19 +27,6 @@
     state: present
     key: "{{ master_public_key.stdout }}"
 
-
-- name: Generate PEM File
-  shell: openssl rsa -in /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa -outform pem > /home/{{ greenplum.greenplum_admin_user }}/.ssh/gp_prod.pem
-
-- name: Copy PEM file
-  copy:
-    src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/gp_prod.pem
-    dest: /home/{{ ansible_user }}/files/gp_dev.pem
-    remote_src: yes
-    owner: "{{ greenplum.greenplum_admin_user }}"
-    group: "{{ greenplum.greenplum_admin_user }}"
-    mode: '0600'
-
 - name: Copy PEM key to ansible host
   fetch:
     src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/gp_prod.pem
@@ -100,13 +87,13 @@
   args:
     creates: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
 
-- name: Change the Owner and Group for greenplum package
-  file:
-    path: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
-    state: file
-    owner: "{{ greenplum.greenplum_admin_user }}"
-    group: "{{ greenplum.greenplum_admin_user }}"
-    mode: '0777'
+#- name: Change the Owner and Group for greenplum package
+#  file:
+#    path: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
+#    state: file
+#    owner: "{{ greenplum.greenplum_admin_user }}"
+#    group: "{{ greenplum.greenplum_admin_user }}"
+#    mode: '0777'
 
 
 - name: Set GPDB nproc, nofile and core limits

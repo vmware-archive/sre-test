@@ -5,6 +5,15 @@
    name: "{{ greenplum.greenplum_admin_user }}"
    gid: 1296
    state: present
+
+- name: Allow 'wheel' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
 - name: create greenplum admin user
   user:
     name: "{{ greenplum.greenplum_admin_user }}"
@@ -58,8 +67,15 @@
   file:
     path: files
     state: directory
-    owner: "{{ greenplum.greenplum_admin_user }}"
-    group: "{{ greenplum.greenplum_admin_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
 
+- name: Copy PEM file
+  copy:
+    src: files/gp_dev.pem
+    dest: /home/{{ ansible_user }}/files/gp_dev.pem
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0600'
 
 
