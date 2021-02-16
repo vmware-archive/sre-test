@@ -23,6 +23,8 @@ gpinitstandby -s smdw_ipv4 -M fast -a
 
 sleep 100
 
+gpstate
+
 echo '====================Check if all segments are up and go ahead to rebalance================'
 
 psql -c "select * from gp_segment_configuration where role!=preferred_role or status = 'd'"

@@ -17,11 +17,11 @@ Traceback (most recent call last):
   File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/__init__.py", line 1551, in expect_loop
     raise EOF(str(err) + '\n' + str(self))
 pexpect.EOF: End Of File (EOF). Exception style platform.
-<gpssh_modules.gppxssh_wrapper.PxsshWrapper object at 0x7f42bc39d950>
+<gpssh_modules.gppxssh_wrapper.PxsshWrapper object at 0x7f62aa5eb990>
 version: 3.3
 command: /usr/bin/ssh
 args: ['/usr/bin/ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no', '-q', '-l', 'centos', 'smdw_ipv4']
-searcher: <pexpect.searcher_re object at 0x7f42bc39d990>
+searcher: <pexpect.searcher_re object at 0x7f62aa5eb9d0>
 buffer (last 100 chars): ''
 before (last 100 chars): 'sudo reboot\r\nConnection to smdw_ipv4 closed by remote host.\r\r\n'
 after: <class 'pexpect.EOF'>
@@ -29,7 +29,7 @@ match: None
 match_index: None
 exitstatus: 255
 flag_eof: True
-pid: 5712
+pid: 6181
 child_fd: 3
 closed: False
 timeout: 30
@@ -43,88 +43,3 @@ searchwindowsize: None
 delaybeforesend: 0.05
 delayafterclose: 0.1
 delayafterterminate: 0.1
-======================check the failed segment======================
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-Starting gpstate with args: 
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-Obtaining Segment details from master...
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-Gathering data from segments...
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-Greenplum instance status summary
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Master instance                                           = Active
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Master standby                                            = smdw_ipv4
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[WARNING]:-Standby master state                                      = Standby host DOWN   <<<<<<<<
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total segment instance count from metadata                = 12
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Primary Segment Status
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total primary segments                                    = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total primary segment valid (at master)                   = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total primary segment failures (at master)                = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid files missing              = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid files found                = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid PIDs found                 = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of /tmp lock files missing                   = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of /tmp lock files found                     = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number postmaster processes missing                 = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number postmaster processes found                   = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Mirror Segment Status
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total mirror segments                                     = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total mirror segment valid (at master)                    = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total mirror segment failures (at master)                 = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid files missing              = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid files found                = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid PIDs found                 = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of /tmp lock files missing                   = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of /tmp lock files found                     = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number postmaster processes missing                 = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number postmaster processes found                   = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number mirror segments acting as primary segments   = 0
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-   Total number mirror segments acting as mirror segments    = 6
-20210216:16:13:42:005846 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
- dbid | content | role | preferred_role | mode | status | port | hostname | address | datadir 
-------+---------+------+----------------+------+--------+------+----------+---------+---------
-(0 rows)
-
-==================== Recover failed stand by master ========================
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:------------------------------------------------------
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Warm master standby removal parameters
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:------------------------------------------------------
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum master hostname               = mdw_ipv4
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum master data directory         = /data1/gpdb/master/gpseg-1
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum master port                   = 5432
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum standby master hostname       = smdw_ipv4
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum standby master port           = 5432
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum standby master data directory = /data1/gpdb/master/gpseg-1
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Removing standby master from catalog...
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Database catalog updated successfully.
-20210216:16:13:43:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Removing data directory on standby master...
-20210216:16:13:44:005922 gpinitstandby:mdw_ipv4:centos-[INFO]:-Successfully removed standby master
-20210216:16:13:44:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Validating environment and parameters for standby initialization...
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Checking for data directory /data1/gpdb/master/gpseg-1 on smdw_ipv4
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:------------------------------------------------------
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum standby master initialization parameters
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:------------------------------------------------------
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum master hostname               = mdw_ipv4
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum master data directory         = /data1/gpdb/master/gpseg-1
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum master port                   = 5432
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum standby master hostname       = smdw_ipv4
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum standby master port           = 5432
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum standby master data directory = /data1/gpdb/master/gpseg-1
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Greenplum update system catalog         = On
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Syncing Greenplum Database extensions to standby
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[WARNING]:-Syncing of Greenplum Database extensions has failed.
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[WARNING]:-Please run gppkg --clean after successful standby initialization.
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Adding standby master to catalog...
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Database catalog updated successfully.
-20210216:16:13:45:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Updating pg_hba.conf file...
-20210216:16:13:46:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-pg_hba.conf files updated successfully.
-20210216:16:13:50:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Starting standby master
-20210216:16:13:50:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Checking if standby master is running on host: smdw_ipv4  in directory: /data1/gpdb/master/gpseg-1
-20210216:16:13:54:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Cleaning up pg_hba.conf backup files...
-20210216:16:13:54:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Backup files of pg_hba.conf cleaned up successfully.
-20210216:16:13:54:005947 gpinitstandby:mdw_ipv4:centos-[INFO]:-Successfully created standby master on smdw_ipv4
