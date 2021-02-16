@@ -27,12 +27,6 @@
     state: present
     key: "{{ master_public_key.stdout }}"
 
-- name: Copy PEM key to ansible host
-  fetch:
-    src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/gp_prod.pem
-    dest: files/gp_prod.pem
-    flat: yes
-
 - name: Copy private key to ansible host
   fetch:
     src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa
