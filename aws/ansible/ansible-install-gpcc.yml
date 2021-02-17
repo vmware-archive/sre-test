@@ -1,0 +1,14 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+
+- name: GPCC Installation
+  gather_facts: False
+  hosts: dwmaster
+  become: yes
+  become_method: sudo
+  roles:
+    - dwgpcc
+
+

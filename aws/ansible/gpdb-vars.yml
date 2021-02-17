@@ -10,3 +10,9 @@ greenplum:
     pivnet_release_version: 6.13.0
     pivnet_product_file_id: 849740
 
+greenplumcc:
+  pivnet_product_slug: gpdb-command-center
+  v6:
+    pivnet_release_version: 6.3.0
+    pivnet_product_file_id: 785052
+

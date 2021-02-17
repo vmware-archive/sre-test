@@ -1,0 +1,64 @@
+---
+# tasks file for dwgpcc
+
+- name: Retrieve TanzuNet CLI
+  tags: cli
+  get_url:
+    url: https://github.com/pivotal-cf/pivnet-cli/releases/download/v2.0.1/pivnet-linux-amd64-2.0.1
+    dest: /usr/local/bin/pivnet
+    mode: '0555'
+
+- name: Login into TanzuNet
+  tags: login
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: /usr/local/bin/pivnet login --api-token="{{ pivnet_api_token }}"
+  args:
+    creates: /root/.pivnetrc
+
+- name: Retrieve GPCC {{ greenplumcc.v6.pivnet_release_version }}
+  tags: gpcc
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: >
+    /usr/local/bin/pivnet
+    download-product-files
+    --product-slug="{{ greenplumcc.pivnet_product_slug }}"
+    --release-version="{{ greenplumcc.v6.pivnet_release_version }}"
+    --product-file-id="{{ greenplumcc.v6.pivnet_product_file_id }}"
+    --download-dir=/home/{{ greenplum.greenplum_admin_user }}/pivnet_files
+  args:
+    creates: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-cc-web-gp6-{{ greenplumcc.v6.pivnet_release_version }}-rhel7-x86_64.zip"
+
+
+- name: Create greenplum directory on all the nodes and set the owner to {{ greenplum.greenplum_admin_user }}
+  tags: directory
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: >
+     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -f /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo mkdir -p /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }} && sudo chown -R gpadmin:gpadmin /usr/local/greenplum-cc-6.3.0' && gpssh -f /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo ln -s /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }} /usr/local/greenplum-cc'
+  
+- name: Unarchive the GPCC Package
+  tags: unarchive
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  ansible.builtin.unarchive:
+    src: /home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-cc-web-{{ greenplumcc.v6.pivnet_release_version }}-gp6-rhel7-x86_64.zip
+    dest: /home/{{ greenplum.greenplum_admin_user }}/pivnet_files
+    remote_src: yes
+
+- name: Run the Greenplum Command Center installer.
+  tags: run
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: > 
+    /home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-cc-web-{{ greenplumcc.v6.pivnet_release_version }}-gp6-rhel7-x86_64/gpccinstall-{{ greenplumcc.v6.pivnet_release_version }} -auto
+
+- name: Source the gpcc_path.sh script and start GPCC
+  tags: sourcegpcc
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: >
+    cd && export MASTER_DATA_DIRECTORY=/data1/gpdb/master/gpseg-1 && source /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }}/gpcc_path.sh && gpcc start
+
+
