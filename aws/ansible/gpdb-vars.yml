@@ -16,3 +16,10 @@ greenplumcc:
     pivnet_release_version: 6.3.0
     pivnet_product_file_id: 785052
 
+greenplumbnr:
+  pivnet_product_slug: pivotal-gpdb-backup-restore
+  v6:
+    pivnet_release_version: 1.20.2
+    pivnet_product_file_id: 872994
+  
+

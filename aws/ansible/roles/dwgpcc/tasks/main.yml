@@ -59,6 +59,47 @@
   become: yes
   become_user: "{{ greenplum.greenplum_admin_user }}"
   shell: >
-    cd && export MASTER_DATA_DIRECTORY=/data1/gpdb/master/gpseg-1 && source /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }}/gpcc_path.sh && gpcc start
+   cd && export MASTER_DATA_DIRECTORY= /data1/gpdb/master/gpseg-1 && source /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }}/gpcc_path.sh && gpcc start
+
+- name: Retrieve GPB&R {{ greenplumbnr.v6.pivnet_release_version }}
+  tags: dbnr
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: >
+    /usr/local/bin/pivnet
+    download-product-files
+    --product-slug="{{ greenplumbnr.pivnet_product_slug }}"
+    --release-version="{{ greenplumbnr.v6.pivnet_release_version }}"
+    --product-file-id="{{ greenplumbnr.v6.pivnet_product_file_id }}"
+    --download-dir=/home/{{ greenplum.greenplum_admin_user }}/pivnet_files
+  args:
+    creates: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/pivotal_greenplum_backup_restore-{{ greenplumbnr.v6.pivnet_release_version }}.tar.gz"
 
 
+- name: Change the owner of /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}
+  tags: ownr
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: >
+     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -f gp_all_hosts_ipv4 "sudo chown gpadmin:gpadmin /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}"
+
+- name: Copy the Backup and Restore compressed tarball to all the nodes
+  tags: cpy
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: >
+     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpscp -v -f gp_all_hosts_ipv4 /home/{{ greenplum.greenplum_admin_user }}/pivnet_files/pivotal_greenplum_backup_restore-1.20.2.tar.gz =:/$GPHOME
+
+- name: Unpack the tarball in the $GPHOME directory on every Greenplum host
+  tags: unpack
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: >
+     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -f gp_all_hosts_ipv4 -v -e 'cd $GPHOME; sudo tar -xzvf pivotal_greenplum_backup_restore-{{ greenplumbnr.v6.pivnet_release_version }}.tar.gz'
+
+- name: Verify that the Backup and Restore version is installed on all of the hosts
+  tags: verify
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  shell: >
+     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -f gp_all_hosts_ipv4 "gpbackup --version"
