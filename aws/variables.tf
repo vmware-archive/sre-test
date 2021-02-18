@@ -13,7 +13,7 @@ variable "aws_zone" {
 variable "dwcluster_name" {
   description  = "Greenplum DW Cluster Name"
   type = string
-  default = "gp_prod"
+  default = "gp_prod2"
 }
 
 variable "dwdatanode_instance_count" {
@@ -25,7 +25,7 @@ variable "dwdatanode_instance_count" {
 variable "dwcoordinator_instance_type" {
   description  = "Master node instance type"
   type = string
-  default = "r5.xlarge"
+  default = "r5.4xlarge"
 }
 
 
@@ -57,7 +57,7 @@ variable "dwdatanode_ebs_volume_type" {
 variable "dwdatanode_instance_type" {
   description  = "segment host node instance type"
   type = string
-  default = "r5.xlarge"
+  default = "r5.4xlarge"
 }
 
 variable "ami" {
