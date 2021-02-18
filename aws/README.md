@@ -86,7 +86,7 @@ postgres --gp-version
 postgres --catalog-version
 ```
 
-## Run second ansible playbook to instal GPCC and Restore & Backup Utility
+## Run second ansible playbook to install GPCC and Restore & Backup Utility
 ```
 ansible-playbook --inventory-file=ansible_hosts ansible-install-gpcc.yml -e @gpdb-vars.yml
 
