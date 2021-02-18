@@ -52,7 +52,7 @@ ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${JUMPBOX_IPV4}
 ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${MDW_IPV4}
 ```
 
-## Run Ansible
+## Run Ansible to install GPDB
 - `cd ansible`
 - If needed, edit the script _gen_ansible_files.bash_ for the correct number of hosts. This will generate ansible files with resource details from Terraform execution.
 ```
@@ -61,7 +61,7 @@ ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${MDW_IPV4}
 - You can adjust parameters of the GPDB install, including the number of segments per host, by editing
  _gpdb-vars.yml_.
 ```
-ansible-playbook --inventory-file=ansible_hosts ansible-playbook-all.yml -e @gpdb-vars.yml
+ansible-playbook --inventory-file=ansible_hosts ansible-install-gpdb.yml -e @gpdb-vars.yml
 ```
 
 ## Log into Controller (mdw) and run gpinitsystem
@@ -86,6 +86,11 @@ postgres --gp-version
 postgres --catalog-version
 ```
 
+## Run second ansible playbook to instal GPCC and Restore & Backup Utility
+```
+ansible-playbook --inventory-file=ansible_hosts ansible-install-gpcc.yml -e @gpdb-vars.yml
+
+```
 ## Use Terraform to teardown infrastructure
 ```
 terraform destroy
