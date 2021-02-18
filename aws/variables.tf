@@ -13,7 +13,7 @@ variable "aws_zone" {
 variable "dwcluster_name" {
   description  = "Greenplum DW Cluster Name"
   type = string
-  default = "gp_prod2"
+  default = "gp_prod"
 }
 
 variable "dwdatanode_instance_count" {
