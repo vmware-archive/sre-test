@@ -3,6 +3,31 @@
   gather_facts: False
   tasks:
 
+- name: data warehouse master configuration
+  gather_facts: False
+  hosts: dwmaster
+  become: yes
+  become_method: sudo
+  roles:
+    - dwmaster
+
+- name: data warehouse standby configuration
+  gather_facts: False
+  hosts: dwstandby
+  become: yes
+  become_method: sudo
+  roles:
+    - dwstandby
+
+- name: data warehouse data node configuration
+  gather_facts: False
+  hosts: dwdatanodes
+  become: yes
+  become_method: sudo
+  roles:
+    - dwdatanode
+
+	
 - name: initiate greenplum on data warehouse master
   gather_facts: False
   hosts: dwmaster
@@ -18,4 +43,8 @@
     become: yes
     become_user: "{{ greenplum.greenplum_admin_user }}"
     shell: cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh  && gpinitsystem -a -c gpinitsystem_config.ipv4 -s smdw_ipv4
+
+
+
+
 
