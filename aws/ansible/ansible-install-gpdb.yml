@@ -27,7 +27,6 @@
   roles:
     - dwdatanode
 
-	
 - name: initiate greenplum on data warehouse master
   gather_facts: False
   hosts: dwmaster
