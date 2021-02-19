@@ -1,0 +1,5 @@
+ERROR:  relation "tab1" does not exist
+LINE 1: select * from tab1 a, tab1 b where a.generate_series = b.gen...
+                      ^
+ERROR:  FTS detected connection lost during dispatch to seg0 slice1 10.0.19.242:4000 pid=9541:
+ERROR:  FTS detected connection lost during dispatch to seg0 slice1 10.0.19.242:4000 pid=9529:
