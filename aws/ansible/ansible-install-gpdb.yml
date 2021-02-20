@@ -32,16 +32,10 @@
   hosts: dwmaster
   tasks: 
 
-  - name: dummy task to connect to each node
-    become: yes
-    become_user: "{{ greenplum.greenplum_admin_user }}"
-    shell: ssh -oStrictHostKeyChecking=no gpadmin@{{ item }} uptime
-    loop: "{{ groups['dwdatanodes'] }}"
-
   - name: initiate greenplum on data warehouse master
     become: yes
     become_user: "{{ greenplum.greenplum_admin_user }}"
-    shell: cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh  && gpinitsystem -a -c gpinitsystem_config.ipv4 -s smdw_ipv4
+    shell: cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh  && gpinitsystem -a --ignore-warnings -c gpinitsystem_config.ipv4 -s smdw_ipv4
 
 
 

@@ -16,6 +16,13 @@
   shell: ssh-keygen -l -f /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa.pub
   changed_when: false
 
+- name: create config file in .ssh directory
+  become: yes
+  become_user: "{{ greenplum.greenplum_admin_user }}"
+  copy:
+    dest: /home/{{ greenplum.greenplum_admin_user }}/.ssh/config
+    content: StrictHostKeyChecking no
+
 - name: retrieve public key
   shell: cat /home/{{ greenplum.greenplum_admin_user }}/.ssh/id_rsa.pub
   register: master_public_key
