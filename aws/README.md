@@ -64,10 +64,9 @@ ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${MDW_IPV4}
 ansible-playbook --inventory-file=ansible_hosts ansible-install-gpdb.yml -e @gpdb-vars.yml
 ```
 
-## Log into Controller (mdw) and run gpinitsystem
+## Log into Controller (mdw) and verify the GPDB installation
 ```
 ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${MDW_IPV4}
-gpinitsystem -c gpinitsystem_config.ipv4 -s smdw_ipv4
 ```
 
 ## Run some sample gp cluster queries
