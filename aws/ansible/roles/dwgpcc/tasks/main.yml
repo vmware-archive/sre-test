@@ -52,21 +52,7 @@
   become: yes
   become_user: "{{ greenplum.greenplum_admin_user }}"
   shell: > 
-    /home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-cc-web-{{ greenplumcc.v6.pivnet_release_version }}-gp6-rhel7-x86_64/gpccinstall-{{ greenplumcc.v6.pivnet_release_version }} -auto
-  ignore_errors: yes
-  
-- name: reload the pg_hba.conf file
-  tags: reload
-  become: yes
-  become_user: "{{ greenplum.greenplum_admin_user }}"
-  shell: cd && export MASTER_DATA_DIRECTORY=/data1/gpdb/master/gpseg-1 && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpstop -u
-
-- name: Re-Run the Greenplum Command Center installer.
-  tags: rerun
-  become: yes
-  become_user: "{{ greenplum.greenplum_admin_user }}"
-  shell: > 
-    /home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-cc-web-{{ greenplumcc.v6.pivnet_release_version }}-gp6-rhel7-x86_64/gpccinstall-{{ greenplumcc.v6.pivnet_release_version }} -auto
+    cd && export MASTER_DATA_DIRECTORY=/data1/gpdb/master/gpseg-1 && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && /home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-cc-web-{{ greenplumcc.v6.pivnet_release_version }}-gp6-rhel7-x86_64/gpccinstall-{{ greenplumcc.v6.pivnet_release_version }} -auto
 
 - name: Source the gpcc_path.sh script and start GPCC
   tags: sourcegpcc
