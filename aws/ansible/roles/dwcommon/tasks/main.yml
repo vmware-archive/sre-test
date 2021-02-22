@@ -65,6 +65,11 @@
     name: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
     state: present
 
+- name: Change the owner and group of the installed files to {{ greenplum.greenplum_admin_user }}
+  shell: chown -R {{ greenplum.greenplum_admin_user }}:{{ greenplum.greenplum_admin_user }} /usr/local/greenplum*
+  args:
+    warn: false
+
 - name: Create .bashrc
   copy:
     src: "{{ role_path }}/files/.bashrc"
@@ -76,5 +81,6 @@
 - name: Set host
   hostname:
     name: "{{ inventory_hostname }}"
+
 
 
