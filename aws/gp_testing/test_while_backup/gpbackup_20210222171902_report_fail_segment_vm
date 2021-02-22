@@ -1,0 +1,60 @@
+Greenplum Database Backup Report
+
+timestamp key:         20210222171902
+gpdb version:          6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd
+gpbackup version:      1.20.2
+
+database name:         test1
+command line:          gpbackup --dbname test1
+compression:           gzip
+plugin executable:     None
+backup section:        All Sections
+object filtering:      None
+includes statistics:   No
+data file format:      Multiple Data Files Per Segment
+incremental:           False
+
+start time:            Mon Feb 22 2021 17:19:02
+end time:              Mon Feb 22 2021 17:19:04
+duration:              0:00:02
+
+backup status:         Failure
+backup error:          ERROR: terminating connection due to administrator command  (seg0 10.0.19.242:4000 pid=8160) (SQLSTATE 57P01)
+
+database size:         3653 MB
+
+count of database objects in backup:
+aggregates                   0
+casts                        0
+collations                   0
+constraints                  0
+conversions                  0
+default privileges           0
+database gucs                0
+event triggers               0
+extensions                   0
+foreign data wrappers        0
+foreign servers              0
+functions                    0
+indexes                      0
+operator classes             0
+operator families            0
+operators                    0
+procedural languages         0
+protocols                    0
+resource groups              2
+resource queues              1
+roles                        5
+rules                        0
+schemas                      1
+sequences                    0
+tables                       1
+tablespaces                  0
+text search configurations   0
+text search dictionaries     0
+text search parsers          0
+text search templates        0
+triggers                     0
+types                        0
+user mappings                0
+views                        0

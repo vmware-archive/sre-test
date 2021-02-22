@@ -1,0 +1,15 @@
+Greenplum Database Restore Report
+
+timestamp key:       20210222164739
+gpdb version:        6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd
+gprestore version:   1.20.2
+
+database name:       postgres
+command line:        gprestore --timestamp 20210222164739 --create-db
+
+start time:          Mon Feb 22 2021 16:51:38
+end time:            Mon Feb 22 2021 16:51:44
+duration:            0:00:06
+
+restore status:      Failure
+restore error:       ERROR: terminating connection due to administrator command  (seg2 10.0.19.242:4002 pid=9512) (SQLSTATE 57P01)
