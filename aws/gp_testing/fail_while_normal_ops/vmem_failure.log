@@ -1,0 +1,48 @@
+nohup: ignoring input
+========================Start of test====================
+  pid  | sess_id |  datname  |   queue    |                       query                        |   query_time    | usename | waiting | client_addr | application_name 
+-------+---------+-----------+------------+----------------------------------------------------+-----------------+---------+---------+-------------+------------------
+  9338 |    5095 | gpadmin   | pg_default | INSERT INTO tpcds.web_sales SELECT * FROM ext_tpcd | 00:09:29.581838 | gpadmin | f       |             | psql
+  9409 |    5099 | gpadmin   | pg_default | select count(*) from (select * from public.tab11 a | 00:09:27.510347 | gpadmin | f       |             | psql
+  9878 |    5111 | gpadmin   | pg_default | DROP SCHEMA IF EXISTS tpcds CASCADE;               | 00:09:24.350242 | gpadmin | t       |             | psql
+ 10275 |    5127 | gpperfmon | pg_default | INSERT INTO gpmetrics.gpcc_pg_log_history SELECT * | 00:01:08.755596 | gpmon   | f       |             | 
+ 11716 |    3775 | gpperfmon | pg_default | SET optimizer = off;INSERT INTO gpmetrics.gpcc_dat | 00:00:27.816607 | gpmon   | f       | 10.0.29.36  | gpcc
+ 10011 |    5127 | gpperfmon | pg_default | COPY "gpmetrics"."gpcc_system_history" ("ctime", " | 00:00:12.816454 | gpmon   | f       | 10.0.29.36  | gpcc
+ 10450 |    5155 | gpperfmon | pg_default | INSERT INTO gpmetrics.gpcc_plannode_history SELECT | 00:00:09.593652 | gpmon   | f       | 10.0.29.36  | gpcc
+ 10338 |    5148 | gpperfmon | pg_default | INSERT INTO gpmetrics.gpcc_pg_log_history SELECT * | 00:00:06.836521 | gpmon   | f       |             | 
+ 10477 |    5156 | gpadmin   | pg_default | select * from public.process_vw;                   | 00:00:00        | gpadmin | f       |             | psql
+(9 rows)
+
+  pid  | sess_id |  datname  |   queue    |                       query                        |    query_time    | usename | waiting | client_addr | application_name 
+-------+---------+-----------+------------+----------------------------------------------------+------------------+---------+---------+-------------+------------------
+  9338 |    5095 | gpadmin   | pg_default | INSERT INTO tpcds.web_sales SELECT * FROM ext_tpcd | 00:09:29.605463  | gpadmin | f       |             | psql
+  9409 |    5099 | gpadmin   | pg_default | select count(*) from (select * from public.tab11 a | 00:09:27.533972  | gpadmin | f       |             | psql
+  9878 |    5111 | gpadmin   | pg_default | DROP SCHEMA IF EXISTS tpcds CASCADE;               | 00:09:24.373867  | gpadmin | t       |             | psql
+ 10275 |    5127 | gpperfmon | pg_default | INSERT INTO gpmetrics.gpcc_pg_log_history SELECT * | 00:01:08.779221  | gpmon   | f       |             | 
+ 11716 |    3775 | gpperfmon | pg_default | SET optimizer = off;INSERT INTO gpmetrics.gpcc_dat | 00:00:27.840232  | gpmon   | f       | 10.0.29.36  | gpcc
+ 10011 |    5127 | gpperfmon | pg_default | COPY "gpmetrics"."gpcc_system_history" ("ctime", " | 00:00:12.840079  | gpmon   | f       | 10.0.29.36  | gpcc
+ 10450 |    5155 | gpperfmon | pg_default | INSERT INTO gpmetrics.gpcc_plannode_history SELECT | 00:00:09.617277  | gpmon   | f       | 10.0.29.36  | gpcc
+ 10338 |    5148 | gpperfmon | pg_default | INSERT INTO gpmetrics.gpcc_pg_log_history SELECT * | 00:00:06.860146  | gpmon   | f       |             | 
+ 10528 |    5157 | gpadmin   | pg_default | select * from public.process_vw;                   | 00:00:00         | gpadmin | f       |             | psql
+ 10533 |    5160 | gpadmin   | pg_default | set statement_mem='2GB';                           | -00:00:00.001568 | gpadmin | f       |             | psql
+ 10530 |    5159 | gpadmin   | pg_default | select count(*) from (select * from public.tab11 a | -00:00:00.012136 | gpadmin | f       |             | psql
+ 10529 |    5158 | gpadmin   | pg_default | select count(*) from (select * from public.tab11 a | -00:00:00.012511 | gpadmin | f       |             | psql
+(12 rows)
+
+  pid  | sess_id |  datname  |   queue    |                       query                        |   query_time    | usename | waiting | client_addr | application_name 
+-------+---------+-----------+------------+----------------------------------------------------+-----------------+---------+---------+-------------+------------------
+ 10529 |    5158 | gpadmin   | pg_default | select count(*) from (select * from public.tab11 a | 00:01:40.011764 | gpadmin | f       |             | psql
+ 10866 |    5166 | gpadmin   | pg_default | CREATE TABLE tpcds.catalog_returns (              +| 00:00:46.795978 | gpadmin | f       |             | psql
+       |         |           |            |     cr_return                                      |                 |         |         |             | 
+ 10338 |    5148 | gpperfmon | pg_default | INSERT INTO gpmetrics.gpcc_pg_log_history SELECT * | 00:00:44.571146 | gpmon   | f       |             | 
+ 11716 |    3775 | gpperfmon | pg_default | SET optimizer = off;INSERT INTO gpmetrics.gpcc_dat | 00:00:07.864487 | gpmon   | f       | 10.0.29.36  | gpcc
+ 10910 |    5167 | gpperfmon | pg_default | INSERT INTO gpmetrics.gpcc_plannode_history SELECT | 00:00:01.702417 | gpmon   | f       | 10.0.29.36  | gpcc
+ 10011 |    5127 | gpperfmon | pg_default | UPDATE gpmetrics.gpcc_table_info AS last          +| 00:00:00.896658 | gpmon   | f       | 10.0.29.36  | gpcc
+       |         |           |            | SET                                               +|                 |         |         |             | 
+       |         |           |            |   cti                                              |                 |         |         |             | 
+ 10275 |    5127 | gpperfmon | pg_default | UPDATE gpmetrics.gpcc_table_info AS last          +| 00:00:00.890039 | gpmon   | f       |             | 
+       |         |           |            | SET                                               +|                 |         |         |             | 
+       |         |           |            |   cti                                              |                 |         |         |             | 
+ 10953 |    5172 | gpadmin   | pg_default | select * from public.process_vw;                   | 00:00:00        | gpadmin | f       |             | psql
+(8 rows)
+
