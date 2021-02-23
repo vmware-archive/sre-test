@@ -29,7 +29,7 @@
     group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0600'
 
-- name: Copy authorzed_keys to ansible host
+- name: Copy authorized_keys to ansible host
   copy:
     src: files/authorized_keys
     dest: /home/{{ greenplum.greenplum_admin_user }}/.ssh/authorized_keys
@@ -81,6 +81,7 @@
 - name: Set host
   hostname:
     name: "{{ inventory_hostname }}"
+
 
 
 

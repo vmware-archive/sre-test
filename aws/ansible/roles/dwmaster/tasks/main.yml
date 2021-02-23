@@ -39,7 +39,7 @@
     dest: files/id_rsa.pub
     flat: yes
 
-- name: Copy authorzed_keys to ansible host
+- name: Copy authorized_keys to ansible host
   fetch:
     src: /home/{{ greenplum.greenplum_admin_user }}/.ssh/authorized_keys
     dest: files/authorized_keys
@@ -80,15 +80,6 @@
     --download-dir=/home/{{ greenplum.greenplum_admin_user }}/pivnet_files
   args:
     creates: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
-
-#- name: Change the Owner and Group for greenplum package
-#  file:
-#    path: "/home/{{ greenplum.greenplum_admin_user }}/pivnet_files/greenplum-db-{{ greenplum.v6.pivnet_release_version }}-rhel7-x86_64.rpm"
-#    state: file
-#    owner: "{{ greenplum.greenplum_admin_user }}"
-#    group: "{{ greenplum.greenplum_admin_user }}"
-#    mode: '0777'
-
 
 - name: Set GPDB nproc, nofile and core limits
   copy:
@@ -213,5 +204,6 @@
     path: /data1/gpdb/master
     state: directory
     mode: '0777'
+
 
 

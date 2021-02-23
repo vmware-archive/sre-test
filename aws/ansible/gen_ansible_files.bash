@@ -14,9 +14,9 @@ if [ ! -f ${TFSTATEFILE} ]; then
     exit 2
 fi
 
-jq -r '.resources[] | select(.type == "tls_private_key") | .instances[0].attributes.private_key_pem' ${TFSTATEFILE} > ${CWDIR}/../gp_dev.pem
-chmod 600 ${CWDIR}/../gp_dev.pem
-cp ${CWDIR}/../gp_dev.pem ${CWDIR}/files
+jq -r '.resources[] | select(.type == "tls_private_key") | .instances[0].attributes.private_key_pem' ${TFSTATEFILE} > ${CWDIR}/../gp_prod.pem
+chmod 600 ${CWDIR}/../gp_prod.pem
+cp ${CWDIR}/../gp_prod.pem ${CWDIR}/files
 
 
 MDW_PUBLIC_IPV4=$(     jq -r '.outputs."gp_prod_dwcoordinators-public-IPv4".value' ${TFSTATEFILE} )
@@ -45,7 +45,7 @@ tee ${CWDIR}/ansible_hosts >/dev/null <<< "
 all:
   vars:
     ansible_user: centos
-    ansible_ssh_private_key_file: files/gp_dev.pem
+    ansible_ssh_private_key_file: files/gp_prod.pem
     pivnet_api_token: ${pivnet_api_token}
   children:
     dwmaster:
@@ -128,4 +128,5 @@ sdw4_ipv6
 EOF
 
 cat ${CWDIR}/files/gp_segment_hosts_ipv6
+
 

@@ -72,10 +72,11 @@
 
 - name: Copy PEM file
   copy:
-    src: files/gp_dev.pem
-    dest: /home/{{ ansible_user }}/files/gp_dev.pem
+    src: files/gp_prod.pem
+    dest: /home/{{ ansible_user }}/files/gp_prod.pem
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: '0600'
+
 
 
