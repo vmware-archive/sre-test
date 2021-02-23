@@ -28,9 +28,9 @@ terraform apply
 ## Extract PEM file from `terraform.tfstate` file.
 ```
 jq -r '.resources[] | select(.type == "tls_private_key") | .instances[0].attributes.private_key_pem' \
-      terraform.tfstate > gp_dev.pem
+      terraform.tfstate > gp_prod.pem
 
-chmod 600 gp_dev.pem
+chmod 600 gp_prod.pem
 ```
 
 ## Bring in infrastructure values into environment
@@ -43,16 +43,15 @@ direnv allow
 - Make sure you can connect to the jumpbox & gp systems dw controller:
 ```
 for host in ${MDW_IPV4} ${SMDW_IPV4} ${SDW1_IPV4} ${SDW2_IPV4} ${SDW3_IPV4} ${SDW4_IPV4}; do \
-ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@$host uptime; done
+ssh -oStrictHostKeyChecking=no -i gp_prod.pem centos@$host uptime; done
 ```
 
 - (Optional) Test logging into Jumpbox and Controller
 ```
-ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${JUMPBOX_IPV4}
-ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${MDW_IPV4}
+ssh -oStrictHostKeyChecking=no -i gp_prod.pem centos@${MDW_IPV4}
 ```
 
-## Run Ansible to install GPDB
+## Run Ansible to install GPDB, GPCC and Backup & restore utility
 - `cd ansible`
 - If needed, edit the script _gen_ansible_files.bash_ for the correct number of hosts. This will generate ansible files with resource details from Terraform execution.
 ```
@@ -61,13 +60,14 @@ ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${MDW_IPV4}
 - You can adjust parameters of the GPDB install, including the number of segments per host, by editing
  _gpdb-vars.yml_.
 ```
-ansible-playbook --inventory-file=ansible_hosts ansible-install-gpdb.yml -e @gpdb-vars.yml
+ansible-playbook --inventory-file=ansible_hosts ansible-playbook-all.yml -e @gpdb-vars.yml
 ```
 
 ## Log into Controller (mdw) and verify the GPDB installation
 ```
-ssh -oStrictHostKeyChecking=no -i gp_dev.pem centos@${MDW_IPV4}
+ssh -oStrictHostKeyChecking=no -i gp_prod.pem centos@${MDW_IPV4}
 ```
+- switch to gpadmin user
 
 ## Run some sample gp cluster queries
 ```
@@ -85,11 +85,6 @@ postgres --gp-version
 postgres --catalog-version
 ```
 
-## Run second ansible playbook to install GPCC and Restore & Backup Utility
-```
-ansible-playbook --inventory-file=ansible_hosts ansible-install-gpcc.yml -e @gpdb-vars.yml
-
-```
 ## Use Terraform to teardown infrastructure
 ```
 terraform destroy
