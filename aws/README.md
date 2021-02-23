@@ -40,13 +40,13 @@ chmod 600 gp_prod.pem
 direnv allow
 ```
 
-- Make sure you can connect to the jumpbox & gp systems dw controller:
+- Make sure you can connect to the gp systems dw controller:
 ```
 for host in ${MDW_IPV4} ${SMDW_IPV4} ${SDW1_IPV4} ${SDW2_IPV4} ${SDW3_IPV4} ${SDW4_IPV4}; do \
 ssh -oStrictHostKeyChecking=no -i gp_prod.pem centos@$host uptime; done
 ```
 
-- (Optional) Test logging into Jumpbox and Controller
+- (Optional) Test logging into Controller
 ```
 ssh -oStrictHostKeyChecking=no -i gp_prod.pem centos@${MDW_IPV4}
 ```
