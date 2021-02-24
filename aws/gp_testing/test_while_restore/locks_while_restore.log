@@ -1,0 +1,9 @@
+nohup: ignoring input
+========================Start of test====================
+====================== Start the backup while try running DDL on the same DB it should create a lock ======================
+========================DDL statement to test for lock====================
+ datid | datname | pid | sess_id | usesysid | usename | application_name | client_addr | client_hostname | client_port | backend_start | xact_start | query_start | state_change | waiting | state | backend_xid | backend_xmin | query | waiting_reason | rsgid | rsgname | rsgqueueduration 
+-------+---------+-----+---------+----------+---------+------------------+-------------+-----------------+-------------+---------------+------------+-------------+--------------+---------+-------+-------------+--------------+-------+----------------+-------+---------+------------------
+(0 rows)
+
+========================end of test====================

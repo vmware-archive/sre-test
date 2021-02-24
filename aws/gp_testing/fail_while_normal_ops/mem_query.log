@@ -4,3 +4,8 @@ SET
 psql:mem_query.sql:2: ERROR:  Canceling query because of high VMEM usage. Used: 2956MB, available 815MB, red zone: 7372MB (runaway_cleaner.c:202)  (seg11 slice2 10.0.28.78:4002 pid=4497) (runaway_cleaner.c:202)
 psql:mem_query.sql:2: ERROR:  Canceling query because of high VMEM usage. Used: 2396MB, available 815MB, red zone: 7372MB (runaway_cleaner.c:202)  (seg2 slice1 10.0.19.242:4002 pid=15316) (runaway_cleaner.c:202)
 psql:mem_query.sql:2: ERROR:  Canceling query because of high VMEM usage. Used: 3676MB, available 818MB, red zone: 7372MB (runaway_cleaner.c:202)  (seg0 slice1 10.0.19.242:4000 pid=15324) (runaway_cleaner.c:202)
+   count    
+------------
+ 1000000000
+(1 row)
+
