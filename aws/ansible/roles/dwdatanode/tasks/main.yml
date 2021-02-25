@@ -28,6 +28,8 @@
   file:
     path: /data{{ item }}
     state: directory
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0777'
   with_sequence: start=1 end={{ greenplum.segments_per_host }}
 
@@ -35,8 +37,9 @@
   file:
     path: /data{{ item[0] }}/gpdb/{{ item[1] }}
     state: directory
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0777'
   with_nested:
     - "{{ range(1,greenplum.segments_per_host+1)|list }}"
     - [ 'primary', 'mirror' ]
-

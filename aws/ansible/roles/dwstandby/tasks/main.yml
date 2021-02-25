@@ -77,11 +77,14 @@
   file:
     path: /data1
     state: directory
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0777'
 
 - name: Create master/standbymaster data directories
   file:
     path: /data1/gpdb/master
     state: directory
+    owner: "{{ greenplum.greenplum_admin_user }}"
+    group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0777'
-
