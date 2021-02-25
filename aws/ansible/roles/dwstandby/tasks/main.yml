@@ -73,6 +73,19 @@
     opts: rw,noatime,nobarrier,nodev,inode64,allocsize=16m
     state: mounted
 
+- name: Set the device read-ahead (blockdev) value to 16384
+  lineinfile:
+    path: /etc/rc.d/rc.local
+    state: present
+    line: /sbin/blockdev --setra 16384 /dev/nvme1n1
+    mode: a+x
+
+- name: Set the Disk I/O scheduler
+  shell: grubby --update-kernel=ALL --args="elevator=deadline"
+
+- name: Disable Transparent Huge Pages (THP)
+  shell: grubby --update-kernel=ALL --args="transparent_hugepage=never"
+
 - name: Make master/standbymaster filesystems world-writable
   file:
     path: /data1
@@ -88,3 +101,4 @@
     owner: "{{ greenplum.greenplum_admin_user }}"
     group: "{{ greenplum.greenplum_admin_user }}"
     mode: '0777'
+

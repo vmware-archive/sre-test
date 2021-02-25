@@ -23,6 +23,20 @@
     opts: rw,noatime,nobarrier,nodev,inode64,allocsize=16m
     state: mounted
   with_sequence: start=1 end={{ greenplum.segments_per_host }}
+  
+- name: Set the device read-ahead (blockdev) value to 16384
+  lineinfile:
+    path: /etc/rc.d/rc.local
+    state: present
+    line: /sbin/blockdev --setra 16384 /dev/nvme{{ item }}n1
+    mode: a+x
+  with_sequence: start=1 end={{ greenplum.segments_per_host }}
+
+- name: Set the Disk I/O scheduler
+  shell: grubby --update-kernel=ALL --args="elevator=deadline"
+
+- name: Disable Transparent Huge Pages (THP)
+  shell: grubby --update-kernel=ALL --args="transparent_hugepage=never"
 
 - name: Make segment data filesystems world-writable
   file:
@@ -43,3 +57,4 @@
   with_nested:
     - "{{ range(1,greenplum.segments_per_host+1)|list }}"
     - [ 'primary', 'mirror' ]
+
