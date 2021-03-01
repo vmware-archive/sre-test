@@ -1,0 +1,1 @@
+2021-03-01 14:43:26.318511 UTC|gpadmin|gpadmin|p7647|th-1253484416|[local]||2021-03-01 14:43:26 UTC|0|con13523|cmd1|seg-1||||sx1|ERROR: |42P01|relation "public.tab1" does not exist||||||select count(*) from public.tab1 a, public.tab2 b where a.generate_series = b.generate_series;|22||parse_relation.c|1007|
