@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# this test is to check kill GPCC process and recover back
 echo '====================Start of test=================='
 
 

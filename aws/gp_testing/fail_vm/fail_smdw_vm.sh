@@ -19,6 +19,8 @@ echo '==================== Recover failed stand by master ======================
 
 gpinitstandby -r -M fast -a
 
+sleep 60
+
 gpinitstandby -s smdw_ipv4 -M fast -a
 
 sleep 100

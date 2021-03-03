@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# this script need to be run from smdw
 echo '====================Start of test=================='
 
 
