@@ -1,9 +1,11 @@
 #!/bin/bash
-#run the backup from different session and start this script
+#this script is to test the running backup state while mirror segment is brought down
 echo '====================Start of test=================='
 
 
-echo '====================connect to sdw1 and kill one primary segment======================'
+echo '====================Strat the backup and connect to sdw1 and kill one primary segment======================'
+
+nohup gpbackup --dbname gpadmin > backup_fail_mirror.log 2>&1 &
 
 gpssh -h sdw1_ipv4 "ps -ef| grep 'mirror/gpseg9'| grep -v grep| awk {'print $2'}| xargs kill"
 

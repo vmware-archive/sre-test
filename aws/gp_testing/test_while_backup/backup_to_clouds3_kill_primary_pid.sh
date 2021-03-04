@@ -7,8 +7,9 @@ source /usr/local/greenplum-db-6.13.0/greenplum_path.sh
 echo '====================connect to sdw1 and kill one primary segment======================'
 
 
-nohup gpbackup --dbname test1 --plugin-config /home/gpadmin/test_s3_backup/s3-test-config.yaml > backup.log 2>&1 &
+nohup gpbackup --dbname gpadmin --plugin-config /home/gpadmin/workspace1/sre-test/aws/gp_testing/test_while_backup/s3-test-config.yaml > backup_kill_pid.log 2>&1 &
 
+sleep 10
 
 gpssh -h sdw1_ipv4 "ps -ef| grep 'primary/gpseg0'| grep -v grep| awk {'print $2'}| xargs kill"
 
@@ -37,7 +38,7 @@ psql -c "select * from gp_segment_configuration where role!=preferred_role or st
 gpstate
 
 
-nohup gpbackup --dbname test1 --plugin-config /home/gpadmin/test_s3_backup/s3-test-config.yaml > backup1.log 2>&1 &
+nohup gpbackup --dbname gpadmin --plugin-config /home/gpadmin/workspace1/sre-test/aws/gp_testing/test_while_backup/s3-test-config.yaml > backup_kill_pid1.log 2>&1 &
 
 echo 'End of test'
 

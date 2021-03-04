@@ -18,8 +18,7 @@ gprecoverseg -ar
 
 sleep 60
 
-nohup gpbackup --dbname test1 --plugin-config /home/gpadmin/test_s3_backup/s3-test-config.yaml > backup_success_network.log 2>&1 &
-
+nohup gpbackup --dbname gpadmin --plugin-config /home/gpadmin/workspace1/sre-test/aws/gp_testing/test_while_backup/s3-test-config.yaml > backup_kill_pid2.log 2>&1 &
 
 gpstate
 

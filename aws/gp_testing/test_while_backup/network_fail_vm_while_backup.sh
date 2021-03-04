@@ -7,7 +7,7 @@ source /usr/local/greenplum-db-6.13.0/greenplum_path.sh
 echo '====================Start backup and connect to sdw1 disconnect it from network======================'
 
 
-nohup gpbackup --dbname test1 --plugin-config /home/gpadmin/test_s3_backup/s3-test-config.yaml > backup_fail_network.log 2>&1 &
+nohup gpbackup --dbname gpadmin --plugin-config /home/gpadmin/test_s3_backup/s3-test-config.yaml > backup_fail_network.log 2>&1 &
 
 
 gpssh -h sdw1_ipv4 "sudo iptables -A INPUT -s mdw_ipv4 -j DROP"
