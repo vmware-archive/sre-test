@@ -1,7 +1,0 @@
-
-dropdb gpadmin
-nohup gprestore --timestamp 20210226153504 --create-db > normal_restore.log 2>&1 &
-dropdb gpadmin
-nohup gprestore --backup-dir /mnt/slow/test --timestamp 20210226153831 --create-db > normal_restore.log 2>&1 &
-
-

@@ -1,0 +1,8 @@
+executablepath: $GPHOME/bin/gpbackup_s3_plugin
+options: 
+      region: ap-south-1
+      aws_access_key_id: <fill in your AWS access key>
+      aws_secret_access_key: <fill in your AWS secret access key>
+      bucket: gp-sre-bucket
+      folder: test/backup3
+      backup_multipart_chunksize: 5MB 
