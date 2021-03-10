@@ -1,0 +1,8 @@
+nohup: ignoring input
+20210309:17:03:44 gprestore:gpadmin:mdw_ipv4:019850-[INFO]:-Restore Key = 20210309145604
+20210309:17:03:44 gprestore:gpadmin:mdw_ipv4:019850-[INFO]:-gpbackup version = 1.20.2
+20210309:17:03:44 gprestore:gpadmin:mdw_ipv4:019850-[INFO]:-gprestore version = 1.20.2
+20210309:17:03:44 gprestore:gpadmin:mdw_ipv4:019850-[INFO]:-Greenplum Database Version = 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd
+20210309:17:03:44 gprestore:gpadmin:mdw_ipv4:019850-[CRITICAL]:-Backup directories missing or inaccessible on 3 segments. See /home/gpadmin/gpAdminLogs/gprestore_20210309.log for a complete list of errors.
+20210309:17:03:44 gprestore:gpadmin:mdw_ipv4:019850-[INFO]:-Found neither /usr/local/greenplum-db-6.13.0/bin/gp_email_contacts.yaml nor /home/gpadmin/gp_email_contacts.yaml
+20210309:17:03:44 gprestore:gpadmin:mdw_ipv4:019850-[INFO]:-Email containing gprestore report /data1/gpdb/master/gpseg-1/backups/20210309/20210309145604/gprestore_20210309145604_20210309170344_report will not be sent

@@ -1,1 +1,0 @@
-sdw1_ipv4|4000|/data1/gpdb/primary/gpseg0

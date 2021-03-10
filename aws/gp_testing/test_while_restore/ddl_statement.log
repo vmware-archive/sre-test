@@ -1,7 +1,2 @@
 psql:ddl_statement.sql:1: NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
-psql:ddl_statement.sql:1: FATAL:  terminating connection due to administrator command
-CONTEXT:  while inserting index tuple (103,20) in relation "pg_type_typname_nsp_index"
-server closed the connection unexpectedly
-	This probably means the server terminated abnormally
-	before or while processing the request.
-psql:ddl_statement.sql:1: connection to server was lost
+SELECT 100000000

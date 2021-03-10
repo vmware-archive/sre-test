@@ -1,201 +1,258 @@
 nohup: ignoring input
-====================Start of test==================
-====================connect to sdw1 and kill one primary segment======================
+
+==================== Start of test ==================
+
+==================== Connect to sdw1 and kill one primary segment ======================
+
 [sdw1_ipv4] kill: cannot find process "gpadmin"
 [sdw1_ipv4] kill: sending signal to 1 failed: Operation not permitted
 [sdw1_ipv4] Terminated
-======================check the failed segment======================
-20210225:17:14:14:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
-20210225:17:14:14:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-20210225:17:14:14:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
-20210225:17:14:14:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
-20210225:17:14:14:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 10
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total primary segment failures (at master)                = 2                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of postmaster.pid files missing              = 2                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 10
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of postmaster.pid PIDs missing               = 2                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 10
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of /tmp lock files missing                   = 2                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 10
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number postmaster processes missing                 = 2                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 10
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 11
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total mirror segment failures (at master)                 = 1                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of postmaster.pid files missing              = 1                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 11
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of postmaster.pid PIDs missing               = 1                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 11
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of /tmp lock files missing                   = 1                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 11
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number postmaster processes missing                 = 1                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 11
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number mirror segments acting as primary segments   = 3                      <<<<<<<<
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 9
-20210225:17:14:15:031470 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+
+
+====================== Check the failed segment ======================
+
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 11
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total primary segment failures (at master)                = 1                      <<<<<<<<
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number mirror segments acting as primary segments   = 1                      <<<<<<<<
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 11
+20210310:05:23:14:007257 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
  dbid | content | role | preferred_role | mode | status | port | hostname  |  address  |          datadir           
 ------+---------+------+----------------+------+--------+------+-----------+-----------+----------------------------
-    3 |       1 | m    | p              | n    | d      | 4001 | sdw1_ipv4 | sdw1_ipv4 | /data2/gpdb/primary/gpseg1
-   15 |       1 | p    | m              | n    | u      | 5001 | sdw2_ipv4 | sdw2_ipv4 | /data2/gpdb/mirror/gpseg1
-   24 |      10 | m    | m              | n    | d      | 5001 | sdw1_ipv4 | sdw1_ipv4 | /data2/gpdb/mirror/gpseg10
-   16 |       2 | p    | m              | s    | u      | 5002 | sdw2_ipv4 | sdw2_ipv4 | /data3/gpdb/mirror/gpseg2
-    4 |       2 | m    | p              | s    | u      | 4002 | sdw1_ipv4 | sdw1_ipv4 | /data3/gpdb/primary/gpseg2
-   14 |       0 | p    | m              | n    | u      | 5000 | sdw2_ipv4 | sdw2_ipv4 | /data1/gpdb/mirror/gpseg0
     2 |       0 | m    | p              | n    | d      | 4000 | sdw1_ipv4 | sdw1_ipv4 | /data1/gpdb/primary/gpseg0
-(7 rows)
-
-====================Recover failed segment incremental========================
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting gprecoverseg with args: -a
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Heap checksum setting is consistent between master and the segments that are candidates for recoverseg
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance recovery parameters
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery type              = Standard
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery 1 of 3
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Synchronization mode                 = Incremental
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance host                 = sdw1_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance address              = sdw1_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance directory            = /data1/gpdb/primary/gpseg0
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance port                 = 4000
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance host        = sdw2_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance address     = sdw2_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance directory   = /data1/gpdb/mirror/gpseg0
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance port        = 5000
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Target                      = in-place
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery 2 of 3
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Synchronization mode                 = Incremental
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance host                 = sdw1_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance address              = sdw1_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance directory            = /data2/gpdb/primary/gpseg1
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance port                 = 4001
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance host        = sdw2_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance address     = sdw2_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance directory   = /data2/gpdb/mirror/gpseg1
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance port        = 5001
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Target                      = in-place
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery 3 of 3
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Synchronization mode                 = Incremental
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance host                 = sdw1_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance address              = sdw1_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance directory            = /data2/gpdb/mirror/gpseg10
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance port                 = 5001
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance host        = sdw4_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance address     = sdw4_ipv4
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance directory   = /data2/gpdb/primary/gpseg10
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance port        = 4001
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Target                      = in-place
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
-20210225:17:14:15:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting to modify pg_hba.conf on primary segments to allow replication connections
-20210225:17:14:22:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Successfully modified pg_hba.conf on primary segments to allow replication connections
-20210225:17:14:22:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-3 segment(s) to recover
-20210225:17:14:22:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Ensuring 3 failed segment(s) are stopped
-20210225:17:14:23:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Ensuring that shared memory is cleaned up for stopped segments
-20210225:17:14:23:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Updating configuration with new mirrors
-20210225:17:14:23:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Updating mirrors
-20210225:17:14:23:031548 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Running pg_rewind on required mirrors
-20210225:17:14:48:031548 gprecoverseg:mdw_ipv4:gpadmin-[CRITICAL]:-Error occurred: Failed while trying to remove postmaster.pid.
- Command was: 'ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 sdw1_ipv4 ". /usr/local/greenplum-db-6.13.0/greenplum_path.sh; rm -f /data2/gpdb/mirror/gpseg10/postmaster.pid"'
-rc=1, stdout='', stderr='rm: cannot remove ‘/data2/gpdb/mirror/gpseg10/postmaster.pid’: Input/output error
-'
-20210225:17:16:29:031821 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting gprecoverseg with args: -ra
-20210225:17:16:29:031821 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-20210225:17:16:29:031821 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
-20210225:17:16:29:031821 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
-20210225:17:16:29:031821 gprecoverseg:mdw_ipv4:gpadmin-[CRITICAL]:-gprecoverseg failed. (Reason='Down segments still exist.  All segments must be up to rebalance.') exiting...
-====================Check if all segments are up and go ahead to rebalance================
- dbid | content | role | preferred_role | mode | status | port | hostname  |  address  |          datadir           
-------+---------+------+----------------+------+--------+------+-----------+-----------+----------------------------
-    3 |       1 | m    | p              | n    | d      | 4001 | sdw1_ipv4 | sdw1_ipv4 | /data2/gpdb/primary/gpseg1
-   15 |       1 | p    | m              | n    | u      | 5001 | sdw2_ipv4 | sdw2_ipv4 | /data2/gpdb/mirror/gpseg1
-   24 |      10 | m    | m              | n    | d      | 5001 | sdw1_ipv4 | sdw1_ipv4 | /data2/gpdb/mirror/gpseg10
-   16 |       2 | p    | m              | s    | u      | 5002 | sdw2_ipv4 | sdw2_ipv4 | /data3/gpdb/mirror/gpseg2
-    4 |       2 | m    | p              | s    | u      | 4002 | sdw1_ipv4 | sdw1_ipv4 | /data3/gpdb/primary/gpseg2
    14 |       0 | p    | m              | n    | u      | 5000 | sdw2_ipv4 | sdw2_ipv4 | /data1/gpdb/mirror/gpseg0
-    2 |       0 | m    | p              | n    | d      | 4000 | sdw1_ipv4 | sdw1_ipv4 | /data1/gpdb/primary/gpseg0
-(7 rows)
+(2 rows)
 
-20210225:17:17:29:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
-20210225:17:17:29:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-20210225:17:17:29:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
-20210225:17:17:29:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
-20210225:17:17:29:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 10
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total primary segment failures (at master)                = 2                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of postmaster.pid files missing              = 2                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 10
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of postmaster.pid PIDs missing               = 2                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 10
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of /tmp lock files missing                   = 2                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 10
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number postmaster processes missing                 = 2                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 10
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 11
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total mirror segment failures (at master)                 = 1                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of postmaster.pid files missing              = 1                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 11
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of postmaster.pid PIDs missing               = 1                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 11
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number of /tmp lock files missing                   = 1                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 11
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number postmaster processes missing                 = 1                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 11
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Total number mirror segments acting as primary segments   = 3                      <<<<<<<<
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 9
-20210225:17:17:30:031941 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-End of test
+
+
+==================== Recover failed segment incremental ========================
+
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting gprecoverseg with args: -a
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Heap checksum setting is consistent between master and the segments that are candidates for recoverseg
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance recovery parameters
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery type              = Standard
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery 1 of 1
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Synchronization mode                 = Incremental
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance host                 = sdw1_ipv4
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance address              = sdw1_ipv4
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance directory            = /data1/gpdb/primary/gpseg0
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance port                 = 4000
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance host        = sdw2_ipv4
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance address     = sdw2_ipv4
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance directory   = /data1/gpdb/mirror/gpseg0
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance port        = 5000
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Target                      = in-place
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:23:15:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting to modify pg_hba.conf on primary segments to allow replication connections
+20210310:05:23:21:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Successfully modified pg_hba.conf on primary segments to allow replication connections
+20210310:05:23:21:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-1 segment(s) to recover
+20210310:05:23:21:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Ensuring 1 failed segment(s) are stopped
+20210310:05:23:22:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-32235: /data1/gpdb/primary/gpseg0
+20210310:05:23:22:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Ensuring that shared memory is cleaned up for stopped segments
+20210310:05:23:22:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Updating configuration with new mirrors
+20210310:05:23:22:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Updating mirrors
+20210310:05:23:22:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Running pg_rewind on required mirrors
+..............................................................
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting mirrors
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-era is a9b63a7b265af9ee_210308090657
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Commencing parallel segment instance startup, please wait...
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Process results...
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Triggering FTS probe
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-******************************************************************
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Updating segments for streaming is completed.
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-For segments updated successfully, streaming will continue in the background.
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Use  gpstate -s  to check the streaming progress.
+20210310:05:24:25:007340 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-******************************************************************
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting gprecoverseg with args: -ra
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance recovery parameters
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery type              = Rebalance
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Unbalanced segment 1 of 2
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Unbalanced instance host        = sdw2_ipv4
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Unbalanced instance address     = sdw2_ipv4
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Unbalanced instance directory   = /data1/gpdb/mirror/gpseg0
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Unbalanced instance port        = 5000
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Balanced role                   = Mirror
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Current role                    = Primary
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Unbalanced segment 2 of 2
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Unbalanced instance host        = sdw1_ipv4
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Unbalanced instance address     = sdw1_ipv4
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Unbalanced instance directory   = /data1/gpdb/primary/gpseg0
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Unbalanced instance port        = 4000
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Balanced role                   = Primary
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Current role                    = Mirror
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Getting unbalanced segments
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Stopping unbalanced primary segments...
+20210310:05:26:06:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Triggering segment reconfiguration
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting segment synchronization
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-=============================START ANOTHER RECOVER=========================================
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Heap checksum setting is consistent between master and the segments that are candidates for recoverseg
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance recovery parameters
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery type              = Standard
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Recovery 1 of 1
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Synchronization mode                 = Incremental
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance host                 = sdw2_ipv4
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance address              = sdw2_ipv4
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance directory            = /data1/gpdb/mirror/gpseg0
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Failed instance port                 = 5000
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance host        = sdw1_ipv4
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance address     = sdw1_ipv4
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance directory   = /data1/gpdb/primary/gpseg0
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Source instance port        = 4000
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-   Recovery Target                      = in-place
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:----------------------------------------------------------
+20210310:05:26:13:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting to modify pg_hba.conf on primary segments to allow replication connections
+20210310:05:26:19:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Successfully modified pg_hba.conf on primary segments to allow replication connections
+20210310:05:26:19:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-1 segment(s) to recover
+20210310:05:26:19:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Ensuring 1 failed segment(s) are stopped
+20210310:05:26:19:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Ensuring that shared memory is cleaned up for stopped segments
+20210310:05:26:19:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Updating configuration with new mirrors
+20210310:05:26:19:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Updating mirrors
+20210310:05:26:19:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Running pg_rewind on required mirrors
+20210310:05:26:20:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Starting mirrors
+20210310:05:26:20:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-era is a9b63a7b265af9ee_210308090657
+20210310:05:26:20:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Commencing parallel segment instance startup, please wait...
+20210310:05:26:20:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Process results...
+20210310:05:26:20:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Triggering FTS probe
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-******************************************************************
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Updating segments for streaming is completed.
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-For segments updated successfully, streaming will continue in the background.
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Use  gpstate -s  to check the streaming progress.
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-******************************************************************
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-==============================END ANOTHER RECOVER==========================================
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-******************************************************************
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-The rebalance operation has completed successfully.
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-There is a resynchronization running in the background to bring all
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-segments in sync.
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-Use gpstate -e to check the resynchronization progress.
+20210310:05:26:21:007499 gprecoverseg:mdw_ipv4:gpadmin-[INFO]:-******************************************************************
+
+
+==================== Check if all segments are up and rebalanced ================
+
+ dbid | content | role | preferred_role | mode | status | port | hostname | address | datadir 
+------+---------+------+----------------+------+--------+------+----------+---------+---------
+(0 rows)
+
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
+20210310:05:27:21:007667 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+dropdb: database removal failed: ERROR:  database "gpadmin_test" does not exist
+
+
+======================== End of test ====================
+
 NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
 SELECT 1000000
  count | gp_segment_id 
 -------+---------------
- 83205 |             1
- 83525 |             4
- 83467 |             6
- 83173 |             0
- 83317 |             7
- 83419 |            11
- 83130 |             2
- 83496 |             8
- 83236 |             3
- 83011 |             9
- 83391 |             5
- 83630 |            10
+ 83539 |             4
+ 83206 |             0
+ 82868 |             5
+ 83532 |            10
+ 83093 |             1
+ 83018 |             6
+ 83240 |             3
+ 83487 |             9
+ 83486 |             2
+ 83742 |             8
+ 83532 |             7
+ 83257 |            11
 (12 rows)
 
 DROP TABLE
-restore_to_clouds3_kill_primary_pid.sh: line 51: ']'}: command not found

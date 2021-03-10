@@ -1,0 +1,11 @@
+20210310:05:21:32 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-Restore Key = 20210309095536
+20210310:05:21:32 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-Reading Plugin Config /home/gpadmin/workspace/sre-test/aws/gp_testing/test_while_backup/s3-test-config.yaml
+20210310:05:21:32 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-plugin config path: /tmp/20210310052132_s3-test-config.yaml
+20210310:05:21:33 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-gpbackup version = 1.20.2
+20210310:05:21:33 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-gprestore version = 1.20.2
+20210310:05:21:33 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-Greenplum Database Version = 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd
+20210310:05:21:33 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-Creating database
+
+20210310:05:21:52 gprestore:gpadmin:mdw_ipv4:006867-[CRITICAL]:-ERROR: FTS detected connection lost during dispatch to seg0 10.0.27.202:4000 pid=2490: (SQLSTATE 58M01)
+20210310:05:21:52 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-Found neither /usr/local/greenplum-db-6.13.0/bin/gp_email_contacts.yaml nor /home/gpadmin/gp_email_contacts.yaml
+20210310:05:21:52 gprestore:gpadmin:mdw_ipv4:006867-[INFO]:-Email containing gprestore report /data1/gpdb/master/gpseg-1/backups/20210309/20210309095536/gprestore_20210309095536_20210310052132_report will not be sent
