@@ -9,23 +9,25 @@ nohup sh run.sh > tpcd_kill_primary_pid.log 2>&1 &
 
 sleep 60
 
-gpssh -h sdw1_ipv4 "ps -ef| grep 'primary/gpseg0'| grep -v grep| awk {'print $2'}| xargs kill"
+tmp_pid=$(gpssh -h sdw1_ipv4 "ps -ef| grep 'primary/gpseg0'| grep D | grep -v grep "| awk '{print $3}')
+
+gpssh -h sdw1_ipv4 "kill $tmp_pid"
 
 sleep 100
 
-echo -e '\n\n======================= Check the failed segment====================\n'
+echo -e '\n\n======================= Check the failed segment ====================\n'
 
 gpstate
 
 psql -c "select * from gp_segment_configuration where role!=preferred_role or status = 'd'"
 
-echo -e '\n\n========================Recover failed segment incremental==========================\n'
+echo -e '\n\n======================== Recover failed segment incremental ==========================\n'
 
 gprecoverseg -a
 
 sleep 100
 
-echo -e '\n\n================================Check if all segments are up and go ahead to rebalance===========================\n'
+echo -e '\n\n================================ Check if all segments are up and go ahead to rebalance ===========================\n'
 
 psql -c "select * from gp_segment_configuration where role!=preferred_role or status = 'd'"
 
