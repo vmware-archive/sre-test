@@ -1,0 +1,41 @@
+nohup: ignoring input
+
+==================== Start of test ==================
+
+
+
+==================== Along with normal opertation processes, starting memory intense processes  ==================
+
+ERROR:  relation "process_vw" already exists
+  pid  | sess_id | datname |   queue    |              query               |   query_time    | usename | waiting | client_addr | application_name 
+-------+---------+---------+------------+----------------------------------+-----------------+---------+---------+-------------+------------------
+ 12986 |     261 | gpadmin | pg_default | CREATE TABLE tpcds.store_sales (+| 00:00:12.724533 | gpadmin | f       |             | psql
+       |         |         |            |     ss_sold_date_                |                 |         |         |             | 
+ 13003 |     263 | gpadmin | pg_default | select * from public.process_vw; | 00:00:00        | gpadmin | f       |             | psql
+(2 rows)
+
+  pid  | sess_id | datname |   queue    |                       query                        |    query_time    | usename | waiting | client_addr | application_name 
+-------+---------+---------+------------+----------------------------------------------------+------------------+---------+---------+-------------+------------------
+ 12986 |     261 | gpadmin | pg_default | CREATE TABLE tpcds.store_sales (                  +| 00:00:12.747453  | gpadmin | f       |             | psql
+       |         |         |            |     ss_sold_date_                                  |                  |         |         |             | 
+ 13009 |     264 | gpadmin | pg_default | select * from public.process_vw;                   | 00:00:00         | gpadmin | f       |             | psql
+ 13011 |     266 | gpadmin | pg_default | select count(*) from (select * from public.tab2 a, | -00:00:00.010401 | gpadmin | f       |             | psql
+ 13010 |     265 | gpadmin | pg_default | select count(*) from (select * from public.tab2 a, | -00:00:00.01197  | gpadmin | f       |             | psql
+ 13012 |     267 | gpadmin | pg_default | select count(*) from (select * from public.tab2 a, | -00:00:00.01211  | gpadmin | f       |             | psql
+(5 rows)
+
+
+
+==================== One or more memory intense process will be killed by the greenplum optimizer ==================
+
+  pid  | sess_id | datname |   queue    |                       query                        |   query_time    | usename | waiting | client_addr | application_name 
+-------+---------+---------+------------+----------------------------------------------------+-----------------+---------+---------+-------------+------------------
+ 13010 |     265 | gpadmin | pg_default | select count(*) from (select * from public.tab2 a, | 00:01:40.011732 | gpadmin | f       |             | psql
+ 16520 |     345 | gpadmin | pg_default | INSERT INTO tpcds.web_sales SELECT * FROM ext_tpcd | 00:00:06.582162 | gpadmin | f       |             | psql
+ 16528 |     346 | gpadmin | pg_default | select * from public.process_vw;                   | 00:00:00        | gpadmin | f       |             | psql
+(3 rows)
+
+
+
+======================== End of test ====================
+
