@@ -1,0 +1,312 @@
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg9 10.0.28.123:4000 pid=5540)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg10 10.0.28.123:4001 pid=5538)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: WARNING:  ignoring query cancel request for synchronous replication to ensure cluster consistency  (seg11 10.0.28.123:4002 pid=5541)
+DETAIL:  The transaction has already changed locally, it has to be replicated to standby.
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:12: ERROR:  terminating connection due to administrator command  (seg0 10.0.24.28:4000 pid=6433)
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:57: NOTICE:  table "gp_configuration_history" has no indexes
+REINDEX
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:58: NOTICE:  table "gp_id" has no indexes
+REINDEX
+REINDEX
+psql:/home/gpadmin/workspace/sre-test/aws/gp_testing/failure_while_mainteance/catalog_tables_mainteance.sql:60: NOTICE:  table "gp_version_at_initdb" has no indexes
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+REINDEX
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+VACUUM
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
+ANALYZE
