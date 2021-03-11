@@ -238,6 +238,26 @@ resource "aws_instance" "gp_prod_dwdatanode" {
   }
 }
 
+
+resource "aws_s3_bucket" "gp_prod_s3_bucket" {
+   bucket = var.s3_bucket_name
+   acl = "private"
+   versioning {
+      enabled = true
+   }
+   tags = {
+     Name = "${var.s3_bucket_name}"
+   }
+}
+
+resource "aws_s3_bucket_object" "gp_prod_s3_bucket_folder" {
+  key    = var.s3_folder_name
+  bucket = aws_s3_bucket.gp_prod_s3_bucket.id
+  source = "/dev/null"
+  acl    = "private"
+}
+
+
 #Outputs
 
 output "gp_prod_dwcoordinators-public-IPv4" {

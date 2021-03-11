@@ -66,3 +66,16 @@ variable "ami" {
   default = "ami-026f33d38b6410e30" # ap-south-1 - CentOS 7 (x86_64) - with Updates HVM
 }
 
+variable "s3_bucket_name" {
+  description  = "name of the s3 bucket to be created for test purpose"
+  type = string
+  default = "gp-sre-bucket-new"
+}
+
+variable "s3_folder_name" {
+  description  = "name of the s3 bucket folder to be created for test purpose"
+  type = string
+  default = "test/backup3/"
+}
+
+
