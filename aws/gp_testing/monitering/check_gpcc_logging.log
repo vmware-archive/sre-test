@@ -1,43 +1,55 @@
 nohup: ignoring input
-====================Start of test==================
-gpadmin  11652     1  0 Feb23 ?        00:03:23 /usr/local/greenplum-cc-6.3.0/bin/gpccws -W masterport5432e
-gpadmin  17055 18985  0 17:43 pts/2    00:00:00 sh check_gpcc_logging.sh
-====================check the logging==================
+
+==================== Start of test ==================
+
+gpadmin   6992     1  0 13:57 pts/4    00:00:06 /usr/local/greenplum-cc-6.3.0/bin/gpccws -W masterport5432e
+gpadmin  17489 31909  0 14:41 pts/2    00:00:00 sh check_gpcc_logging.sh
+==================== Check the logging ==================
+
         ctime        
 ---------------------
- 2021-02-24 17:43:45
- 2021-02-24 17:43:30
- 2021-02-24 17:43:15
- 2021-02-24 17:43:00
- 2021-02-24 17:42:45
- 2021-02-24 17:42:30
- 2021-02-24 17:42:15
- 2021-02-24 17:42:00
- 2021-02-24 17:41:45
- 2021-02-24 17:41:30
+ 2021-03-10 14:41:30
+ 2021-03-10 14:41:15
+ 2021-03-10 14:41:00
+ 2021-03-10 14:40:45
+ 2021-03-10 14:40:30
+ 2021-03-10 14:40:15
+ 2021-03-10 14:40:00
+ 2021-03-10 14:39:45
+ 2021-03-10 14:39:30
+ 2021-03-10 14:39:15
 (10 rows)
 
-2021-02-24 17:44:00 Stopping the gpcc agents and webserver...
-2021-02-24 17:44:02 GPCC webserver and metrics collection agents have been stopped. Use gpcc start to start them again
-====================Recover gpcc by starting gpcc========================
-2021-02-24 17:45:42 Starting the gpcc agents and webserver...
-2021-02-24 17:45:50 Agent successfully started on 6/6 hosts
-2021-02-24 17:45:50 View Greenplum Command Center at http://mdw_ipv4:28080
-====================Check if gpcc process started and check the DB last log================
-gpadmin  17055 18985  0 17:43 pts/2    00:00:00 sh check_gpcc_logging.sh
-gpadmin  17255     1  0 17:45 pts/2    00:00:00 /usr/local/greenplum-cc-6.3.0/bin/gpccws -W masterport5432e
+2021-03-10 14:41:36 Stopping the gpcc agents and webserver...
+2021-03-10 14:41:38 GPCC webserver and metrics collection agents have been stopped. Use gpcc start to start them again
+
+
+==================== Recover gpcc by starting gpcc ========================
+
+2021-03-10 14:43:18 Starting the gpcc agents and webserver...
+2021-03-10 14:43:20 Agent successfully started on 6/6 hosts
+2021-03-10 14:43:20 View Greenplum Command Center at http://mdw_ipv4:28080
+
+
+==================== Check if gpcc process started and check the DB last log ================
+
+gpadmin  17489 31909  0 14:41 pts/2    00:00:00 sh check_gpcc_logging.sh
+gpadmin  17744     1  0 14:43 pts/2    00:00:00 /usr/local/greenplum-cc-6.3.0/bin/gpccws -W masterport5432e
         ctime        
 ---------------------
- 2021-02-24 17:46:45
- 2021-02-24 17:46:30
- 2021-02-24 17:46:15
- 2021-02-24 17:46:00
- 2021-02-24 17:43:45
- 2021-02-24 17:43:30
- 2021-02-24 17:43:15
- 2021-02-24 17:43:00
- 2021-02-24 17:42:45
- 2021-02-24 17:42:30
+ 2021-03-10 14:44:15
+ 2021-03-10 14:44:00
+ 2021-03-10 14:43:45
+ 2021-03-10 14:43:30
+ 2021-03-10 14:41:30
+ 2021-03-10 14:41:15
+ 2021-03-10 14:41:00
+ 2021-03-10 14:40:45
+ 2021-03-10 14:40:30
+ 2021-03-10 14:40:15
 (10 rows)
 
-End of test
+
+
+======================== End of test ====================
+
