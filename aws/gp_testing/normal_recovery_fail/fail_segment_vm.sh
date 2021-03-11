@@ -1,34 +1,35 @@
 #!/bin/bash
 #this script we do full recovery of failed segments assuming incremental recovery failed
 
-echo '========================Start of test===================='
+echo -e '\n======================== Start of test ====================\n'
 
 
-echo '======================Connect to sdw1 and kill one primary segment======================'
+echo -e '\n\n====================== Connect to sdw1 and reboot it  ======================\n'
 
 gpssh -h sdw1_ipv4 "sudo reboot"
 
 sleep 100
 
-echo '=======================check the failed segment===================='
+echo -e '\n\n======================= check the failed segment ====================\n'
 
 gpstate
 
 psql -c "select * from gp_segment_configuration where role!=preferred_role or status = 'd'"
 
-echo '========================Do full Recover failed segment =========================='
+echo -e '\n\n======================== Do full Recover failed segment ==========================\n'
 
 gprecoverseg -aF
 
 sleep 100
 
-echo '================================Check if all segments are up and go ahead to rebalance==========================='
+echo -e '\n\n================================ Check if all segments are up and go ahead to rebalance ===========================\n'
 
 psql -c "select * from gp_segment_configuration where role!=preferred_role or status = 'd'"
 
 gprecoverseg -ar
 sleep 100
-echo '================End of test================'
+
+echo -e '\n\n================End of test================\n'
 
 
 psql -c "select * from gp_segment_configuration where role!=preferred_role or status = 'd'"
