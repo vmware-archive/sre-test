@@ -1,6 +1,9 @@
 nohup: ignoring input
-====================Start of test==================
-====================connect to mdw and reboot server======================
+
+==================== Start of test ==================
+
+==================== Connect to mdw and reboot server ======================
+
 Traceback (most recent call last):
   File "/usr/local/greenplum-db-6.13.0/bin/gpssh", line 288, in <module>
     main()
@@ -17,11 +20,11 @@ Traceback (most recent call last):
   File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/__init__.py", line 1551, in expect_loop
     raise EOF(str(err) + '\n' + str(self))
 pexpect.EOF: End Of File (EOF). Exception style platform.
-<gpssh_modules.gppxssh_wrapper.PxsshWrapper object at 0x7f5d43ff5950>
+<gpssh_modules.gppxssh_wrapper.PxsshWrapper object at 0x7f59143b8f90>
 version: 3.3
-command: /bin/ssh
-args: ['/bin/ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no', '-q', '-l', 'gpadmin', 'mdw_ipv4']
-searcher: <pexpect.searcher_re object at 0x7f5d43ff5990>
+command: /usr/bin/ssh
+args: ['/usr/bin/ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no', '-q', '-l', 'gpadmin', 'mdw_ipv4']
+searcher: <pexpect.searcher_re object at 0x7f59143a2b50>
 buffer (last 100 chars): ''
 before (last 100 chars): 'sudo reboot\r\nConnection to mdw_ipv4 closed by remote host.\r\r\n'
 after: <class 'pexpect.EOF'>
@@ -29,7 +32,7 @@ match: None
 match_index: None
 exitstatus: 255
 flag_eof: True
-pid: 8295
+pid: 8159
 child_fd: 3
 closed: False
 timeout: 30
@@ -43,272 +46,287 @@ searchwindowsize: None
 delaybeforesend: 0.05
 delayafterclose: 0.1
 delayafterterminate: 0.1
-====================== check if GP DB is ======================
-[mdw_ipv4] 20210218:13:09:28:005736 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
-[mdw_ipv4] 20210218:13:09:28:005736 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-[mdw_ipv4] 20210218:13:09:28:005736 gpstate:mdw_ipv4:gpadmin-[CRITICAL]:-gpstate failed. (Reason='could not connect to server: Connection refused
+
+
+====================== Check if GP DB is up and running ======================
+
+[mdw_ipv4] 20210311:07:39:44:005767 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+[mdw_ipv4] 20210311:07:39:45:005767 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+[mdw_ipv4] 20210311:07:39:45:005767 gpstate:mdw_ipv4:gpadmin-[CRITICAL]:-gpstate failed. (Reason='could not connect to server: Connection refused
 [mdw_ipv4] 	Is the server running on host "localhost" (::1) and accepting
 [mdw_ipv4] 	TCP/IP connections on port 5432?
 [mdw_ipv4] could not connect to server: Connection refused
 [mdw_ipv4] 	Is the server running on host "localhost" (127.0.0.1) and accepting
 [mdw_ipv4] 	TCP/IP connections on port 5432?
 [mdw_ipv4] ') exiting...
-==================== activate the standby master as acting master========================
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Running Command: ps -ef | grep postgres | grep -v grep | awk '{print $2}' | grep \`cat /data1/gpdb/master/gpseg-1/postmaster.pid | head -1\` || echo -1
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Standby data directory    = /data1/gpdb/master/gpseg-1
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Standby port              = 5432
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Standby running           = yes
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Force standby activation  = no
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Running Command: cat /tmp/.s.PGSQL.5432.lock
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Running Command: ps -ef | grep postgres | grep -v grep | awk '{print $2}' | grep `cat /data1/gpdb/master/gpseg-1/postmaster.pid | head -1` || echo -1
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-found standby postmaster process
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Promoting standby...
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Running Command: pg_ctl promote -D /data1/gpdb/master/gpseg-1
-20210218:13:09:29:008439 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Waiting for connection...
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Standby master is promoted
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Reading current configuration...
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Connecting to dbname='template1'
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-The activation of the standby master has completed successfully.
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-smdw_ipv4 is now the new primary master.
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-You will need to update your user access mechanism to reflect
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-the change of master hostname.
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Do not re-start the failed master while the fail-over master is
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-operational, this could result in database corruption!
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-MASTER_DATA_DIRECTORY is now /data1/gpdb/master/gpseg-1 if
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-this has changed as a result of the standby master activation, remember
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-to change this in any startup scripts etc, that may be configured
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-to set this value.
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-MASTER_PORT is now 5432, if this has changed, you
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-may need to make additional configuration changes to allow access
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-to the Greenplum instance.
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Refer to the Administrator Guide for instructions on how to re-activate
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-the master to its previous state once it becomes available.
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Query planner statistics must be updated on all databases
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-following standby master activation.
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-When convenient, run ANALYZE against all user databases.
-20210218:13:09:30:008439 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-====================Check if db is up and running normal with smdw as================
+
+
+==================== Activate the standby master as acting master ========================
+
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Running Command: ps -ef | grep postgres | grep -v grep | awk '{print $2}' | grep \`cat /data1/gpdb/master/gpseg-1/postmaster.pid | head -1\` || echo -1
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Standby data directory    = /data1/gpdb/master/gpseg-1
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Standby port              = 5432
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Standby running           = yes
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Force standby activation  = no
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Running Command: cat /tmp/.s.PGSQL.5432.lock
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Running Command: ps -ef | grep postgres | grep -v grep | awk '{print $2}' | grep `cat /data1/gpdb/master/gpseg-1/postmaster.pid | head -1` || echo -1
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-found standby postmaster process
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Promoting standby...
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Running Command: pg_ctl promote -D /data1/gpdb/master/gpseg-1
+20210311:07:39:45:008291 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Waiting for connection...
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Standby master is promoted
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Reading current configuration...
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[DEBUG]:-Connecting to dbname='template1'
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-The activation of the standby master has completed successfully.
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-smdw_ipv4 is now the new primary master.
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-You will need to update your user access mechanism to reflect
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-the change of master hostname.
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Do not re-start the failed master while the fail-over master is
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-operational, this could result in database corruption!
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-MASTER_DATA_DIRECTORY is now /data1/gpdb/master/gpseg-1 if
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-this has changed as a result of the standby master activation, remember
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-to change this in any startup scripts etc, that may be configured
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-to set this value.
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-MASTER_PORT is now 5432, if this has changed, you
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-may need to make additional configuration changes to allow access
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-to the Greenplum instance.
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Refer to the Administrator Guide for instructions on how to re-activate
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-the master to its previous state once it becomes available.
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-Query planner statistics must be updated on all databases
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-following standby master activation.
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:-When convenient, run ANALYZE against all user databases.
+20210311:07:39:47:008291 gpactivatestandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+
+
+==================== Check if db is up and running normal with smdw acting as master ================
+
 [mdw_ipv4]
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Validating environment and parameters for standby initialization...
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Checking for data directory /data1/gpdb/master/gpseg-1 on mdw_ipv4
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum standby master initialization parameters
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum master hostname               = smdw_ipv4
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum master data directory         = /data1/gpdb/master/gpseg-1
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum master port                   = 5432
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum standby master hostname       = mdw_ipv4
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum standby master port           = 5432
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum standby master data directory = /data1/gpdb/master/gpseg-1
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum update system catalog         = On
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Syncing Greenplum Database extensions to standby
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[WARNING]:-Syncing of Greenplum Database extensions has failed.
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[WARNING]:-Please run gppkg --clean after successful standby initialization.
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Adding standby master to catalog...
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Database catalog updated successfully.
-20210218:13:10:33:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Updating pg_hba.conf file...
-20210218:13:10:34:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-pg_hba.conf files updated successfully.
-20210218:13:10:38:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Starting standby master
-20210218:13:10:38:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Checking if standby master is running on host: mdw_ipv4  in directory: /data1/gpdb/master/gpseg-1
-20210218:13:10:42:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Cleaning up pg_hba.conf backup files...
-20210218:13:10:43:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Backup files of pg_hba.conf cleaned up successfully.
-20210218:13:10:43:008578 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Successfully created standby master on mdw_ipv4
-20210218:13:11:43:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
-20210218:13:11:43:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-20210218:13:11:43:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
-20210218:13:11:43:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
-20210218:13:11:43:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = mdw_ipv4
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
-20210218:13:11:44:008697 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:07:40:49:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Validating environment and parameters for standby initialization...
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Checking for data directory /data1/gpdb/master/gpseg-1 on mdw_ipv4
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum standby master initialization parameters
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum master hostname               = smdw_ipv4
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum master data directory         = /data1/gpdb/master/gpseg-1
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum master port                   = 5432
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum standby master hostname       = mdw_ipv4
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum standby master port           = 5432
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum standby master data directory = /data1/gpdb/master/gpseg-1
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Greenplum update system catalog         = On
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Syncing Greenplum Database extensions to standby
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-The packages on mdw_ipv4 are consistent.
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Adding standby master to catalog...
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Database catalog updated successfully.
+20210311:07:40:50:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Updating pg_hba.conf file...
+20210311:07:40:51:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-pg_hba.conf files updated successfully.
+20210311:07:40:55:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Starting standby master
+20210311:07:40:55:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Checking if standby master is running on host: mdw_ipv4  in directory: /data1/gpdb/master/gpseg-1
+20210311:07:41:18:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Cleaning up pg_hba.conf backup files...
+20210311:07:41:19:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Backup files of pg_hba.conf cleaned up successfully.
+20210311:07:41:19:008427 gpinitstandby:smdw_ipv4:gpadmin-[INFO]:-Successfully created standby master on mdw_ipv4
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = mdw_ipv4
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
+20210311:07:42:19:008573 gpstate:smdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
 NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
 SELECT 1000000
  count | gp_segment_id 
 -------+---------------
- 83465 |             1
- 83631 |             6
- 83271 |             2
- 83567 |             8
- 83170 |             4
- 82541 |             0
- 83715 |             5
- 83292 |            10
- 83138 |             7
- 83564 |            11
- 83317 |             3
- 83329 |             9
+ 83557 |             6
+ 83498 |             4
+ 83564 |             0
+ 83630 |             1
+ 83298 |             7
+ 83837 |            11
+ 83306 |             5
+ 83013 |            10
+ 82999 |             3
+ 82740 |             9
+ 83199 |             2
+ 83359 |             8
 (12 rows)
 
 DROP TABLE
+
+
 ==================== Recover back to orginal configuration ================
-20210218:13:11:46:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Starting gpstop with args: -am
-20210218:13:11:46:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Gathering information and validating the environment...
-20210218:13:11:46:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Obtaining Greenplum Master catalog information
-20210218:13:11:46:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
-20210218:13:11:46:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-20210218:13:11:46:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Commencing Master instance shutdown with mode='smart'
-20210218:13:11:46:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Master segment instance directory=/data1/gpdb/master/gpseg-1
-20210218:13:11:46:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Stopping master segment and waiting for user connections to finish ...
+
+20210311:07:42:22:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Starting gpstop with args: -am
+20210311:07:42:22:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Gathering information and validating the environment...
+20210311:07:42:22:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Obtaining Greenplum Master catalog information
+20210311:07:42:22:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210311:07:42:22:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210311:07:42:22:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Commencing Master instance shutdown with mode='smart'
+20210311:07:42:22:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Master segment instance directory=/data1/gpdb/master/gpseg-1
+20210311:07:42:22:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Stopping master segment and waiting for user connections to finish ...
 server shutting down
-20210218:13:11:47:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Attempting forceful termination of any leftover master process
-20210218:13:11:47:008782 gpstop:smdw_ipv4:gpadmin-[INFO]:-Terminating processes for segment /data1/gpdb/master/gpseg-1
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Running Command: ps -ef | grep postgres | grep -v grep | awk '{print $2}' | grep \`cat /data1/gpdb/master/gpseg-1/postmaster.pid | head -1\` || echo -1
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Standby data directory    = /data1/gpdb/master/gpseg-1
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Standby port              = 5432
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Standby running           = yes
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Force standby activation  = no
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Running Command: cat /tmp/.s.PGSQL.5432.lock
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Running Command: ps -ef | grep postgres | grep -v grep | awk '{print $2}' | grep `cat /data1/gpdb/master/gpseg-1/postmaster.pid | head -1` || echo -1
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-found standby postmaster process
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Promoting standby...
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Running Command: pg_ctl promote -D /data1/gpdb/master/gpseg-1
-[mdw_ipv4] 20210218:13:11:49:006513 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Waiting for connection...
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Standby master is promoted
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Reading current configuration...
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Connecting to dbname='template1'
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-The activation of the standby master has completed successfully.
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-mdw_ipv4 is now the new primary master.
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-You will need to update your user access mechanism to reflect
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-the change of master hostname.
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Do not re-start the failed master while the fail-over master is
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-operational, this could result in database corruption!
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-MASTER_DATA_DIRECTORY is now /data1/gpdb/master/gpseg-1 if
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-this has changed as a result of the standby master activation, remember
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-to change this in any startup scripts etc, that may be configured
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-to set this value.
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-MASTER_PORT is now 5432, if this has changed, you
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-may need to make additional configuration changes to allow access
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-to the Greenplum instance.
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Refer to the Administrator Guide for instructions on how to re-activate
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-the master to its previous state once it becomes available.
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Query planner statistics must be updated on all databases
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-following standby master activation.
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-When convenient, run ANALYZE against all user databases.
-[mdw_ipv4] 20210218:13:11:51:006513 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-[mdw_ipv4] 20210218:13:11:53:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Validating environment and parameters for standby initialization...
-[mdw_ipv4] 20210218:13:11:53:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Checking for data directory /data1/gpdb/master/gpseg-1 on smdw_ipv4
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master initialization parameters
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master hostname               = mdw_ipv4
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master data directory         = /data1/gpdb/master/gpseg-1
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master port                   = 5432
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master hostname       = smdw_ipv4
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master port           = 5432
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master data directory = /data1/gpdb/master/gpseg-1
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum update system catalog         = On
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Syncing Greenplum Database extensions to standby
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[WARNING]:-Syncing of Greenplum Database extensions has failed.
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[WARNING]:-Please run gppkg --clean after successful standby initialization.
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Adding standby master to catalog...
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Database catalog updated successfully.
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Updating pg_hba.conf file...
-[mdw_ipv4] 20210218:13:11:54:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-pg_hba.conf files updated successfully.
-[mdw_ipv4] 20210218:13:11:59:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Starting standby master
-[mdw_ipv4] 20210218:13:11:59:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Checking if standby master is running on host: smdw_ipv4  in directory: /data1/gpdb/master/gpseg-1
-[mdw_ipv4] 20210218:13:12:04:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Cleaning up pg_hba.conf backup files...
-[mdw_ipv4] 20210218:13:12:05:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Backup files of pg_hba.conf cleaned up successfully.
-[mdw_ipv4] 20210218:13:12:05:006642 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Successfully created standby master on smdw_ipv4
-[mdw_ipv4] 20210218:13:12:07:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
-[mdw_ipv4] 20210218:13:12:07:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
-[mdw_ipv4] 20210218:13:12:07:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
-[mdw_ipv4] 20210218:13:12:07:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
-[mdw_ipv4] 20210218:13:12:07:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
-[mdw_ipv4] 20210218:13:12:08:006805 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
-====================Check if all segments are up and go ahead to rebalance================
-End of test
+20210311:07:42:23:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Attempting forceful termination of any leftover master process
+20210311:07:42:23:008658 gpstop:smdw_ipv4:gpadmin-[INFO]:-Terminating processes for segment /data1/gpdb/master/gpseg-1
+[mdw_ipv4] 20210311:07:42:24:007679 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Running Command: ps -ef | grep postgres | grep -v grep | awk '{print $2}' | grep \`cat /data1/gpdb/master/gpseg-1/postmaster.pid | head -1\` || echo -1
+[mdw_ipv4] 20210311:07:42:24:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+[mdw_ipv4] 20210311:07:42:24:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Standby data directory    = /data1/gpdb/master/gpseg-1
+[mdw_ipv4] 20210311:07:42:24:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Standby port              = 5432
+[mdw_ipv4] 20210311:07:42:24:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Standby running           = yes
+[mdw_ipv4] 20210311:07:42:24:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Force standby activation  = no
+[mdw_ipv4] 20210311:07:42:24:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+[mdw_ipv4] 20210311:07:42:24:007679 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Running Command: cat /tmp/.s.PGSQL.5432.lock
+[mdw_ipv4] 20210311:07:42:25:007679 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Running Command: ps -ef | grep postgres | grep -v grep | awk '{print $2}' | grep `cat /data1/gpdb/master/gpseg-1/postmaster.pid | head -1` || echo -1
+[mdw_ipv4] 20210311:07:42:25:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-found standby postmaster process
+[mdw_ipv4] 20210311:07:42:25:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Promoting standby...
+[mdw_ipv4] 20210311:07:42:25:007679 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Running Command: pg_ctl promote -D /data1/gpdb/master/gpseg-1
+[mdw_ipv4] 20210311:07:42:25:007679 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Waiting for connection...
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Standby master is promoted
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Reading current configuration...
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[DEBUG]:-Connecting to dbname='template1'
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-The activation of the standby master has completed successfully.
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-mdw_ipv4 is now the new primary master.
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-You will need to update your user access mechanism to reflect
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-the change of master hostname.
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Do not re-start the failed master while the fail-over master is
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-operational, this could result in database corruption!
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-MASTER_DATA_DIRECTORY is now /data1/gpdb/master/gpseg-1 if
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-this has changed as a result of the standby master activation, remember
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-to change this in any startup scripts etc, that may be configured
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-to set this value.
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-MASTER_PORT is now 5432, if this has changed, you
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-may need to make additional configuration changes to allow access
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-to the Greenplum instance.
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Refer to the Administrator Guide for instructions on how to re-activate
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-the master to its previous state once it becomes available.
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-Query planner statistics must be updated on all databases
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-following standby master activation.
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:-When convenient, run ANALYZE against all user databases.
+[mdw_ipv4] 20210311:07:42:26:007679 gpactivatestandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+[mdw_ipv4] 20210311:07:42:28:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Validating environment and parameters for standby initialization...
+[mdw_ipv4] 20210311:07:42:28:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Checking for data directory /data1/gpdb/master/gpseg-1 on smdw_ipv4
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master initialization parameters
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master hostname               = mdw_ipv4
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master data directory         = /data1/gpdb/master/gpseg-1
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master port                   = 5432
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master hostname       = smdw_ipv4
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master port           = 5432
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master data directory = /data1/gpdb/master/gpseg-1
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum update system catalog         = On
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Syncing Greenplum Database extensions to standby
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-The packages on smdw_ipv4 are consistent.
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Adding standby master to catalog...
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Database catalog updated successfully.
+[mdw_ipv4] 20210311:07:42:29:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Updating pg_hba.conf file...
+[mdw_ipv4] 20210311:07:42:30:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-pg_hba.conf files updated successfully.
+[mdw_ipv4] 20210311:07:42:34:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Starting standby master
+[mdw_ipv4] 20210311:07:42:34:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Checking if standby master is running on host: smdw_ipv4  in directory: /data1/gpdb/master/gpseg-1
+[mdw_ipv4] 20210311:07:43:00:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Cleaning up pg_hba.conf backup files...
+[mdw_ipv4] 20210311:07:43:01:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Backup files of pg_hba.conf cleaned up successfully.
+[mdw_ipv4] 20210311:07:43:01:007808 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Successfully created standby master on smdw_ipv4
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+
+==================== Check if all segments are up and go ahead to rebalance ================
+
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
+[mdw_ipv4] 20210311:07:43:03:008005 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+
+
+======================== End of test ====================
+
 [mdw_ipv4] NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
 [mdw_ipv4] SELECT 1000000
 [mdw_ipv4]  count | gp_segment_id 
 [mdw_ipv4] -------+---------------
-[mdw_ipv4]  82930 |             1
-[mdw_ipv4]  83060 |             6
-[mdw_ipv4]  83274 |             3
-[mdw_ipv4]  83411 |             9
-[mdw_ipv4]  83431 |             2
-[mdw_ipv4]  83398 |             8
-[mdw_ipv4]  83543 |             7
-[mdw_ipv4]  83540 |            11
-[mdw_ipv4]  83435 |             4
-[mdw_ipv4]  83829 |             0
-[mdw_ipv4]  82915 |             5
-[mdw_ipv4]  83234 |            10
+[mdw_ipv4]  83412 |             6
+[mdw_ipv4]  83379 |             1
+[mdw_ipv4]  83083 |             4
+[mdw_ipv4]  83891 |             0
+[mdw_ipv4]  82949 |             3
+[mdw_ipv4]  83246 |             9
+[mdw_ipv4]  83235 |             7
+[mdw_ipv4]  83408 |            11
+[mdw_ipv4]  83605 |             2
+[mdw_ipv4]  83482 |             8
+[mdw_ipv4]  83406 |             5
+[mdw_ipv4]  82904 |            10
 [mdw_ipv4] (12 rows)
 [mdw_ipv4] 
 [mdw_ipv4] DROP TABLE
