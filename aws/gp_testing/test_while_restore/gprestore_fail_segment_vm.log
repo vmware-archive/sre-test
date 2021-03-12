@@ -1,0 +1,9 @@
+20210309:12:22:35 gprestore:gpadmin:mdw_ipv4:010150-[INFO]:-Restore Key = 20210309122003
+20210309:12:22:35 gprestore:gpadmin:mdw_ipv4:010150-[INFO]:-gpbackup version = 1.20.2
+20210309:12:22:35 gprestore:gpadmin:mdw_ipv4:010150-[INFO]:-gprestore version = 1.20.2
+20210309:12:22:35 gprestore:gpadmin:mdw_ipv4:010150-[INFO]:-Greenplum Database Version = 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd
+20210309:12:22:35 gprestore:gpadmin:mdw_ipv4:010150-[INFO]:-Creating database
+
+20210309:12:22:37 gprestore:gpadmin:mdw_ipv4:010150-[CRITICAL]:-ERROR: terminating connection due to administrator command  (seg2 10.0.27.202:4002 pid=9560) (SQLSTATE 57P01)
+20210309:12:22:37 gprestore:gpadmin:mdw_ipv4:010150-[INFO]:-Found neither /usr/local/greenplum-db-6.13.0/bin/gp_email_contacts.yaml nor /home/gpadmin/gp_email_contacts.yaml
+20210309:12:22:37 gprestore:gpadmin:mdw_ipv4:010150-[INFO]:-Email containing gprestore report /data1/gpdb/master/gpseg-1/backups/20210309/20210309122003/gprestore_20210309122003_20210309122235_report will not be sent

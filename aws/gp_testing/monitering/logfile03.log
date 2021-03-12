@@ -1,0 +1,3 @@
+2021-03-01 14:11:51.933766 UTC|bala|bala|p5101|th-1253484416|[local]||2021-03-01 14:11:51 UTC|0|con13425||seg-1||||sx1|FATAL: |28000|no pg_hba.conf entry for host "[local]", user "bala", database "bala", SSL off|||||||0||auth.c|620|
+2021-03-01 14:11:58.219840 UTC|bala|bala|p5107|th-1253484416|[local]||2021-03-01 14:11:58 UTC|0|con13427||seg-1||||sx1|FATAL: |28000|no pg_hba.conf entry for host "[local]", user "bala", database "bala", SSL off|||||||0||auth.c|620|
+2021-03-01 14:12:13.384377 UTC|bala|gpadmin|p5111|th-1253484416|[local]||2021-03-01 14:12:13 UTC|0|con13429||seg-1||||sx1|FATAL: |28000|no pg_hba.conf entry for host "[local]", user "bala", database "gpadmin", SSL off|||||||0||auth.c|620|

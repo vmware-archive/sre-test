@@ -1,0 +1,2 @@
+psql:ddl_statement.sql:1: NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
+SELECT 100000000

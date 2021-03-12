@@ -1,0 +1,114 @@
+nohup: ignoring input
+====================Start of test==================
+====================connect to sdw1 and kill one primary segment======================
+[sdw1_ipv4] kill: cannot find process "centos"
+[sdw1_ipv4] kill: sending signal to 1 failed: Operation not permitted
+[sdw1_ipv4] Terminated
+======================check the failed segment======================
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-Starting gpstate with args: 
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-Obtaining Segment details from master...
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-Gathering data from segments...
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-Greenplum instance status summary
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Master instance                                           = Active
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Master standby                                            = smdw_ipv4
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Standby master state                                      = Standby host passive
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total segment instance count from metadata                = 12
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Primary Segment Status
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total primary segments                                    = 6
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total primary segment valid (at master)                   = 6
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total primary segment failures (at master)                = 0
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid files found                = 6
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid PIDs found                 = 6
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of /tmp lock files found                     = 6
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number postmaster processes missing                 = 0
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number postmaster processes found                   = 6
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Mirror Segment Status
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total mirror segments                                     = 6
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total mirror segment valid (at master)                    = 5
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[WARNING]:-Total mirror segment failures (at master)                 = 1                      <<<<<<<<
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[WARNING]:-Total number of postmaster.pid files missing              = 1                      <<<<<<<<
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid files found                = 5
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[WARNING]:-Total number of postmaster.pid PIDs missing               = 1                      <<<<<<<<
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of postmaster.pid PIDs found                 = 5
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[WARNING]:-Total number of /tmp lock files missing                   = 1                      <<<<<<<<
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number of /tmp lock files found                     = 5
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[WARNING]:-Total number postmaster processes missing                 = 1                      <<<<<<<<
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number postmaster processes found                   = 5
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-   Total number mirror segments acting as mirror segments    = 6
+20210216:13:27:03:000595 gpstate:mdw_ipv4:centos-[INFO]:-----------------------------------------------------
+ dbid | content | role | preferred_role | mode | status | port | hostname  |  address  |          datadir          
+------+---------+------+----------------+------+--------+------+-----------+-----------+---------------------------
+   11 |       3 | m    | m              | n    | d      | 5000 | sdw1_ipv4 | sdw1_ipv4 | /data1/gpdb/mirror/gpseg3
+(1 row)
+
+====================Recover failed segment incremental========================
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Starting gprecoverseg with args: -a
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Obtaining Segment details from master...
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Heap checksum setting is consistent between master and the segments that are candidates for recoverseg
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Greenplum instance recovery parameters
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:----------------------------------------------------------
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Recovery type              = Standard
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:----------------------------------------------------------
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Recovery 1 of 1
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:----------------------------------------------------------
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Synchronization mode                 = Incremental
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Failed instance host                 = sdw1_ipv4
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Failed instance address              = sdw1_ipv4
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Failed instance directory            = /data1/gpdb/mirror/gpseg3
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Failed instance port                 = 5000
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Recovery Source instance host        = sdw2_ipv4
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Recovery Source instance address     = sdw2_ipv4
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Recovery Source instance directory   = /data1/gpdb/primary/gpseg3
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Recovery Source instance port        = 4000
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-   Recovery Target                      = in-place
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:----------------------------------------------------------
+20210216:13:27:04:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Starting to modify pg_hba.conf on primary segments to allow replication connections
+20210216:13:27:07:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Successfully modified pg_hba.conf on primary segments to allow replication connections
+20210216:13:27:07:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-1 segment(s) to recover
+20210216:13:27:07:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Ensuring 1 failed segment(s) are stopped
+20210216:13:27:07:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Ensuring that shared memory is cleaned up for stopped segments
+20210216:13:27:08:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Updating configuration with new mirrors
+20210216:13:27:08:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Updating mirrors
+20210216:13:27:08:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Running pg_rewind on required mirrors
+20210216:13:27:08:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Starting mirrors
+20210216:13:27:08:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-era is None
+20210216:13:27:08:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Commencing parallel segment instance startup, please wait...
+20210216:13:27:09:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Process results...
+20210216:13:27:09:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Triggering FTS probe
+20210216:13:27:09:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-******************************************************************
+20210216:13:27:09:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Updating segments for streaming is completed.
+20210216:13:27:09:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-For segments updated successfully, streaming will continue in the background.
+20210216:13:27:09:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-Use  gpstate -s  to check the streaming progress.
+20210216:13:27:09:000672 gprecoverseg:mdw_ipv4:centos-[INFO]:-******************************************************************
+====================Check if all segments are up and go ahead to rebalance================
+ dbid | content | role | preferred_role | mode | status | port | hostname | address | datadir 
+------+---------+------+----------------+------+--------+------+----------+---------+---------
+(0 rows)
+
+End of test
+NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
+SELECT 1000000
+ count  | gp_segment_id 
+--------+---------------
+ 166492 |             2
+ 167333 |             1
+ 167049 |             3
+ 165960 |             4
+ 166273 |             0
+ 166893 |             5
+(6 rows)
+
+DROP TABLE

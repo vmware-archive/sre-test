@@ -1,0 +1,222 @@
+nohup: ignoring input
+Running gp_log_collector with arguments: "/home/gpadmin/gpmt gp_log_collector -start 2021-02-02"
+Querying gp_segment_configuration for segment information
+Master/standby logs will be automatically included
+
+The following will be collected:
+SEGMENTS
+    mdw_ipv4:5432/data1/gpdb/master/gpseg-1
+    smdw_ipv4:5432/data1/gpdb/master/gpseg-1
+LOG DATES
+    2021-02-02 -> 2021-03-11
+OUTPUT DIRECTORY
+    gp_log_collection_2021-03-11_18-01-11
+
+Proceed with collection? Yy|Nn (default=Y): Colecting database outputs　in dir gp_log_collection_2021-03-11_18-01-11
+Checking connectivity...
+Connectivity confirmed successfully.
+Checking hosts for existing file...
+Check failed. Will copy tool to remote hosts now.
+Copying file to remote hosts (smdw_ipv4,mdw_ipv4), directory (/tmp/gpmt)...
+Verifying MD5 after remote copy...
+Replication finished.
+[33mWARN: [WORKER: mdw_ipv4:1 (mdw_ipv4)] Unable to collect file /var/log/messages: open /var/log/messages: permission denied
+
+
+[0m[33mWARN: [WORKER: mdw_ipv4:1 (mdw_ipv4)] Unable to collect file /var/log/sa: stat /var/log/sa: no such file or directory
+
+
+[0m[33mWARN: [WORKER: mdw_ipv4:1 (mdw_ipv4)] Unable to find command lsof in $PATH: exec: "lsof": executable file not found in $PATH
+
+
+[0m[33mWARN: [WORKER: mdw_ipv4:1 (mdw_ipv4)] Running command "/usr/sbin/dmidecode " failed: exit status 1
+
+[0m[33mWARN: [WORKER: smdw_ipv4:1 (smdw_ipv4)] Unable to collect file /var/log/messages: open /var/log/messages: permission denied
+
+
+[0m[33mWARN: [WORKER: smdw_ipv4:1 (smdw_ipv4)] Unable to collect file /var/log/sa: stat /var/log/sa: no such file or directory
+
+
+[0m[33mWARN: [WORKER: smdw_ipv4:1 (smdw_ipv4)] Unable to find command lsof in $PATH: exec: "lsof": executable file not found in $PATH
+
+
+[0m[33mWARN: [WORKER: smdw_ipv4:1 (smdw_ipv4)] Running command "/usr/sbin/dmidecode " failed: exit status 1
+
+[0m[WORKER: smdw_ipv4:1 (smdw_ipv4)] Created Tarfile /tmp/gp_log_collection_smdw_ipv4_2021-03-11_18-01-11.tgz
+
+[WORKER: mdw_ipv4:1 (mdw_ipv4)] Created Tarfile /tmp/gp_log_collection_mdw_ipv4_2021-03-11_18-01-11.tgz
+
+Downloading file smdw_ipv4:/tmp/gp_log_collection_smdw_ipv4_2021-03-11_18-01-11.tgz gp_log_collection_2021-03-11_18-01-11
+Downloading file mdw_ipv4:/tmp/gp_log_collection_mdw_ipv4_2021-03-11_18-01-11.tgz gp_log_collection_2021-03-11_18-01-11
+Created Tarfile /home/gpadmin/workspace/sre-test/aws/gp_testing/monitering/gp_log_collection_2021-03-11_18-01-11.tgz
+Dumping Artifacts Collected
+
+Database SQL Output:
+	*version
+	*uptime
+	*gp_segment_configuration
+	*gp_configuration_history
+	*pg_database
+	*pg_settings
+	*pg_resqueue
+
+Segment Logs for time frame: 2021-02-02 - 2021-03-11
+	Host: mdw_ipv4 Segment: -1 (p)
+	Host: smdw_ipv4 Segment: -1 (m)
+requested timestamp range from 2021-03-01 14:33:00 to end of data
+----------  /data1/gpdb/master/gpseg-1/pg_log/startup.log ---------- 
+       in:      52 lines,      52 log entries; timestamps from 2021-03-11 07:40:55.616203 to 2021-03-11 10:59:25.510575
+  time ok:      52 lines,      52 log entries; timestamps from 2021-03-11 07:40:55.616203 to 2021-03-11 10:59:25.510575
+    match:       0 lines
+      out:       0 lines,       0 log entries
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_074055.csv ---------- 
+       in:     399 lines,     399 log entries; timestamps from 2021-03-11 07:40:55.765738 to 2021-03-11 10:03:38.000754
+  time ok:     399 lines,     399 log entries; timestamps from 2021-03-11 07:40:55.765738 to 2021-03-11 10:03:38.000754
+    match:      13 lines,      13 log entries; timestamps from 2021-03-11 07:42:19.727357 to 2021-03-11 10:03:37.979854
+      out:       3 lines,       3 log entries; timestamps from 2021-03-11 10:03:37.979769 to 2021-03-11 10:03:37.979854
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_100343.csv ---------- 
+       in:      40 lines,      40 log entries; timestamps from 2021-03-11 10:03:43.649264 to 2021-03-11 10:03:44.153602
+  time ok:      40 lines,      40 log entries; timestamps from 2021-03-11 10:03:43.649264 to 2021-03-11 10:03:44.153602
+    match:       2 lines,       2 log entries; timestamps from 2021-03-11 10:03:43.649364 to 2021-03-11 10:03:44.145357
+      out:       2 lines,       2 log entries; timestamps from 2021-03-11 10:03:43.649364 to 2021-03-11 10:03:44.145357
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_100345.csv ---------- 
+       in:     466 lines,     466 log entries; timestamps from 2021-03-11 10:03:45.013101 to 2021-03-11 10:12:38.228604
+  time ok:     466 lines,     466 log entries; timestamps from 2021-03-11 10:03:45.013101 to 2021-03-11 10:12:38.228604
+    match:      20 lines,      20 log entries; timestamps from 2021-03-11 10:03:45.013198 to 2021-03-11 10:12:38.173999
+      out:       3 lines,       3 log entries; timestamps from 2021-03-11 10:12:38.173924 to 2021-03-11 10:12:38.173999
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_101240.csv ---------- 
+       in:      40 lines,      40 log entries; timestamps from 2021-03-11 10:12:40.140798 to 2021-03-11 10:12:40.648846
+  time ok:      40 lines,      40 log entries; timestamps from 2021-03-11 10:12:40.140798 to 2021-03-11 10:12:40.648846
+    match:       2 lines,       2 log entries; timestamps from 2021-03-11 10:12:40.140907 to 2021-03-11 10:12:40.639519
+      out:       2 lines,       2 log entries; timestamps from 2021-03-11 10:12:40.140907 to 2021-03-11 10:12:40.639519
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_101244.csv ---------- 
+       in:     545 lines,     545 log entries; timestamps from 2021-03-11 10:12:44.256370 to 2021-03-11 10:31:40.383214
+  time ok:     545 lines,     545 log entries; timestamps from 2021-03-11 10:12:44.256370 to 2021-03-11 10:31:40.383214
+    match:       8 lines,       8 log entries; timestamps from 2021-03-11 10:12:44.256473 to 2021-03-11 10:31:40.280211
+      out:       3 lines,       3 log entries; timestamps from 2021-03-11 10:31:40.279189 to 2021-03-11 10:31:40.280211
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_103545.csv ---------- 
+       in:      46 lines,      46 log entries; timestamps from 2021-03-11 10:35:45.932946 to 2021-03-11 10:35:48.259856
+  time ok:      46 lines,      46 log entries; timestamps from 2021-03-11 10:35:45.932946 to 2021-03-11 10:35:48.259856
+    match:       8 lines,       8 log entries; timestamps from 2021-03-11 10:35:45.972139 to 2021-03-11 10:35:48.246333
+      out:       3 lines,       3 log entries; timestamps from 2021-03-11 10:35:46.477573 to 2021-03-11 10:35:48.246333
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_103557.csv ---------- 
+       in:      88 lines,      88 log entries; timestamps from 2021-03-11 10:35:57.415787 to 2021-03-11 10:46:24.303778
+  time ok:      88 lines,      88 log entries; timestamps from 2021-03-11 10:35:57.415787 to 2021-03-11 10:46:24.303778
+    match:       6 lines,       6 log entries; timestamps from 2021-03-11 10:35:57.415883 to 2021-03-11 10:46:24.298330
+      out:       3 lines,       3 log entries; timestamps from 2021-03-11 10:46:24.296305 to 2021-03-11 10:46:24.298330
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_105919.csv ---------- 
+       in:      47 lines,      47 log entries; timestamps from 2021-03-11 10:59:20.050495 to 2021-03-11 10:59:22.356345
+  time ok:      47 lines,      47 log entries; timestamps from 2021-03-11 10:59:20.050495 to 2021-03-11 10:59:22.356345
+    match:       9 lines,       9 log entries; timestamps from 2021-03-11 10:59:20.086684 to 2021-03-11 10:59:22.343171
+      out:       3 lines,       3 log entries; timestamps from 2021-03-11 10:59:20.592010 to 2021-03-11 10:59:22.343171
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_105925.csv ---------- 
+       in:      55 lines,      55 log entries; timestamps from 2021-03-11 10:59:25.512769 to 2021-03-11 18:01:11.174635
+  time ok:      55 lines,      55 log entries; timestamps from 2021-03-11 10:59:25.512769 to 2021-03-11 18:01:11.174635
+    match:       1 lines,       1 log entries; timestamps from 2021-03-11 10:59:25.512872 to 2021-03-11 10:59:25.512872
+      out:       1 lines,       1 log entries; timestamps from 2021-03-11 10:59:25.512872 to 2021-03-11 10:59:25.512872
+----------  /data1/gpdb/master/gpseg-1/pg_log/gp_era ---------- 
+       in:       3 lines,       1 log entries; no timestamps found
+  time ok:       0 lines
+    match:       0 lines
+      out:       0 lines,       0 log entries
+requested timestamp range from 2021-03-11 17:51:13 to end of data
+----------  /data1/gpdb/master/gpseg-1/pg_log/startup.log ---------- 
+       in:      52 lines; timestamps from 2021-03-11 07:40:55.616203 to 2021-03-11 10:59:25.510575
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_074055.csv ---------- 
+       in:     399 lines; timestamps from 2021-03-11 07:40:55.765738 to 2021-03-11 10:03:38.000754
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_100343.csv ---------- 
+       in:      40 lines; timestamps from 2021-03-11 10:03:43.649264 to 2021-03-11 10:03:44.153602
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_100345.csv ---------- 
+       in:     466 lines; timestamps from 2021-03-11 10:03:45.013101 to 2021-03-11 10:12:38.228604
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_101240.csv ---------- 
+       in:      40 lines; timestamps from 2021-03-11 10:12:40.140798 to 2021-03-11 10:12:40.648846
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_101244.csv ---------- 
+       in:     545 lines; timestamps from 2021-03-11 10:12:44.256370 to 2021-03-11 10:31:40.383214
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_103545.csv ---------- 
+       in:      46 lines; timestamps from 2021-03-11 10:35:45.932946 to 2021-03-11 10:35:48.259856
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_103557.csv ---------- 
+       in:      88 lines; timestamps from 2021-03-11 10:35:57.415787 to 2021-03-11 10:46:24.303778
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_105919.csv ---------- 
+       in:      47 lines; timestamps from 2021-03-11 10:59:20.050495 to 2021-03-11 10:59:22.356345
+  time ok:       0 lines
+      out:       0 lines
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_105925.csv ---------- 
+       in:      55 lines; timestamps from 2021-03-11 10:59:25.512769 to 2021-03-11 18:01:11.174635
+  time ok:      13 lines; timestamps from 2021-03-11 18:01:11.009518 to 2021-03-11 18:01:11.174635
+      out:      13 lines; timestamps from 2021-03-11 18:01:11.009518 to 2021-03-11 18:01:11.174635
+----------  /data1/gpdb/master/gpseg-1/pg_log/gp_era ---------- 
+       in:       3 lines; no timestamps found
+  time ok:       0 lines
+      out:       0 lines
+requested timestamp range from 2021-03-10 00:33:00 to end of data
+----------  /data1/gpdb/master/gpseg-1/pg_log/startup.log ---------- 
+       in:      52 lines,      52 log entries; timestamps from 2021-03-11 07:40:55.616203 to 2021-03-11 10:59:25.510575
+  time ok:      52 lines,      52 log entries; timestamps from 2021-03-11 07:40:55.616203 to 2021-03-11 10:59:25.510575
+    match:       0 lines
+      out:       0 lines,       0 log entries
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_074055.csv ---------- 
+       in:     399 lines,     399 log entries; timestamps from 2021-03-11 07:40:55.765738 to 2021-03-11 10:03:38.000754
+  time ok:     399 lines,     399 log entries; timestamps from 2021-03-11 07:40:55.765738 to 2021-03-11 10:03:38.000754
+    match:      31 lines,      31 log entries; timestamps from 2021-03-11 07:42:22.609742 to 2021-03-11 10:03:37.958085
+      out:      31 lines,      31 log entries; timestamps from 2021-03-11 07:42:22.609742 to 2021-03-11 10:03:37.958085
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_100343.csv ---------- 
+       in:      40 lines,      40 log entries; timestamps from 2021-03-11 10:03:43.649264 to 2021-03-11 10:03:44.153602
+  time ok:      40 lines,      40 log entries; timestamps from 2021-03-11 10:03:43.649264 to 2021-03-11 10:03:44.153602
+    match:       2 lines,       2 log entries; timestamps from 2021-03-11 10:03:43.761840 to 2021-03-11 10:03:44.124005
+      out:       2 lines,       2 log entries; timestamps from 2021-03-11 10:03:43.761840 to 2021-03-11 10:03:44.124005
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_100345.csv ---------- 
+       in:     466 lines,     466 log entries; timestamps from 2021-03-11 10:03:45.013101 to 2021-03-11 10:12:38.228604
+  time ok:     466 lines,     466 log entries; timestamps from 2021-03-11 10:03:45.013101 to 2021-03-11 10:12:38.228604
+    match:      48 lines,      48 log entries; timestamps from 2021-03-11 10:03:45.129271 to 2021-03-11 10:12:38.152410
+      out:      48 lines,      48 log entries; timestamps from 2021-03-11 10:03:45.129271 to 2021-03-11 10:12:38.152410
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_101240.csv ---------- 
+       in:      40 lines,      40 log entries; timestamps from 2021-03-11 10:12:40.140798 to 2021-03-11 10:12:40.648846
+  time ok:      40 lines,      40 log entries; timestamps from 2021-03-11 10:12:40.140798 to 2021-03-11 10:12:40.648846
+    match:       2 lines,       2 log entries; timestamps from 2021-03-11 10:12:40.253150 to 2021-03-11 10:12:40.617450
+      out:       2 lines,       2 log entries; timestamps from 2021-03-11 10:12:40.253150 to 2021-03-11 10:12:40.617450
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_101244.csv ---------- 
+       in:     545 lines,     545 log entries; timestamps from 2021-03-11 10:12:44.256370 to 2021-03-11 10:31:40.383214
+  time ok:     545 lines,     545 log entries; timestamps from 2021-03-11 10:12:44.256370 to 2021-03-11 10:31:40.383214
+    match:      51 lines,      51 log entries; timestamps from 2021-03-11 10:12:55.986482 to 2021-03-11 10:28:13.036008
+      out:      51 lines,      51 log entries; timestamps from 2021-03-11 10:12:55.986482 to 2021-03-11 10:28:13.036008
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_103545.csv ---------- 
+       in:      46 lines,      46 log entries; timestamps from 2021-03-11 10:35:45.932946 to 2021-03-11 10:35:48.259856
+  time ok:      46 lines,      46 log entries; timestamps from 2021-03-11 10:35:45.932946 to 2021-03-11 10:35:48.259856
+    match:       2 lines,       2 log entries; timestamps from 2021-03-11 10:35:47.443937 to 2021-03-11 10:35:48.224054
+      out:       2 lines,       2 log entries; timestamps from 2021-03-11 10:35:47.443937 to 2021-03-11 10:35:48.224054
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_103557.csv ---------- 
+       in:      88 lines,      88 log entries; timestamps from 2021-03-11 10:35:57.415787 to 2021-03-11 10:46:24.303778
+  time ok:      88 lines,      88 log entries; timestamps from 2021-03-11 10:35:57.415787 to 2021-03-11 10:46:24.303778
+    match:       6 lines,       6 log entries; timestamps from 2021-03-11 10:35:58.733842 to 2021-03-11 10:37:42.180214
+      out:       6 lines,       6 log entries; timestamps from 2021-03-11 10:35:58.733842 to 2021-03-11 10:37:42.180214
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_105919.csv ---------- 
+       in:      47 lines,      47 log entries; timestamps from 2021-03-11 10:59:20.050495 to 2021-03-11 10:59:22.356345
+  time ok:      47 lines,      47 log entries; timestamps from 2021-03-11 10:59:20.050495 to 2021-03-11 10:59:22.356345
+    match:       2 lines,       2 log entries; timestamps from 2021-03-11 10:59:21.525545 to 2021-03-11 10:59:22.321287
+      out:       2 lines,       2 log entries; timestamps from 2021-03-11 10:59:21.525545 to 2021-03-11 10:59:22.321287
+----------  /data1/gpdb/master/gpseg-1/pg_log/gpdb-2021-03-11_105925.csv ---------- 
+       in:      55 lines,      55 log entries; timestamps from 2021-03-11 10:59:25.512769 to 2021-03-11 18:01:11.174635
+  time ok:      55 lines,      55 log entries; timestamps from 2021-03-11 10:59:25.512769 to 2021-03-11 18:01:11.174635
+    match:       2 lines,       2 log entries; timestamps from 2021-03-11 10:59:25.628588 to 2021-03-11 18:01:11.174635
+      out:       2 lines,       2 log entries; timestamps from 2021-03-11 10:59:25.628588 to 2021-03-11 18:01:11.174635
+----------  /data1/gpdb/master/gpseg-1/pg_log/gp_era ---------- 
+       in:       3 lines,       1 log entries; no timestamps found
+  time ok:       0 lines
+    match:       0 lines
+      out:       0 lines,       0 log entries

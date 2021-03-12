@@ -1,0 +1,131 @@
+nohup: ignoring input
+
+==================== Start of test ==================
+
+====================== Connect to sdw1 and fill /data1 to 100% ======================
+
+[sdw1_ipv4] /dev/nvme1n1    512G   31G  482G   6% /data1
+Available Space: 482G
+[sdw1_ipv4] fallocate: fallocate failed: No space left on device
+[sdw1_ipv4] /dev/nvme1n1    512G  504G  8.3G  99% /data1
+
+
+====================== Start the backup and this will fail as no space is left on sdw1 /data1  ======================
+
+20210311:09:58:00:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+20210311:09:58:00:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
+20210311:09:58:01:017326 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+
+
+====================== Connect to sdw1 and fill /data1 to 100% ======================
+
+[sdw1_ipv4]
+[sdw1_ipv4] /dev/nvme1n1    512G   39G  473G   8% /data1
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
+20210311:09:59:05:017473 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+
+
+====================== Start the backup and this will complete sucessfuly ======================
+
+
+
+======================== End of test ====================
+
+NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
+SELECT 1000000
+ count | gp_segment_id 
+-------+---------------
+ 83119 |             1
+ 83473 |             6
+ 83578 |             3
+ 83671 |             9
+ 82913 |             2
+ 82548 |             8
+ 83327 |             4
+ 83416 |             0
+ 83837 |             5
+ 83333 |            10
+ 83339 |             7
+ 83446 |            11
+(12 rows)
+
+DROP TABLE

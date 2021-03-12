@@ -1,0 +1,268 @@
+nohup: ignoring input
+
+
+====================Start of test==================
+
+
+
+====================connect to smdw and reboot it ======================
+
+Traceback (most recent call last):
+  File "/usr/local/greenplum-db-6.13.0/bin/gpssh", line 288, in <module>
+    main()
+  File "/usr/local/greenplum-db-6.13.0/bin/gpssh", line 267, in main
+    output = GV.session.executeCommand(GV.argcmd)
+  File "/usr/local/greenplum-db-6.13.0/lib/python/gppylib/util/ssh_utils.py", line 282, in executeCommand
+    while not s.prompt(120) and s.isalive() and not s.eof(): pass
+  File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/pxssh.py", line 363, in prompt
+    i = self.expect([self.PROMPT, TIMEOUT], timeout=timeout)
+  File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/__init__.py", line 1448, in expect
+    timeout, searchwindowsize)
+  File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/__init__.py", line 1463, in expect_list
+    timeout, searchwindowsize)
+  File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/__init__.py", line 1551, in expect_loop
+    raise EOF(str(err) + '\n' + str(self))
+pexpect.EOF: End Of File (EOF). Exception style platform.
+<gpssh_modules.gppxssh_wrapper.PxsshWrapper object at 0x7fdf6a347610>
+version: 3.3
+command: /bin/ssh
+args: ['/bin/ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no', '-q', '-l', 'gpadmin', 'smdw_ipv4']
+searcher: <pexpect.searcher_re object at 0x7fdf6a347650>
+buffer (last 100 chars): ''
+before (last 100 chars): 'sudo reboot\r\nConnection to smdw_ipv4 closed by remote host.\r\r\n'
+after: <class 'pexpect.EOF'>
+match: None
+match_index: None
+exitstatus: 255
+flag_eof: True
+pid: 31839
+child_fd: 3
+closed: False
+timeout: 30
+delimiter: <class 'pexpect.EOF'>
+logfile: None
+logfile_read: None
+logfile_send: None
+maxread: 2000
+ignorecase: False
+searchwindowsize: None
+delaybeforesend: 0.05
+delayafterclose: 0.1
+delayafterterminate: 0.1
+Thu Mar 11 18:50:32 UTC 2021
+Thu Mar 11 19:00:32 UTC 2021
+
+
+======================check the failed smdw after 10 mins======================
+
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[WARNING]:-Standby master state                                      = Standby host DOWN   <<<<<<<<
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
+20210311:19:00:32:032566 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+ dbid | content | role | preferred_role | mode | status | port | hostname  |  address  |           datadir           
+------+---------+------+----------------+------+--------+------+-----------+-----------+-----------------------------
+    8 |       6 | p    | p              | s    | u      | 4000 | sdw3_ipv4 | sdw3_ipv4 | /data1/gpdb/primary/gpseg6
+   20 |       6 | m    | m              | s    | u      | 5000 | sdw4_ipv4 | sdw4_ipv4 | /data1/gpdb/mirror/gpseg6
+    9 |       7 | p    | p              | s    | u      | 4001 | sdw3_ipv4 | sdw3_ipv4 | /data2/gpdb/primary/gpseg7
+   21 |       7 | m    | m              | s    | u      | 5001 | sdw4_ipv4 | sdw4_ipv4 | /data2/gpdb/mirror/gpseg7
+   10 |       8 | p    | p              | s    | u      | 4002 | sdw3_ipv4 | sdw3_ipv4 | /data3/gpdb/primary/gpseg8
+   22 |       8 | m    | m              | s    | u      | 5002 | sdw4_ipv4 | sdw4_ipv4 | /data3/gpdb/mirror/gpseg8
+   27 |      -1 | p    | p              | s    | u      | 5432 | mdw_ipv4  | mdw_ipv4  | /data1/gpdb/master/gpseg-1
+   28 |      -1 | m    | m              | s    | u      | 5432 | smdw_ipv4 | smdw_ipv4 | /data1/gpdb/master/gpseg-1
+    6 |       4 | p    | p              | s    | u      | 4001 | sdw2_ipv4 | sdw2_ipv4 | /data2/gpdb/primary/gpseg4
+   18 |       4 | m    | m              | s    | u      | 5001 | sdw3_ipv4 | sdw3_ipv4 | /data2/gpdb/mirror/gpseg4
+    5 |       3 | p    | p              | s    | u      | 4000 | sdw2_ipv4 | sdw2_ipv4 | /data1/gpdb/primary/gpseg3
+   17 |       3 | m    | m              | s    | u      | 5000 | sdw3_ipv4 | sdw3_ipv4 | /data1/gpdb/mirror/gpseg3
+    7 |       5 | p    | p              | s    | u      | 4002 | sdw2_ipv4 | sdw2_ipv4 | /data3/gpdb/primary/gpseg5
+   19 |       5 | m    | m              | s    | u      | 5002 | sdw3_ipv4 | sdw3_ipv4 | /data3/gpdb/mirror/gpseg5
+   12 |      10 | p    | p              | s    | u      | 4001 | sdw4_ipv4 | sdw4_ipv4 | /data2/gpdb/primary/gpseg10
+   24 |      10 | m    | m              | s    | u      | 5001 | sdw1_ipv4 | sdw1_ipv4 | /data2/gpdb/mirror/gpseg10
+   11 |       9 | p    | p              | s    | u      | 4000 | sdw4_ipv4 | sdw4_ipv4 | /data1/gpdb/primary/gpseg9
+   23 |       9 | m    | m              | s    | u      | 5000 | sdw1_ipv4 | sdw1_ipv4 | /data1/gpdb/mirror/gpseg9
+   13 |      11 | p    | p              | s    | u      | 4002 | sdw4_ipv4 | sdw4_ipv4 | /data3/gpdb/primary/gpseg11
+   25 |      11 | m    | m              | s    | u      | 5002 | sdw1_ipv4 | sdw1_ipv4 | /data3/gpdb/mirror/gpseg11
+    3 |       1 | p    | p              | s    | u      | 4001 | sdw1_ipv4 | sdw1_ipv4 | /data2/gpdb/primary/gpseg1
+   15 |       1 | m    | m              | s    | u      | 5001 | sdw2_ipv4 | sdw2_ipv4 | /data2/gpdb/mirror/gpseg1
+    2 |       0 | p    | p              | s    | u      | 4000 | sdw1_ipv4 | sdw1_ipv4 | /data1/gpdb/primary/gpseg0
+   14 |       0 | m    | m              | s    | u      | 5000 | sdw2_ipv4 | sdw2_ipv4 | /data1/gpdb/mirror/gpseg0
+    4 |       2 | p    | p              | s    | u      | 4002 | sdw1_ipv4 | sdw1_ipv4 | /data3/gpdb/primary/gpseg2
+   16 |       2 | m    | m              | s    | u      | 5002 | sdw2_ipv4 | sdw2_ipv4 | /data3/gpdb/mirror/gpseg2
+(26 rows)
+
+
+
+==================== Assuming  SMDW not getting in sync with master we remove it and reintiate it ========================
+
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Warm master standby removal parameters
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master hostname               = mdw_ipv4
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master data directory         = /data1/gpdb/master/gpseg-1
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master port                   = 5432
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master hostname       = smdw_ipv4
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master port           = 5432
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master data directory = /data1/gpdb/master/gpseg-1
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Removing standby master from catalog...
+20210311:19:00:32:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Database catalog updated successfully.
+20210311:19:00:33:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Removing data directory on standby master...
+20210311:19:00:38:032646 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Successfully removed standby master
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Validating environment and parameters for standby initialization...
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Checking for data directory /data1/gpdb/master/gpseg-1 on smdw_ipv4
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master initialization parameters
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:------------------------------------------------------
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master hostname               = mdw_ipv4
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master data directory         = /data1/gpdb/master/gpseg-1
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum master port                   = 5432
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master hostname       = smdw_ipv4
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master port           = 5432
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum standby master data directory = /data1/gpdb/master/gpseg-1
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Greenplum update system catalog         = On
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Syncing Greenplum Database extensions to standby
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-The packages on smdw_ipv4 are consistent.
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Adding standby master to catalog...
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Database catalog updated successfully.
+20210311:19:00:38:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Updating pg_hba.conf file...
+20210311:19:00:39:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-pg_hba.conf files updated successfully.
+20210311:19:01:23:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Starting standby master
+20210311:19:01:23:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Checking if standby master is running on host: smdw_ipv4  in directory: /data1/gpdb/master/gpseg-1
+20210311:19:01:29:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Cleaning up pg_hba.conf backup files...
+20210311:19:01:30:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Backup files of pg_hba.conf cleaned up successfully.
+20210311:19:01:30:032676 gpinitstandby:mdw_ipv4:gpadmin-[INFO]:-Successfully created standby master on smdw_ipv4
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
+20210311:19:03:10:000496 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+
+
+====================Check if SMDW is up and in sync with master ================
+
+ dbid | content | role | preferred_role | mode | status | port | hostname  |  address  |           datadir           
+------+---------+------+----------------+------+--------+------+-----------+-----------+-----------------------------
+    8 |       6 | p    | p              | s    | u      | 4000 | sdw3_ipv4 | sdw3_ipv4 | /data1/gpdb/primary/gpseg6
+   20 |       6 | m    | m              | s    | u      | 5000 | sdw4_ipv4 | sdw4_ipv4 | /data1/gpdb/mirror/gpseg6
+    9 |       7 | p    | p              | s    | u      | 4001 | sdw3_ipv4 | sdw3_ipv4 | /data2/gpdb/primary/gpseg7
+   21 |       7 | m    | m              | s    | u      | 5001 | sdw4_ipv4 | sdw4_ipv4 | /data2/gpdb/mirror/gpseg7
+   10 |       8 | p    | p              | s    | u      | 4002 | sdw3_ipv4 | sdw3_ipv4 | /data3/gpdb/primary/gpseg8
+   22 |       8 | m    | m              | s    | u      | 5002 | sdw4_ipv4 | sdw4_ipv4 | /data3/gpdb/mirror/gpseg8
+   27 |      -1 | p    | p              | s    | u      | 5432 | mdw_ipv4  | mdw_ipv4  | /data1/gpdb/master/gpseg-1
+    6 |       4 | p    | p              | s    | u      | 4001 | sdw2_ipv4 | sdw2_ipv4 | /data2/gpdb/primary/gpseg4
+   18 |       4 | m    | m              | s    | u      | 5001 | sdw3_ipv4 | sdw3_ipv4 | /data2/gpdb/mirror/gpseg4
+    5 |       3 | p    | p              | s    | u      | 4000 | sdw2_ipv4 | sdw2_ipv4 | /data1/gpdb/primary/gpseg3
+   17 |       3 | m    | m              | s    | u      | 5000 | sdw3_ipv4 | sdw3_ipv4 | /data1/gpdb/mirror/gpseg3
+    7 |       5 | p    | p              | s    | u      | 4002 | sdw2_ipv4 | sdw2_ipv4 | /data3/gpdb/primary/gpseg5
+   19 |       5 | m    | m              | s    | u      | 5002 | sdw3_ipv4 | sdw3_ipv4 | /data3/gpdb/mirror/gpseg5
+   12 |      10 | p    | p              | s    | u      | 4001 | sdw4_ipv4 | sdw4_ipv4 | /data2/gpdb/primary/gpseg10
+   24 |      10 | m    | m              | s    | u      | 5001 | sdw1_ipv4 | sdw1_ipv4 | /data2/gpdb/mirror/gpseg10
+   11 |       9 | p    | p              | s    | u      | 4000 | sdw4_ipv4 | sdw4_ipv4 | /data1/gpdb/primary/gpseg9
+   23 |       9 | m    | m              | s    | u      | 5000 | sdw1_ipv4 | sdw1_ipv4 | /data1/gpdb/mirror/gpseg9
+   13 |      11 | p    | p              | s    | u      | 4002 | sdw4_ipv4 | sdw4_ipv4 | /data3/gpdb/primary/gpseg11
+   25 |      11 | m    | m              | s    | u      | 5002 | sdw1_ipv4 | sdw1_ipv4 | /data3/gpdb/mirror/gpseg11
+    3 |       1 | p    | p              | s    | u      | 4001 | sdw1_ipv4 | sdw1_ipv4 | /data2/gpdb/primary/gpseg1
+   15 |       1 | m    | m              | s    | u      | 5001 | sdw2_ipv4 | sdw2_ipv4 | /data2/gpdb/mirror/gpseg1
+    2 |       0 | p    | p              | s    | u      | 4000 | sdw1_ipv4 | sdw1_ipv4 | /data1/gpdb/primary/gpseg0
+   14 |       0 | m    | m              | s    | u      | 5000 | sdw2_ipv4 | sdw2_ipv4 | /data1/gpdb/mirror/gpseg0
+    4 |       2 | p    | p              | s    | u      | 4002 | sdw1_ipv4 | sdw1_ipv4 | /data3/gpdb/primary/gpseg2
+   16 |       2 | m    | m              | s    | u      | 5002 | sdw2_ipv4 | sdw2_ipv4 | /data3/gpdb/mirror/gpseg2
+   28 |      -1 | m    | m              | s    | u      | 5432 | smdw_ipv4 | smdw_ipv4 | /data1/gpdb/master/gpseg-1
+(26 rows)
+
+
+
+======================== End of test ====================
+
+NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
+SELECT 1000000
+ count | gp_segment_id 
+-------+---------------
+ 82830 |             4
+ 83208 |             1
+ 83728 |             0
+ 83636 |             6
+ 83279 |             7
+ 82863 |            11
+ 82865 |             2
+ 83255 |             8
+ 83593 |             3
+ 83647 |             9
+ 83538 |             5
+ 83558 |            10
+(12 rows)
+
+DROP TABLE

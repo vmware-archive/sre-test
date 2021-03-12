@@ -1,0 +1,4 @@
+nohup: ignoring input
+ERROR:  FTS detected connection lost during dispatch to seg0 slice1 10.0.19.242:4000 pid=11495:
+psql:/data1/TPC-DS/03_ddl/003.gpdb.catalog_returns.sql:35: ERROR:  failed to acquire resources on one or more segments
+DETAIL:  FTS detected one or more segments are down

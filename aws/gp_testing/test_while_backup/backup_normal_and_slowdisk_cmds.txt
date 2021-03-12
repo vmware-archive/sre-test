@@ -1,0 +1,4 @@
+
+nohup gpbackup --no-compression --dbname gpadmin > normal_backup1.log 2>&1 &
+nohup gpbackup --no-compression --dbname gpadmin --backup-dir /mnt/slow/test > slow_backup1.log 2>&1 &
+

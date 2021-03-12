@@ -1,0 +1,146 @@
+nohup: ignoring input
+====================Start of test==================
+==================== connect to mdw and reboot server ======================
+[mdw_ipv4] [1] 6677
+Traceback (most recent call last):
+  File "/usr/local/greenplum-db-6.13.0/bin/gpssh", line 288, in <module>
+    main()
+  File "/usr/local/greenplum-db-6.13.0/bin/gpssh", line 267, in main
+    output = GV.session.executeCommand(GV.argcmd)
+  File "/usr/local/greenplum-db-6.13.0/lib/python/gppylib/util/ssh_utils.py", line 282, in executeCommand
+    while not s.prompt(120) and s.isalive() and not s.eof(): pass
+  File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/pxssh.py", line 363, in prompt
+    i = self.expect([self.PROMPT, TIMEOUT], timeout=timeout)
+  File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/__init__.py", line 1448, in expect
+    timeout, searchwindowsize)
+  File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/__init__.py", line 1463, in expect_list
+    timeout, searchwindowsize)
+  File "/usr/local/greenplum-db-6.13.0/bin/lib/pexpect/__init__.py", line 1551, in expect_loop
+    raise EOF(str(err) + '\n' + str(self))
+pexpect.EOF: End Of File (EOF). Exception style platform.
+<gpssh_modules.gppxssh_wrapper.PxsshWrapper object at 0x7f87a98c8610>
+version: 3.3
+command: /usr/bin/ssh
+args: ['/usr/bin/ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no', '-q', '-l', 'gpadmin', 'mdw_ipv4']
+searcher: <pexpect.searcher_re object at 0x7f87a98c8650>
+buffer (last 100 chars): ''
+before (last 100 chars): 'sudo reboot\r\nConnection to mdw_ipv4 closed by remote host.\r\r\n'
+after: <class 'pexpect.EOF'>
+match: None
+match_index: None
+exitstatus: 255
+flag_eof: True
+pid: 7276
+child_fd: 3
+closed: False
+timeout: 30
+delimiter: <class 'pexpect.EOF'>
+logfile: None
+logfile_read: None
+logfile_send: None
+maxread: 2000
+ignorecase: False
+searchwindowsize: None
+delaybeforesend: 0.05
+delayafterclose: 0.1
+delayafterterminate: 0.1
+====================== check if GP DB is ======================
+[mdw_ipv4] 20210308:17:04:37:005789 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+[mdw_ipv4] 20210308:17:04:37:005789 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+[mdw_ipv4] 20210308:17:04:37:005789 gpstate:mdw_ipv4:gpadmin-[CRITICAL]:-gpstate failed. (Reason='could not connect to server: Connection refused
+[mdw_ipv4] 	Is the server running on host "localhost" (::1) and accepting
+[mdw_ipv4] 	TCP/IP connections on port 5432?
+[mdw_ipv4] could not connect to server: Connection refused
+[mdw_ipv4] 	Is the server running on host "localhost" (127.0.0.1) and accepting
+[mdw_ipv4] 	TCP/IP connections on port 5432?
+[mdw_ipv4] ') exiting...
+==================== strat the master ========================
+[mdw_ipv4] 20210308:17:04:39:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Starting gpstart with args: -a
+[mdw_ipv4] 20210308:17:04:39:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Gathering information and validating the environment...
+[mdw_ipv4] 20210308:17:04:39:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Greenplum Binary Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+[mdw_ipv4] 20210308:17:04:39:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Greenplum Catalog Version: '301908232'
+[mdw_ipv4] 20210308:17:04:39:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Starting Master instance in admin mode
+[mdw_ipv4] 20210308:17:04:40:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Obtaining Greenplum Master catalog information
+[mdw_ipv4] 20210308:17:04:40:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+[mdw_ipv4] 20210308:17:04:42:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Setting new master era
+[mdw_ipv4] 20210308:17:04:42:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Master Started...
+[mdw_ipv4] 20210308:17:04:42:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Shutting down master
+[mdw_ipv4] 20210308:17:04:42:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Commencing parallel primary and mirror segment instance startup, please wait...
+[mdw_ipv4] ..
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Process results...
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-   Successful segment starts                                            = 24
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-   Failed segment starts                                                = 0
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-   Skipped segment starts (segments are marked down in configuration)   = 0
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Successfully started 24 of 24 segment instances 
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210308:17:04:44:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Starting Master instance mdw_ipv4 directory /data1/gpdb/master/gpseg-1 
+[mdw_ipv4] 20210308:17:04:45:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Command pg_ctl reports Master mdw_ipv4 instance active
+[mdw_ipv4] 20210308:17:04:45:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Connecting to dbname='template1' connect_timeout=15
+[mdw_ipv4] 20210308:17:04:45:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Starting standby master
+[mdw_ipv4] 20210308:17:04:45:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Checking if standby master is running on host: smdw_ipv4  in directory: /data1/gpdb/master/gpseg-1
+[mdw_ipv4] 20210308:17:04:45:005875 gpstart:mdw_ipv4:gpadmin-[INFO]:-Database successfully started
+====================Check if db is up and running normal with smdw as================
+[mdw_ipv4] 20210308:17:05:47:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-Starting gpstate with args: 
+[mdw_ipv4] 20210308:17:05:47:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-local Greenplum Version: 'postgres (Greenplum Database) 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd'
+[mdw_ipv4] 20210308:17:05:47:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-master Greenplum Version: 'PostgreSQL 9.4.24 (Greenplum Database 6.13.0 build commit:4f1adf8e247a9685c19ea02bcaddfdc200937ecd) on x86_64-unknown-linux-gnu, compiled by gcc (GCC) 6.4.0, 64-bit compiled on Dec 16 2020 19:38:24'
+[mdw_ipv4] 20210308:17:05:47:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-Obtaining Segment details from master...
+[mdw_ipv4] 20210308:17:05:47:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-Gathering data from segments...
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-Greenplum instance status summary
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master instance                                           = Active
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Master standby                                            = smdw_ipv4
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Standby master state                                      = Standby host passive
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total segment instance count from metadata                = 24
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Primary Segment Status
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segments                                    = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment valid (at master)                   = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total primary segment failures (at master)                = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Mirror Segment Status
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segments                                     = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment valid (at master)                    = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total mirror segment failures (at master)                 = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files missing              = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid files found                = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs missing               = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of postmaster.pid PIDs found                 = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files missing                   = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number of /tmp lock files found                     = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes missing                 = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number postmaster processes found                   = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as primary segments   = 0
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-   Total number mirror segments acting as mirror segments    = 12
+[mdw_ipv4] 20210308:17:05:48:006120 gpstate:mdw_ipv4:gpadmin-[INFO]:-----------------------------------------------------
+====================End of test==================
+[mdw_ipv4] NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause. Creating a NULL policy entry.
+[mdw_ipv4] SELECT 1000000
+[mdw_ipv4]  count | gp_segment_id 
+[mdw_ipv4] -------+---------------
+[mdw_ipv4]  83373 |             4
+[mdw_ipv4]  83311 |             0
+[mdw_ipv4]  83362 |             5
+[mdw_ipv4]  83267 |            10
+[mdw_ipv4]  83038 |             1
+[mdw_ipv4]  83471 |             2
+[mdw_ipv4]  83635 |             8
+[mdw_ipv4]  83257 |             7
+[mdw_ipv4]  83225 |            11
+[mdw_ipv4]  83555 |             6
+[mdw_ipv4]  83015 |             3
+[mdw_ipv4]  83491 |             9
+[mdw_ipv4] (12 rows)
+[mdw_ipv4] 
+[mdw_ipv4] DROP TABLE

@@ -1,0 +1,3 @@
+20210304:07:10:28 gpbackup:gpadmin:mdw_ipv4:010346-[INFO]:-gpbackup version = 1.20.2
+20210304:07:10:28 gpbackup:gpadmin:mdw_ipv4:010346-[CRITICAL]:-failed to connect to `host=mdw_ipv4 user=gpadmin database=test1`: server error (FATAL: database "test1" does not exist (SQLSTATE 3D000))
+20210304:07:10:28 gpbackup:gpadmin:mdw_ipv4:010346-[WARNING]:-Encountered error during cleanup: 20210304:07:10:28 gpbackup:gpadmin:mdw_ipv4:010346-[CRITICAL]:-failed to connect to `host=mdw_ipv4 user=gpadmin database=test1`: server error (FATAL: database "test1" does not exist (SQLSTATE 3D000))

@@ -1,0 +1,23 @@
+2021-03-11 10:03:37.979769 UTC|||p7736|th1024088192||||0|con1||seg-1|||||FATAL: |57P01|terminating background worker "dtx recovery process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:03:37.979785 UTC|||p7737|th1024088192||||0|con2||seg-1|||||FATAL: |57P01|terminating background worker "ftsprobe process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:03:37.979854 UTC|||p7742|th1024088192||||0|con4||seg-1|||||FATAL: |57P01|terminating background worker "sweeper process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:03:43.649364 UTC|gpadmin|postgres|p18032|th-2046191488|[local]||2021-03-11 10:03:43 UTC|0|||seg-1|||||FATAL: |57P03|the database system is starting up|last replayed record at 0/0||||||0||postmaster.c|2539|
+2021-03-11 10:03:44.145357 UTC|||p18038|th-2046191488||||0|||seg-1|||||FATAL: |57P01|terminating background worker "sweeper process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:12:38.173924 UTC|||p18131|th1347639424||||0|con1||seg-1|||||FATAL: |57P01|terminating background worker "dtx recovery process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:12:38.173938 UTC|||p18132|th1347639424||||0|con2||seg-1|||||FATAL: |57P01|terminating background worker "ftsprobe process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:12:38.173999 UTC|||p18137|th1347639424||||0|con4||seg-1|||||FATAL: |57P01|terminating background worker "sweeper process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:12:40.140907 UTC|gpadmin|postgres|p18996|th-47073152|[local]||2021-03-11 10:12:40 UTC|0|||seg-1|||||FATAL: |57P03|the database system is starting up|last replayed record at 0/0||||||0||postmaster.c|2539|
+2021-03-11 10:12:40.639519 UTC|||p19002|th-47073152||||0|||seg-1|||||FATAL: |57P01|terminating background worker "sweeper process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:31:40.279189 UTC|||p19096|th1614002304||||0|con2||seg-1|||||FATAL: |57P01|terminating background worker "ftsprobe process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:31:40.279276 UTC|||p19132|th1614002304||||0|con6||seg-1|||||FATAL: |57P01|terminating background worker "sweeper process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:31:40.280211 UTC|gpadmin||p19139|th1614002304|10.0.21.18|63728|2021-03-11 10:12:57 UTC|0|||seg-1|||||FATAL: |57P01|terminating connection due to administrator command|||||||0||postgres.c|3775|
+2021-03-11 10:35:46.477573 UTC|gpadmin|postgres|p5898|th7395456|[local]||2021-03-11 10:35:46 UTC|0|||seg-1|||||FATAL: |57P03|the database system is starting up|last replayed record at 0/0||||||0||postmaster.c|2539|
+2021-03-11 10:35:46.578648 UTC|gpadmin|postgres|p5899|th7395456|[local]||2021-03-11 10:35:46 UTC|0|||seg-1|||||FATAL: |57P03|the database system is starting up|last replayed record at 0/8345FDF8||||||0||postmaster.c|2539|
+2021-03-11 10:35:48.246333 UTC|||p5905|th7395456||||0|||seg-1|||||FATAL: |57P01|terminating background worker "sweeper process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:46:24.296305 UTC|||p6002|th-32532352||||0|con2||seg-1|||||FATAL: |57P01|terminating background worker "ftsprobe process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:46:24.296322 UTC|gpadmin||p6018|th-32532352|10.0.21.18|63842|2021-03-11 10:36:00 UTC|0|||seg-1|||||FATAL: |57P01|terminating connection due to administrator command|||||||0||postgres.c|3775|
+2021-03-11 10:46:24.298330 UTC|||p6011|th-32532352||||0|con6||seg-1|||||FATAL: |57P01|terminating background worker "sweeper process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:59:20.592010 UTC|gpadmin|postgres|p6122|th2007525504|[local]||2021-03-11 10:59:20 UTC|0|||seg-1|||||FATAL: |57P03|the database system is starting up|last replayed record at 0/0||||||0||postmaster.c|2539|
+2021-03-11 10:59:20.693069 UTC|gpadmin|postgres|p6123|th2007525504|[local]||2021-03-11 10:59:20 UTC|0|||seg-1|||||FATAL: |57P03|the database system is starting up|last replayed record at 0/834D0958||||||0||postmaster.c|2539|
+2021-03-11 10:59:22.343171 UTC|||p6129|th2007525504||||0|||seg-1|||||FATAL: |57P01|terminating background worker "sweeper process" due to administrator command|||||||0||bgworker.c|565|
+2021-03-11 10:59:25.512872 UTC|gpadmin|postgres|p6218|th-1579661184|[local]||2021-03-11 10:59:25 UTC|0|||seg-1|||||FATAL: |57P03|the database system is starting up|last replayed record at 0/0||||||0||postmaster.c|2539|
