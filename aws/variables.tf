@@ -13,13 +13,13 @@ variable "aws_zone" {
 variable "dwcluster_name" {
   description  = "Greenplum DW Cluster Name"
   type = string
-  default = "gp_prod"
+  default = "gp_prod2"
 }
 
 variable "dwdatanode_instance_count" {
   description  = "Number of segment hosts"
   type = number
-  default = 4
+  default = 2
 }
 
 variable "dwcoordinator_instance_type" {
@@ -64,18 +64,6 @@ variable "ami" {
   description  = "AWS AMI to be used for provisioning instances"
   type = string
   default = "ami-026f33d38b6410e30" # ap-south-1 - CentOS 7 (x86_64) - with Updates HVM
-}
-
-variable "s3_bucket_name" {
-  description  = "name of the s3 bucket to be created for test purpose"
-  type = string
-  default = "gp-sre-bucket-new"
-}
-
-variable "s3_folder_name" {
-  description  = "name of the s3 bucket folder to be created for test purpose"
-  type = string
-  default = "test/backup3/"
 }
 
 
