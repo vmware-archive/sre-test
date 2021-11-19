@@ -32,7 +32,7 @@
   become: yes
   become_user: "{{ greenplum.greenplum_admin_user }}"
   shell: >
-     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -f /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo mkdir -p /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }} && sudo chown -R gpadmin:gpadmin /usr/local/greenplum-cc-6.3.0' && gpssh -f /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo ln -s /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }} /usr/local/greenplum-cc'
+     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -f /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo mkdir -p /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }} && sudo chown -R gpadmin:gpadmin /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }}' && gpssh -f /home/{{ greenplum.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo ln -s /usr/local/greenplum-cc-{{ greenplumcc.v6.pivnet_release_version }} /usr/local/greenplum-cc'
   
 - name: Unarchive the GPCC Package
   become: yes
@@ -72,7 +72,7 @@
   become: yes
   become_user: "{{ greenplum.greenplum_admin_user }}"
   shell: >
-     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpscp -v -f gp_all_hosts_ipv4 /home/{{ greenplum.greenplum_admin_user }}/pivnet_files/pivotal_greenplum_backup_restore-1.20.2.tar.gz =:/$GPHOME
+     cd && source /usr/local/greenplum-db-{{ greenplum.v6.pivnet_release_version }}/greenplum_path.sh && gpscp -v -f gp_all_hosts_ipv4 /home/{{ greenplum.greenplum_admin_user }}/pivnet_files/pivotal_greenplum_backup_restore-{{ greenplumbnr.v6.pivnet_release_version }}.tar.gz =:/$GPHOME
 
 - name: Unpack the tarball in the $GPHOME directory on every Greenplum host
   become: yes
