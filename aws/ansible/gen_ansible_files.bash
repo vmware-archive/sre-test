@@ -23,16 +23,24 @@ MDW_PUBLIC_IPV4=$(     jq -r '.outputs."gp_prod_dwcoordinators-public-IPv4".valu
 SMDW_PUBLIC_IPV4=$(    jq -r '.outputs."gp_prod_dwstandbycoordinators-public-IPv4".value' ${TFSTATEFILE} )
 SDW1_PUBLIC_IPV4=$(    jq -r '.outputs."gp_prod_dwdatanodes-public-IPv4".value[0]' ${TFSTATEFILE} )
 SDW2_PUBLIC_IPV4=$(    jq -r '.outputs."gp_prod_dwdatanodes-public-IPv4".value[1]' ${TFSTATEFILE} )
+SDW3_PUBLIC_IPV4=$(    jq -r '.outputs."gp_prod_dwdatanodes-public-IPv4".value[2]' ${TFSTATEFILE} )
+SDW4_PUBLIC_IPV4=$(    jq -r '.outputs."gp_prod_dwdatanodes-public-IPv4".value[3]' ${TFSTATEFILE} )
+
+
 
 MDW_PRIVATE_IPV4=$(    jq -r '.outputs."gp_prod_dwcoordinators-private-IPv4".value' ${TFSTATEFILE} )
 SMDW_PRIVATE_IPV4=$(   jq -r '.outputs."gp_prod_dwstandbycoordinators-private-IPv4".value' ${TFSTATEFILE} )
 SDW1_PRIVATE_IPV4=$(   jq -r '.outputs."gp_prod_dwdatanodes-private-IPv4".value[0]' ${TFSTATEFILE} )
 SDW2_PRIVATE_IPV4=$(   jq -r '.outputs."gp_prod_dwdatanodes-private-IPv4".value[1]' ${TFSTATEFILE} )
+SDW3_PRIVATE_IPV4=$(   jq -r '.outputs."gp_prod_dwdatanodes-private-IPv4".value[2]' ${TFSTATEFILE} )
+SDW4_PRIVATE_IPV4=$(   jq -r '.outputs."gp_prod_dwdatanodes-private-IPv4".value[3]' ${TFSTATEFILE} )
 
 MDW_PRIVATE_IPV6=$(    jq -r '.outputs."gp_prod_dwcoordinators-private-IPv6".value' ${TFSTATEFILE} )
 SMDW_PRIVATE_IPV6=$(   jq -r '.outputs."gp_prod_dwstandbycoordinators-private-IPv6".value' ${TFSTATEFILE} )
 SDW1_PRIVATE_IPV6=$(   jq -r '.outputs."gp_prod_dwdatanodes-private-IPv6".value[0]' ${TFSTATEFILE} )
 SDW2_PRIVATE_IPV6=$(   jq -r '.outputs."gp_prod_dwdatanodes-private-IPv6".value[1]' ${TFSTATEFILE} )
+SDW3_PRIVATE_IPV6=$(   jq -r '.outputs."gp_prod_dwdatanodes-private-IPv6".value[2]' ${TFSTATEFILE} )
+SDW4_PRIVATE_IPV6=$(   jq -r '.outputs."gp_prod_dwdatanodes-private-IPv6".value[3]' ${TFSTATEFILE} )
 
 
 tee ${CWDIR}/ansible_hosts >/dev/null <<< "
@@ -55,7 +63,11 @@ all:
         sdw1_ipv4:
           ansible_host: ${SDW1_PUBLIC_IPV4}
         sdw2_ipv4:
-          ansible_host: ${SDW2_PUBLIC_IPV4}"
+          ansible_host: ${SDW2_PUBLIC_IPV4}
+        sdw3_ipv4:
+          ansible_host: ${SDW3_PUBLIC_IPV4}
+        sdw4_ipv4:
+          ansible_host: ${SDW4_PUBLIC_IPV4}"
 
 cat ${CWDIR}/ansible_hosts
 
@@ -66,10 +78,14 @@ ${MDW_PRIVATE_IPV4}  mdw_ipv4
 ${SMDW_PRIVATE_IPV4} smdw_ipv4
 ${SDW1_PRIVATE_IPV4} sdw1_ipv4
 ${SDW2_PRIVATE_IPV4} sdw2_ipv4
+${SDW3_PRIVATE_IPV4} sdw3_ipv4
+${SDW4_PRIVATE_IPV4} sdw4_ipv4
 ${MDW_PRIVATE_IPV6}  mdw_ipv6
 ${SMDW_PRIVATE_IPV6} smdw_ipv6
 ${SDW1_PRIVATE_IPV6} sdw1_ipv6
-${SDW2_PRIVATE_IPV6} sdw2_ipv6"
+${SDW2_PRIVATE_IPV6} sdw2_ipv6
+${SDW3_PRIVATE_IPV6} sdw3_ipv6
+${SDW4_PRIVATE_IPV6} sdw4_ipv6"
 
 cat ${CWDIR}/files/etchosts
 
@@ -78,6 +94,8 @@ mdw_ipv4
 smdw_ipv4
 sdw1_ipv4
 sdw2_ipv4
+sdw3_ipv4
+sdw4_ipv4
 EOF
 
 cat ${CWDIR}/files/gp_all_hosts_ipv4
@@ -85,6 +103,8 @@ cat ${CWDIR}/files/gp_all_hosts_ipv4
 tee ${CWDIR}/files/gp_segment_hosts_ipv4 >/dev/null <<EOF
 sdw1_ipv4
 sdw2_ipv4
+sdw3_ipv4
+sdw4_ipv4
 EOF
 
 cat ${CWDIR}/files/gp_segment_hosts_ipv4
@@ -94,6 +114,8 @@ mdw_ipv6
 smdw_ipv6
 sdw1_ipv6
 sdw2_ipv6
+sdw3_ipv6
+sdw4_ipv6
 EOF
 
 cat ${CWDIR}/files/gp_all_hosts_ipv6
@@ -101,6 +123,8 @@ cat ${CWDIR}/files/gp_all_hosts_ipv6
 tee ${CWDIR}/files/gp_segment_hosts_ipv6 >/dev/null <<EOF
 sdw1_ipv6
 sdw2_ipv6
+sdw3_ipv6
+sdw4_ipv6
 EOF
 
 cat ${CWDIR}/files/gp_segment_hosts_ipv6

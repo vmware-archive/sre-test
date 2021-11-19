@@ -13,13 +13,13 @@ variable "aws_zone" {
 variable "dwcluster_name" {
   description  = "Greenplum DW Cluster Name"
   type = string
-  default = "gp_prod2"
+  default = "gp_prod5"
 }
 
 variable "dwdatanode_instance_count" {
   description  = "Number of segment hosts"
   type = number
-  default = 2
+  default = 4
 }
 
 variable "dwcoordinator_instance_type" {
