@@ -1,0 +1,106 @@
+---
+# tasks file for prerequisites
+- name: Check PXF is installed
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: 'rpm -q pxf-gp6-{{ greenplumpxf.v6.pivnet_pxf_version }}-2.el7.x86_64'
+  register: pxf_check
+  failed_when: false
+  args:
+    warn: false
+
+
+- name: Pivnet download
+  include_tasks: pivnet-download.yml
+  when: pxf_check.rc == 1 
+
+- name: Copying PXF to all nodes
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cd && source /usr/local/greenplum-db-{{ greenplumpxf.v6.pivnet_release_version }}/greenplum_path.sh && gpscp -f /home/{{ greenplumpxf.greenplum_admin_user }}/gp_all_hosts_ipv4 /home/{{ greenplumpxf.greenplum_admin_user }}/pivnet_files/pxf-gp6-{{ greenplumpxf.v6.pivnet_pxf_version }}-2.el7.x86_64.rpm =:/tmp
+  when: pxf_check.rc == 1
+
+- name: Installing PXF on all the nodes
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cd && source /usr/local/greenplum-db-{{ greenplumpxf.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -e -v -f /home/{{ greenplumpxf.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo rpm -Uvh /tmp/pxf-gp6-{{ greenplumpxf.v6.pivnet_pxf_version }}-2.el7.x86_64.rpm'
+  when: pxf_check.rc == 1
+
+- name: Change the owner and group to "{{ greenplumpxf.greenplum_admin_user }}"
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cd && source /usr/local/greenplum-db-{{ greenplumpxf.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -f /home/{{ greenplumpxf.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo chown -R {{ greenplumpxf.greenplum_admin_user }}:{{ greenplumpxf.greenplum_admin_user }} /usr/local/pxf*'
+  args:
+      warn: false
+
+- name: Getting java path
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: "dirname $(readlink -f `which java`) | awk -F'/bin' '{print $1}'"
+  register: java_path
+  args:
+    warn: false
+
+- name: Setting java path
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  set_fact:
+    JAVA_PATH: "{{ java_path.stdout }}"
+
+- name: Print java path
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  debug: 
+    var: JAVA_PATH
+
+- name: Getting pxf base
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: "rpm -ql pxf-gp6-{{ greenplumpxf.v6.pivnet_pxf_version }}-2.el7.x86_64 | head -1"
+  register: pxf_base
+  args:
+    warn: false
+
+- name: Setting pxf base
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  set_fact:
+    PXF_BASE: "{{ pxf_base.stdout }}"
+
+- name: Print pxf base
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  debug:
+    var: PXF_BASE
+
+
+
+- name: Check if PXF path is added to bashrc file
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cat /home/{{ greenplumpxf.greenplum_admin_user }}/.bashrc | grep -i "^export PATH" | wc -l
+  register: test_grep_pxf
+
+- name: Adding pxf path to .bashrc
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  lineinfile:
+    dest: /home/{{ greenplumpxf.greenplum_admin_user }}/.bashrc
+    line: export PATH=$PATH:{{PXF_BASE}}/bin
+  when: test_grep_pxf.stdout == "0"
+
+
+- name: Check if JAVA_HOME is added to pxf-env.sh
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cat /usr/local/pxf-gp6/conf/pxf-env.sh | grep -i "^export JAVA_HOME" | grep -i "{{ greenplumpxf.v6.java_version }}" | wc -l
+  register: test_grep_pxf_java
+
+- name: Adding JAVA_HOME to pxf-env.sh
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  lineinfile:
+    dest: /usr/local/pxf-gp6/conf/pxf-env.sh
+    line: export JAVA_HOME={{java_path.stdout}}
+  when: test_grep_pxf_java.stdout == "0"
+

@@ -1,0 +1,32 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+
+- name: install prerequisites
+  tags: prerequisites
+  gather_facts: False
+  hosts: dwmaster
+  become: yes
+  become_method: sudo
+  roles:
+    - prerequisites
+
+- name: install pxf
+  tags: pxf_install
+  gather_facts: False
+  hosts: dwmaster
+  become: yes
+  become_method: sudo
+  roles:
+    - install
+
+- name: configure pxf
+  tags: pxf_configure
+  gather_facts: False
+  hosts: dwmaster
+  become: yes
+  become_method: sudo
+  roles:
+    - configure
+

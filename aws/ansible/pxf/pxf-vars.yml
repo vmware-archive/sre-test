@@ -1,0 +1,10 @@
+---
+
+greenplumpxf:
+  greenplum_admin_user: gpadmin
+  pivnet_product_slug: pivotal-gpdb
+  v6:
+    pivnet_release_version: 6.18.2
+    pivnet_product_file_id: 1083442
+    pivnet_pxf_version: 6.2.0
+    java_version: 1.8.0

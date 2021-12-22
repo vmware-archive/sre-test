@@ -1,0 +1,26 @@
+---
+#tasks for configuring PXF
+
+- name: Run pxf cluster register
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cd && source /home/{{ greenplumpxf.greenplum_admin_user }}/.bashrc && pxf cluster register
+
+- name: Run pxf cluster sync
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cd && source /home/{{ greenplumpxf.greenplum_admin_user }}/.bashrc && pxf cluster sync
+
+
+- name: Post install configuration(USER)
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  vars:
+    msg: |
+         =======================  Next Steps =======================
+         Please Configure PXF connector as per External data source.
+         Refer to PXF documentation for more details.
+         ===========================================================
+  debug:
+     msg: "{{ msg.split('\n') }}"
+
