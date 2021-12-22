@@ -1,0 +1,32 @@
+---
+#tasks for pivnet download
+
+- name: Retrieve TanzuNet CLI
+  get_url:
+    url: https://github.com/pivotal-cf/pivnet-cli/releases/download/v3.0.1/pivnet-linux-amd64-3.0.1
+    dest: /usr/local/bin/pivnet
+    mode: '0555'
+
+- name: Login into TanzuNet
+  tags: piv_login
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cd && /usr/local/bin/pivnet --config=.pivnetrc_pxf login --api-token="{{pivnet_api_token}}"
+
+- name: Retrieve GPPXF {{ greenplumpxf.v6.pivnet_pxf_version }}
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: >
+    /usr/local/bin/pivnet
+    download-product-files
+    --product-slug="{{ greenplumpxf.pivnet_product_slug }}"
+    --release-version="{{ greenplumpxf.v6.pivnet_release_version }}"
+    --product-file-id="{{ greenplumpxf.v6.pivnet_product_file_id }}"
+    --download-dir=/home/{{ greenplumpxf.greenplum_admin_user }}/pivnet_files
+  args:
+    creates: "/home/{{ greenplumpxf.greenplum_admin_user }}/pivnet_files/pxf-gp6-{{ greenplumpxf.v6.pivnet_pxf_version }}-2.el7.x86_64.rpm"
+
+- name: Logout from TanzuNet
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cd && /usr/local/bin/pivnet --config=.pivnetrc_pxf logout 

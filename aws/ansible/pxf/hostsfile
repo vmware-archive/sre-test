@@ -1,0 +1,9 @@
+all:
+  vars:
+    ansible_user: <provide username to login to maternode>
+    ansible_ssh_private_key_file: <provide .pem file path to connect to masternode>
+  children:
+    dwmaster:
+      hosts:
+          mdw_ipv4:
+             ansible_host: <Greenplum Database Master node public ip>

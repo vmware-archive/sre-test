@@ -1,0 +1,7 @@
+---
+# tasks file for prerequisites
+
+- name: Installing Java on all the nodes
+  become: yes
+  become_user: "{{ greenplumpxf.greenplum_admin_user }}"
+  shell: cd && source /usr/local/greenplum-db-{{ greenplumpxf.v6.pivnet_release_version }}/greenplum_path.sh && gpssh -f /home/{{ greenplumpxf.greenplum_admin_user }}/gp_all_hosts_ipv4 'sudo yum -y install java-{{ greenplumpxf.v6.java_version }}-openjdk-{{ greenplumpxf.v6.java_version }}.*'
